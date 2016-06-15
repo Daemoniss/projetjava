@@ -6,6 +6,7 @@ import java.util.Observer;
 
 import javax.swing.JPanel;
 
+
 /**
  * The Class ViewPanel.
  *
@@ -17,6 +18,8 @@ class ViewPanel extends JPanel implements Observer {
 	private ViewFrame					viewFrame;
 	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= -998294702363713521L;
+	private int x = 50;
+	private int y = 50;
 
 	/**
 	 * Instantiates a new view panel.
@@ -25,6 +28,8 @@ class ViewPanel extends JPanel implements Observer {
 	 *          the view frame
 	 */
 	public ViewPanel(final ViewFrame viewFrame) {
+		setx(x);
+		sety(y);
 		this.setViewFrame(viewFrame);
 		viewFrame.getModel().getObservable().addObserver(this);
 	}
@@ -34,9 +39,9 @@ class ViewPanel extends JPanel implements Observer {
 	 *
 	 * @return the view frame
 	 */
-	private ViewFrame getViewFrame() {
+	/*private ViewFrame getViewFrame() {
 		return this.viewFrame;
-	}
+	}*/
 
 	/**
 	 * Sets the view frame.
@@ -64,7 +69,16 @@ class ViewPanel extends JPanel implements Observer {
 	 */
 	@Override
 	protected void paintComponent(final Graphics graphics) {
+		this.x = this.viewFrame.getx();
+		this.y = this.viewFrame.gety();
+		
 		graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-		graphics.drawString(this.getViewFrame().getModel().getMessage(), 10, 20);
+		graphics.drawString("hero", x, y);
+	}
+	public void setx(int x){
+		this.x = x;
+	}
+	public void sety(int y){
+		this.y = y;
 	}
 }
