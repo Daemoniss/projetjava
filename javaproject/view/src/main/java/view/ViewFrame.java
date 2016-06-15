@@ -10,13 +10,14 @@ import javax.swing.JOptionPane;
 
 import contract.IController;
 import contract.IModel;
+import contract.IViewFrame;
 
 /**
  * The Class ViewFrame.
  *
  * @author Jean-Aymeric Diet
  */
-class ViewFrame extends JFrame implements KeyListener {
+class ViewFrame extends JFrame implements KeyListener, IViewFrame{
 
 	/** The model. */
 	private IModel						model;
@@ -25,6 +26,8 @@ class ViewFrame extends JFrame implements KeyListener {
 	private IController				controller;
 	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= -697358409737458175L;
+	public int x = 50;
+	public int y = 50;
 
 	/**
 	 * Instantiates a new view frame.
@@ -37,7 +40,6 @@ class ViewFrame extends JFrame implements KeyListener {
 	public ViewFrame(final IModel model) throws HeadlessException {
 		this.buildViewFrame(model);
 	}
-
 	/**
 	 * Instantiates a new view frame.
 	 *
@@ -46,6 +48,7 @@ class ViewFrame extends JFrame implements KeyListener {
 	 * @param gc
 	 *          the gc
 	 */
+	
 	public ViewFrame(final IModel model, final GraphicsConfiguration gc) {
 		super(gc);
 		this.buildViewFrame(model);
@@ -131,7 +134,7 @@ class ViewFrame extends JFrame implements KeyListener {
 		this.setResizable(false);
 		this.addKeyListener(this);
 		this.setContentPane(new ViewPanel(this));
-		this.setSize(400 + this.getInsets().left + this.getInsets().right, 60 + this.getInsets().top + this.getInsets().bottom);
+		this.setSize(400 + this.getInsets().left + this.getInsets().right, 600 + this.getInsets().top + this.getInsets().bottom);
 		this.setLocationRelativeTo(null);
 	}
 
@@ -170,5 +173,23 @@ class ViewFrame extends JFrame implements KeyListener {
 	 */
 	public void keyReleased(final KeyEvent e) {
 
+	}
+
+	public void setY(int coordonneY) {
+		// TODO Auto-generated method stub
+		this.y = coordonneY;
+		
+	}
+
+	public void setX(int coordonneX) {
+		// TODO Auto-generated method stub
+		this.x = coordonneX;
+		
+	}
+	public int getX(){
+		return x;
+	}
+	public int getY(){
+		return y;
 	}
 }

@@ -5,14 +5,14 @@ package contract;
  *
  * @author Jean-Aymeric Diet
  */
-public enum ControllerOrder {
+public enum direction {
 
 	/** The English. */
-	//HAUT, 
+	HAUT, 
 	/** The French. */
-	//BAS, 
+	BAS, 
 	/** The Deutch. */
-//	GAUCHE, 
+	GAUCHE, 
 	/** The Indonesia. */
-//	DROIT*/
+	DROIT
 }

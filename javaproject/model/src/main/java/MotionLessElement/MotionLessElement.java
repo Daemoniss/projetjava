@@ -1,6 +1,6 @@
 package MotionLessElement;
 
-import contract.IModel;
+
 import contract.ISprite;
 import contract.Permeability;
 

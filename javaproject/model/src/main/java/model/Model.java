@@ -1,12 +1,10 @@
 package model;
-import java.io.IOException;
-import java.util.ArrayList;
+
+import java.sql.SQLException;
 import java.util.Observable;
 
 import mobile.Hero;
-import mobile.Mobile;
-import Element.Element;
-import MotionLessElement.MotionLessElement;
+import contract.IMobile;
 import contract.IModel;
 
 
@@ -18,12 +16,14 @@ import contract.IModel;
  */
 
 public class Model extends Observable implements IModel {
-	private int width;
-	int height;
-	public MotionLessElement				elements[][];
-	public final ArrayList<Mobile>	mobiles;
+	//private int width;
+	//int height;
+	//public MotionLessElement							elements[][];
+	//public final ArrayList<Mobile>						mobiles;
 	private Hero										hero;
+	private IMobile										mobile;
 //	private ObjetRecuperable							objetRecuperable;
+	private String message;
 
 	
 
@@ -32,17 +32,11 @@ public class Model extends Observable implements IModel {
 	 */
 
 	public Model() {
-		
+		this.message = "";
+		initHero();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see contract.IModel#getMessage()
-	 */
-	public Model( int width,int height) {
-		
-	}
+
 
 	/**
 	 * Sets the message.
@@ -50,26 +44,53 @@ public class Model extends Observable implements IModel {
 	 * @param message
 	 *          the new message
 	 */
-
+	public String getMessage() {
+		return this.message;
+	}
+	private void setMessage(final String message) {
+		this.message = message;
+		this.setChanged();
+		this.notifyObservers();
+	}
+	
+/*
 	public int getWidth(){
 		return width;
 		
 	}
 	public int getHeight(){
 		return height;
+	}*/
+	public void loadMessage(final String key) {
+		try {
+			final DAOHelloWorld daoHelloWorld = new DAOHelloWorld(DBConnection.getInstance().getConnection());
+			this.setMessage(daoHelloWorld.find(key).getMessage());
+		} catch (final SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
+	public void initHero(){
+		final Hero hero = new Hero(20,20);
+		this.mobile = hero;
+	}
 	
+	public IMobile getHero(){
+		return mobile;
+	}
 	
+	public Observable getObservable() {
+		return this;
+	}
 
 	/*
 	 * (non-Javadoc)
 	 *
 	 * @see contract.IModel#getObservable()
 	 */
-	
+	/*
 	@Override
-	public MotionlessElement getElements(final int x, final int y) {
+	public MotionLessElement getElements(final int x, final int y) {
 		return this.elements[x][y];
 	}
 
@@ -81,7 +102,7 @@ public class Model extends Observable implements IModel {
 		return this.objetRecuperable;
 	}
 
-	private void addElement(final MotionlessElement element, final int x, final int y) {
+	private void addElement(final MotionLessElement element, final int x, final int y) {
 
 	}
 
@@ -133,9 +154,7 @@ public class Model extends Observable implements IModel {
 	public ArrayList<Mobile> getMobiles() {
 		return this.mobiles;
 	}
-	
+	*/
 
-	public Observable getObservable() {
-		return this;
-	}
+	
 }

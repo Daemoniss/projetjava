@@ -4,10 +4,11 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.SwingUtilities;
 
-import contract.ControllerOrder;
 import contract.IController;
 import contract.IModel;
 import contract.IView;
+import contract.IMobile;
+import contract.direction;
 
 /**
  * The Class View.
@@ -18,6 +19,8 @@ public class View implements IView, Runnable {
 
 	/** The frame. */
 	private final ViewFrame viewFrame;
+	private IModel model;
+	private IMobile mobile;
 
 	/**
 	 * Instantiates a new view.
@@ -27,29 +30,34 @@ public class View implements IView, Runnable {
 	 */
 	public View(final IModel model) {
 		this.viewFrame = new ViewFrame(model);
+		this.model = model;
+		getMobile();
+		this.mobile.setViewPanel(viewFrame);
 		SwingUtilities.invokeLater(this);
 	}
 
-	/**
-	 * Key code to controller order.
-	 *
-	 * @param keyCode
-	 *          the key code
-	 * @return the controller order
-	 */
-	protected static ControllerOrder keyCodeToControllerOrder(final int keyCode) {
+	
+	
+	
+	
+	
+	
+	
+	protected static direction keyCodeToControllerOrder(final int keyCode) {
 		switch (keyCode) {
-			case KeyEvent.VK_G:
-				return ControllerOrder.English;
-			case KeyEvent.VK_F:
-				return ControllerOrder.Francais;
+			case KeyEvent.VK_Z:
+				return direction.HAUT;
+			case KeyEvent.VK_S:
+				return direction.BAS;
+			case KeyEvent.VK_Q:
+				return direction.GAUCHE;
 			case KeyEvent.VK_D:
-				return ControllerOrder.Deutsch;
-			case KeyEvent.VK_I:
-				return ControllerOrder.Indonesia;
+				return direction.DROIT;
 			default:
-				return ControllerOrder.English;
+				return direction.HAUT;
 		}
+		
+	
 	}
 
 	/*
@@ -78,5 +86,8 @@ public class View implements IView, Runnable {
 	 */
 	public void setController(final IController controller) {
 		this.viewFrame.setController(controller);
+	}
+	public void getMobile(){
+		this.mobile = this.model.getHero();
 	}
 }

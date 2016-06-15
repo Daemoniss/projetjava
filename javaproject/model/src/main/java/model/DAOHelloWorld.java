@@ -82,6 +82,11 @@ class DAOHelloWorld extends DAOEntity<HelloWorld> {
 		return null;
 	}
 
+	public Throwable find(String key) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 
 
