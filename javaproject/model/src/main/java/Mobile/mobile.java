@@ -2,7 +2,7 @@ package Mobile;
 
 import contract.IViewFrame;
 
-public class mobile{
+public class mobile {
 	public int coordonnex;
 	public int coordonney;
 	public int dir;
