@@ -18,6 +18,7 @@ public class View implements IView, Runnable {
 
 	/** The frame. */
 	private final ViewFrame viewFrame;
+	private IModel model;
 	private IMobile mobile;
 
 	/**
@@ -26,9 +27,10 @@ public class View implements IView, Runnable {
 	 * @param model
 	 *          the model
 	 */
-	public View(final IModel model, IMobile mobile) {
+	public View(final IModel model) {
 		this.viewFrame = new ViewFrame(model);
-		this.mobile = mobile;
+		this.model = model;
+		getMobile();
 		this.mobile.setViewPanel(viewFrame);
 		SwingUtilities.invokeLater(this);
 	}
@@ -81,5 +83,9 @@ public class View implements IView, Runnable {
 	 */
 	public void setController(final IController controller) {
 		this.viewFrame.setController(controller);
+	}
+	
+	public void getMobile(){
+		this.mobile = this.model.getHero();
 	}
 }

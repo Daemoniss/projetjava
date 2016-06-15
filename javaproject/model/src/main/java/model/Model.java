@@ -3,8 +3,9 @@ package model;
 import java.sql.SQLException;
 import java.util.Observable;
 
+import Mobile.hero;
 import contract.IModel;
-
+import contract.IMobile;
 
 /**
  * The Class Model.
@@ -16,11 +17,13 @@ public class Model extends Observable implements IModel {
 	/** The message. */
 	private String message;
 
+	private IMobile mobile;
 	/**
 	 * Instantiates a new model.
 	 */
 	public Model() {
 		this.message = "";
+		initHero();
 	}
 
 	/*
@@ -57,12 +60,21 @@ public class Model extends Observable implements IModel {
 			e.printStackTrace();
 		}
 	}
+	public void initHero(){
+		final hero hero = new hero(20,20);
+		this.mobile = hero;
+	}
+	
+	public IMobile getHero(){
+		return mobile;
+	}
 
 	/*
 	 * (non-Javadoc)
 	 *
 	 * @see contract.IModel#getObservable()
 	 */
+	
 	public Observable getObservable() {
 		return this;
 	}

@@ -29,10 +29,10 @@ public class Controller implements IController {
 	 * @param model
 	 *          the model
 	 */
-	public Controller(final IView view, final IModel model, final IMobile mobile) {
+	public Controller(final IView view, final IModel model) {
 		this.setView(view);
 		this.setModel(model);
-		this.setmobile(mobile);
+		this.setmobile();
 	}
 
 	/*
@@ -64,8 +64,8 @@ public class Controller implements IController {
 		this.model = model;
 	}
 	
-	private void setmobile(final IMobile mobile){
-		this.mobile = mobile;
+	private void setmobile(){
+		this.mobile = this.model.getHero();;
 	}
 
 	/*
