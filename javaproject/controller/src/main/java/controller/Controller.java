@@ -32,7 +32,7 @@ public class Controller implements IController {
 	public Controller(final IView view, final IModel model) {
 		this.setView(view);
 		this.setModel(model);
-		this.setmobile();
+		this.setMobile();
 	}
 
 	/*
@@ -64,7 +64,7 @@ public class Controller implements IController {
 		this.model = model;
 	}
 	
-	private void setmobile(){
+	private void setMobile(){
 		this.mobile = this.model.getHero();;
 	}
 
@@ -76,24 +76,28 @@ public class Controller implements IController {
 	public void orderPerform(final direction direction) {
 		switch (direction) {
 			case Haut:
-				this.model.loadMessage("GB");
+				/*this.model.loadMessage("GB");*/
+				this.model.refresh();
 				this.dire = 1;
-				this.mobile.setdirection(dire);
+				this.mobile.setDirection(dire);
 				break;
 			case Bas:
-				this.model.loadMessage("FR");
+				/*this.model.loadMessage("FR");*/
+				this.model.refresh();
 				this.dire = 2;
-				this.mobile.setdirection(dire);
+				this.mobile.setDirection(dire);
 				break;
 			case Gauche:
-				this.model.loadMessage("DE");
+				/*this.model.loadMessage("DE");*/
+				this.model.refresh();
 				this.dire = 3;
-				this.mobile.setdirection(dire);
+				this.mobile.setDirection(dire);
 				break;
 			case Droite:
-				this.model.loadMessage("ID");
+				/*this.model.loadMessage("ID");*/
+				this.model.refresh();
 				this.dire = 4;
-				this.mobile.setdirection(dire);
+				this.mobile.setDirection(dire);
 				break;
 
 			default:

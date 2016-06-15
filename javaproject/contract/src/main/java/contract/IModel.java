@@ -14,7 +14,7 @@ public interface IModel {
 	 *
 	 * @return the message
 	 */
-	String getMessage();
+	/*String getMessage();*/
 
 	/**
 	 * Load the message.
@@ -22,7 +22,7 @@ public interface IModel {
 	 * @param key
 	 *          the key
 	 */
-	void loadMessage(String key);
+	/*void loadMessage(String key);*/
 
 	/**
 	 * Gets the observable.
@@ -32,4 +32,6 @@ public interface IModel {
 	Observable getObservable();
 
 	IMobile getHero();
+
+	void refresh();
 }

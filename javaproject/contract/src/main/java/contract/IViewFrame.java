@@ -2,8 +2,8 @@ package contract;
 
 public interface IViewFrame {
 
-	void sety(int coordonney);
+	void setY(int coordonney);
 
-	void setx(int coordonnex);
+	void setX(int coordonnex);
 	
 }

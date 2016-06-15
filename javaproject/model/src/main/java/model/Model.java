@@ -1,6 +1,6 @@
 package model;
 
-import java.sql.SQLException;
+/*import java.sql.SQLException;*/
 import java.util.Observable;
 
 import Mobile.hero;
@@ -15,14 +15,14 @@ import contract.IMobile;
 public class Model extends Observable implements IModel {
 
 	/** The message. */
-	private String message;
+	/*private String message;*/
 
 	private IMobile mobile;
 	/**
 	 * Instantiates a new model.
 	 */
 	public Model() {
-		this.message = "";
+		/*this.message = "";*/
 		initHero();
 	}
 
@@ -31,9 +31,9 @@ public class Model extends Observable implements IModel {
 	 *
 	 * @see contract.IModel#getMessage()
 	 */
-	public String getMessage() {
+	/*public String getMessage() {
 		return this.message;
-	}
+	}*/
 
 	/**
 	 * Sets the message.
@@ -41,8 +41,8 @@ public class Model extends Observable implements IModel {
 	 * @param message
 	 *          the new message
 	 */
-	private void setMessage(final String message) {
-		this.message = message;
+	public void refresh() {
+		/*this.message = message;*/
 		this.setChanged();
 		this.notifyObservers();
 	}
@@ -52,14 +52,14 @@ public class Model extends Observable implements IModel {
 	 *
 	 * @see contract.IModel#getMessage(java.lang.String)
 	 */
-	public void loadMessage(final String key) {
+	/*public void loadMessage(final String key) {
 		try {
 			final DAOHelloWorld daoHelloWorld = new DAOHelloWorld(DBConnection.getInstance().getConnection());
 			this.setMessage(daoHelloWorld.find(key).getMessage());
 		} catch (final SQLException e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 	public void initHero(){
 		final hero hero = new hero(20,20);
 		this.mobile = hero;

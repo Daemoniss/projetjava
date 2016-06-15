@@ -175,21 +175,21 @@ class ViewFrame extends JFrame implements KeyListener, IViewFrame{
 
 	}
 
-	public void sety(int coordonney) {
+	public void setY(int coordonney) {
 		// TODO Auto-generated method stub
 		this.y = coordonney;
 		
 	}
 
-	public void setx(int coordonnex) {
+	public void setX(int coordonnex) {
 		// TODO Auto-generated method stub
 		this.x = coordonnex;
 		
 	}
-	public int getx(){
+	public int getX(){
 		return x;
 	}
-	public int gety(){
+	public int getY(){
 		return y;
 	}
 }

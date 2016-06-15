@@ -28,8 +28,8 @@ class ViewPanel extends JPanel implements Observer {
 	 *          the view frame
 	 */
 	public ViewPanel(final ViewFrame viewFrame) {
-		setx(x);
-		sety(y);
+		setX(x);
+		setY(y);
 		this.setViewFrame(viewFrame);
 		viewFrame.getModel().getObservable().addObserver(this);
 	}
@@ -69,16 +69,16 @@ class ViewPanel extends JPanel implements Observer {
 	 */
 	@Override
 	protected void paintComponent(final Graphics graphics) {
-		this.x = this.viewFrame.getx();
-		this.y = this.viewFrame.gety();
+		this.x = this.viewFrame.getX();
+		this.y = this.viewFrame.getY();
 		
 		graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
 		graphics.drawString("hero", x, y);
 	}
-	public void setx(int x){
+	public void setX(int x){
 		this.x = x;
 	}
-	public void sety(int y){
+	public void setY(int y){
 		this.y = y;
 	}
 }

@@ -9,25 +9,25 @@ public class mobile{
 	private IViewFrame View;
 	
 	public mobile(int x,int y){
-		setx(x);
-		sety(y);
+		setX(x);
+		setY(y);
 	}
-	public void setx(int x){
+	public void setX(int x){
 		this.coordonnex = x;
 	}
-	public void sety(int y){
+	public void setY(int y){
 		this.coordonney = y;
 	}
-	public int getx(){
+	public int getX(){
 		return coordonnex;
 	}
-	public int gety(){
+	public int getY(){
 		return coordonney;
 	}
 	public void setViewPanel(IViewFrame View){
 		this.View = View;
 	}
-	public void setdirection(int direction){
+	public void setDirection(int direction){
 		this.dir = direction;
 		deplacement(dir);
 	}
@@ -35,19 +35,19 @@ public class mobile{
 		switch(direction){
 		case 1 :
 			coordonney -= 10;
-			this.View.sety(coordonney);
+			this.View.setY(coordonney);
 			break;
 		case 2 : 
 			coordonney += 10;
-			this.View.sety(coordonney);
+			this.View.setY(coordonney);
 			break;
 		case 3 :
 			coordonnex -= 10;
-			this.View.setx(coordonnex);
+			this.View.setX(coordonnex);
 			break;
 		case 4 : 
 			coordonnex += 10;
-			this.View.setx(coordonnex);
+			this.View.setX(coordonnex);
 			break;
 		default:
 			break;
