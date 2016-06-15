@@ -4,11 +4,11 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.SwingUtilities;
 
-import contract.ControllerOrder;
+import contract.direction;
 import contract.IController;
 import contract.IModel;
 import contract.IView;
-
+import contract.IMobile;
 /**
  * The Class View.
  *
@@ -18,6 +18,7 @@ public class View implements IView, Runnable {
 
 	/** The frame. */
 	private final ViewFrame viewFrame;
+	private IMobile mobile;
 
 	/**
 	 * Instantiates a new view.
@@ -25,8 +26,10 @@ public class View implements IView, Runnable {
 	 * @param model
 	 *          the model
 	 */
-	public View(final IModel model) {
+	public View(final IModel model, IMobile mobile) {
 		this.viewFrame = new ViewFrame(model);
+		this.mobile = mobile;
+		this.mobile.setViewPanel(viewFrame);
 		SwingUtilities.invokeLater(this);
 	}
 
@@ -37,18 +40,18 @@ public class View implements IView, Runnable {
 	 *          the key code
 	 * @return the controller order
 	 */
-	protected static ControllerOrder keyCodeToControllerOrder(final int keyCode) {
+	protected static direction keyCodeToControllerOrder(final int keyCode) {
 		switch (keyCode) {
-			case KeyEvent.VK_G:
-				return ControllerOrder.English;
-			case KeyEvent.VK_F:
-				return ControllerOrder.Francais;
+			case KeyEvent.VK_Z:
+				return direction.Haut;
+			case KeyEvent.VK_S:
+				return direction.Bas;
+			case KeyEvent.VK_Q:
+				return direction.Gauche;
 			case KeyEvent.VK_D:
-				return ControllerOrder.Deutsch;
-			case KeyEvent.VK_I:
-				return ControllerOrder.Indonesia;
+				return direction.Droite;
 			default:
-				return ControllerOrder.English;
+				return direction.Haut;
 		}
 	}
 

@@ -5,6 +5,7 @@ import java.util.Observable;
 
 import contract.IModel;
 
+
 /**
  * The Class Model.
  *

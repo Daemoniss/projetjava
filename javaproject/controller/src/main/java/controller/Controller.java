@@ -1,9 +1,10 @@
 package controller;
 
-import contract.ControllerOrder;
 import contract.IController;
 import contract.IModel;
 import contract.IView;
+import contract.direction;
+import contract.IMobile;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -16,6 +17,9 @@ public class Controller implements IController {
 
 	/** The model. */
 	private IModel	model;
+	
+	private IMobile mobile;
+	public int dire ;
 
 	/**
 	 * Instantiates a new controller.
@@ -25,9 +29,10 @@ public class Controller implements IController {
 	 * @param model
 	 *          the model
 	 */
-	public Controller(final IView view, final IModel model) {
+	public Controller(final IView view, final IModel model, final IMobile mobile) {
 		this.setView(view);
 		this.setModel(model);
+		this.setmobile(mobile);
 	}
 
 	/*
@@ -58,25 +63,37 @@ public class Controller implements IController {
 	private void setModel(final IModel model) {
 		this.model = model;
 	}
+	
+	private void setmobile(final IMobile mobile){
+		this.mobile = mobile;
+	}
 
 	/*
 	 * (non-Javadoc)
 	 *
 	 * @see contract.IController#orderPerform(contract.ControllerOrder)
 	 */
-	public void orderPerform(final ControllerOrder controllerOrder) {
-		switch (controllerOrder) {
-			case English:
+	public void orderPerform(final direction direction) {
+		switch (direction) {
+			case Haut:
 				this.model.loadMessage("GB");
+				this.dire = 1;
+				this.mobile.setdirection(dire);
 				break;
-			case Francais:
+			case Bas:
 				this.model.loadMessage("FR");
+				this.dire = 2;
+				this.mobile.setdirection(dire);
 				break;
-			case Deutsch:
+			case Gauche:
 				this.model.loadMessage("DE");
+				this.dire = 3;
+				this.mobile.setdirection(dire);
 				break;
-			case Indonesia:
+			case Droite:
 				this.model.loadMessage("ID");
+				this.dire = 4;
+				this.mobile.setdirection(dire);
 				break;
 
 			default:
