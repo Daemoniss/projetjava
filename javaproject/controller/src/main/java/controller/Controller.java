@@ -30,7 +30,7 @@ public class Controller implements IController {
 		this.setModel(model);
 	}
 
-	/*
+	/* d
 	 * (non-Javadoc)
 	 * 
 	 * @see contract.IController#control()
