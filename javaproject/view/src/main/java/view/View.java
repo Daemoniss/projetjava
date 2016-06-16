@@ -30,8 +30,7 @@ public class View implements IView, Runnable {
 	public View(final IModel model) {
 		this.viewFrame = new ViewFrame(model);
 		this.model = model;
-		getMobile();
-		this.mobile.setViewPanel(viewFrame);
+		//this.mobile.setViewPanel(viewFrame);
 		SwingUtilities.invokeLater(this);
 	}
 
@@ -44,6 +43,7 @@ public class View implements IView, Runnable {
 	 */
 	protected static direction keyCodeToControllerOrder(final int keyCode) {
 		switch (keyCode) {
+		
 			case KeyEvent.VK_Z:
 				return direction.Haut;
 			case KeyEvent.VK_S:
@@ -52,8 +52,10 @@ public class View implements IView, Runnable {
 				return direction.Gauche;
 			case KeyEvent.VK_D:
 				return direction.Droite;
+			case KeyEvent.VK_SPACE:
+				return direction.Espace;
 			default:
-				return direction.Haut;
+				return direction.No;
 		}
 	}
 

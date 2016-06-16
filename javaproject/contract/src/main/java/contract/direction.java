@@ -4,5 +4,11 @@ public enum direction {
 	Haut,
 	Bas,
 	Gauche,
-	Droite
+	Droite,
+	DroiteBas,
+	DroiteHaut,
+	GaucheHaut,
+	GaucheBas,
+	Espace,
+	No
 }

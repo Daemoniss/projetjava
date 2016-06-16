@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import contract.IController;
 import contract.IModel;
 import contract.IViewFrame;
+/*import contract.IMobile;*/
 
 /**
  * The Class ViewFrame.
@@ -25,9 +26,10 @@ class ViewFrame extends JFrame implements KeyListener, IViewFrame{
 	/** The controller. */
 	private IController				controller;
 	/** The Constant serialVersionUID. */
+	/*private IMobile mobile;*/
 	private static final long	serialVersionUID	= -697358409737458175L;
-	public int x = 50;
-	public int y = 50;
+	/*public int x = 20;
+	public int y = 20;*/
 
 	/**
 	 * Instantiates a new view frame.
@@ -175,7 +177,7 @@ class ViewFrame extends JFrame implements KeyListener, IViewFrame{
 
 	}
 
-	public void setY(int coordonney) {
+	/*public void setY(int coordonney) {
 		// TODO Auto-generated method stub
 		this.y = coordonney;
 		
@@ -191,5 +193,5 @@ class ViewFrame extends JFrame implements KeyListener, IViewFrame{
 	}
 	public int getY(){
 		return y;
-	}
+	}*/
 }

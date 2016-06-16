@@ -63,6 +63,7 @@ public class Model extends Observable implements IModel {
 	public void initHero(){
 		final hero hero = new hero(20,20);
 		this.mobile = hero;
+
 	}
 	
 	public IMobile getHero(){

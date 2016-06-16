@@ -6,6 +6,9 @@ import java.util.Observer;
 
 import javax.swing.JPanel;
 
+import contract.IMobile;
+import contract.IProjectile;
+
 
 /**
  * The Class ViewPanel.
@@ -15,11 +18,14 @@ import javax.swing.JPanel;
 class ViewPanel extends JPanel implements Observer {
 
 	/** The view frame. */
-	private ViewFrame					viewFrame;
+	private ViewFrame	viewFrame;
 	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= -998294702363713521L;
-	private int x = 50;
-	private int y = 50;
+	private int x = 20;
+	private int y = 20;
+	private IMobile mobile;
+	public int compt = 0;
+	private IProjectile projectile;
 
 	/**
 	 * Instantiates a new view panel.
@@ -28,8 +34,7 @@ class ViewPanel extends JPanel implements Observer {
 	 *          the view frame
 	 */
 	public ViewPanel(final ViewFrame viewFrame) {
-		setX(x);
-		setY(y);
+		
 		this.setViewFrame(viewFrame);
 		viewFrame.getModel().getObservable().addObserver(this);
 	}
@@ -69,16 +74,46 @@ class ViewPanel extends JPanel implements Observer {
 	 */
 	@Override
 	protected void paintComponent(final Graphics graphics) {
-		this.x = this.viewFrame.getX();
-		this.y = this.viewFrame.getY();
-		
+		/*this.x = this.viewFrame.getX();
+		this.y = this.viewFrame.getY();*/
+		setHero();
+		setX();
+		setY();
 		graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
 		graphics.drawString("hero", x, y);
+		setProjectile();
+		if(this.projectile != null){
+			compt += 1;
+			this.projectile.deplacement();
+			setXP();
+			setYP();
+			graphics.drawString("projectile", x, y);
+			if(compt == 10){
+				this.projectile.changeDirection();
+				System.out.println("test");
+				compt = 0;
+			}
+		}
+		
+		
+		
 	}
-	public void setX(int x){
-		this.x = x;
+	public void setX(){
+		this.x = this.mobile.getX();
 	}
-	public void setY(int y){
-		this.y = y;
+	public void setY(){
+		this.y = this.mobile.getY();
+	}
+	public void setHero(){
+		this.mobile = this.viewFrame.getModel().getHero();
+	}
+	public void setProjectile(){
+		this.projectile = this.mobile.getProjectile();
+	}
+	public void setXP(){
+		this.x = this.projectile.getX();
+	}
+	public void setYP(){
+		this.y = this.projectile.getY();
 	}
 }

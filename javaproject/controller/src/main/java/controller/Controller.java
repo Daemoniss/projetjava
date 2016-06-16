@@ -99,8 +99,35 @@ public class Controller implements IController {
 				this.dire = 4;
 				this.mobile.setDirection(dire);
 				break;
+			case DroiteBas:
+				this.model.refresh();
+				this.dire = 5;
+				this.mobile.setDirection(dire);
+				break;
+			case DroiteHaut:
+				this.model.refresh();
+				this.dire = 6;
+				this.mobile.setDirection(dire);
+				break;
+			case GaucheBas:
+				this.model.refresh();
+				this.dire = 7;
+				this.mobile.setDirection(dire);
+				break;
+			case GaucheHaut:
+				this.model.refresh();
+				this.dire = 8;
+				this.mobile.setDirection(dire);
+				break;
+			case Espace:
+				this.model.refresh();
+				this.mobile.tire();
+				break;
 
 			default:
+				this.model.refresh();
+				this.dire = 0;
+				this.mobile.setDirection(dire);
 				break;
 		}
 	}

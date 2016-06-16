@@ -24,6 +24,8 @@ public interface IModel {
 	 */
 	/*void loadMessage(String key);*/
 
+	
+
 	/**
 	 * Gets the observable.
 	 *
