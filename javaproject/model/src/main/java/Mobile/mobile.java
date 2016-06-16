@@ -1,17 +1,26 @@
 package Mobile;
 
+import contract.ISprite;
 import contract.IViewFrame;
-
+import contract.Permeability;
+import Element.*;
 public class mobile {
 	public int coordonnex;
 	public int coordonney;
 	public int dir;
 	private IViewFrame View;
+	private ISprite sprite;
 	
 	public mobile(int x,int y){
+		
 		setx(x);
-		sety(y);
+		sety(y);	
 	}
+	
+	private boolean isMovePossible(final int x, final int y) {
+		return (this.getLorannWorld().getElements(x, y).getPermeability() != Permeability.BLOCKING);
+	}
+	
 	public void setx(int x){
 		this.coordonnex = x;
 	}

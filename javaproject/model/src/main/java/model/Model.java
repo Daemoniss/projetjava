@@ -1,9 +1,12 @@
 package model;
 
 import java.sql.SQLException;
+
 import java.util.Observable;
 
 import contract.IModel;
+import Mobile.*;
+import contract.IMobile;
 
 
 /**
@@ -15,12 +18,16 @@ public class Model extends Observable implements IModel {
 
 	/** The message. */
 	private String message;
+	private IMobile mobile;
 
 	/**
 	 * Instantiates a new model.
 	 */
 	public Model() {
-		this.message = "";
+		//this.message = "";
+		loadMap(5);
+		
+		//initMonstre();
 	}
 
 	/*
@@ -28,7 +35,7 @@ public class Model extends Observable implements IModel {
 	 *
 	 * @see contract.IModel#getMessage()
 	 */
-	public String getMessage() {
+	public String getMap() {
 		return this.message;
 	}
 
@@ -38,7 +45,7 @@ public class Model extends Observable implements IModel {
 	 * @param message
 	 *          the new message
 	 */
-	private void setMessage(final String message) {
+	private void setMap(final String message) {
 		this.message = message;
 		this.setChanged();
 		this.notifyObservers();
@@ -49,10 +56,10 @@ public class Model extends Observable implements IModel {
 	 *
 	 * @see contract.IModel#getMessage(java.lang.String)
 	 */
-	public void loadMessage(final String key) {
+	public void loadMap(final int mapid) {
 		try {
-			final DAOHelloWorld daoHelloWorld = new DAOHelloWorld(DBConnection.getInstance().getConnection());
-			this.setMessage(daoHelloWorld.find(key).getMessage());
+			final DAOLorannWorld daoLorannWorld = new DAOLorannWorld(DBConnection.getInstance().getConnection());
+			this.setMap(daoLorannWorld.find(mapid).getMaptxt());
 		} catch (final SQLException e) {
 			e.printStackTrace();
 		}
@@ -65,5 +72,24 @@ public class Model extends Observable implements IModel {
 	 */
 	public Observable getObservable() {
 		return this;
+	}
+	
+	public void initHero(){
+		final hero hero = new hero(20,20);
+		this.mobile = hero;
+	}
+	/*public void initMonstre(){
+		Monstre monstre = new Monstre(, 10, 10);
+		this.mobile = monstre;
+	}*/
+
+	public IMobile getHero() {
+		
+		return null;
+	}
+
+	public void refresh() {
+		
+		
 	}
 }
