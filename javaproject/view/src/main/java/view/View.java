@@ -54,6 +54,8 @@ public class View implements IView, Runnable {
 				return direction.Droite;
 			case KeyEvent.VK_SPACE:
 				return direction.Espace;
+			case 1:
+				return direction.Bas;
 			default:
 				return direction.No;
 		}

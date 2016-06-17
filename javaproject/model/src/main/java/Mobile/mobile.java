@@ -1,5 +1,6 @@
 package Mobile;
 
+
 //import contract.IViewFrame;
 
 public class mobile{
@@ -34,39 +35,39 @@ public class mobile{
 	public void deplacement(){
 		switch(dir){
 		case 1 :
-			coordonney -= 10;
+			coordonney -= 32;
 			//this.View.setY(coordonney);
 			break;
 		case 2 : 
-			coordonney += 10;
+			coordonney += 32;
 			///this.View.setY(coordonney);
 			break;
 		case 3 :
-			coordonnex -= 10;
+			coordonnex -= 32;
 			//this.View.setX(coordonnex);
 			break;
 		case 4 : 
-			coordonnex += 10;
+			coordonnex += 32;
 			//this.View.setX(coordonnex);
 			break;
 		case 5 :
-			coordonney += 10;
-			coordonnex += 10;
+			coordonney += 32;
+			coordonnex += 32;
 			/*this.View.setX(coordonnex);
 			this.View.setY(coordonney);*/
 		case 6 :
-			coordonney -= 10;
-			coordonnex += 10;
+			coordonney -= 32;
+			coordonnex += 32;
 			/*this.View.setX(coordonnex);
 			this.View.setY(coordonney);*/
 		case 7 :
-			coordonney += 10;
-			coordonnex -= 10;
+			coordonney += 32;
+			coordonnex -= 32;
 			/*this.View.setX(coordonnex);
 			this.View.setY(coordonney);*/
 		case 8 :
-			coordonney -= 10;
-			coordonnex -= 10;
+			coordonney -= 32;
+			coordonnex -= 32;
 			/*this.View.setX(coordonnex);
 			this.View.setY(coordonney);*/
 		case 0 : 
@@ -76,5 +77,14 @@ public class mobile{
 			break;
 		}
 	}
+		public int Collision(int x1, int y1){
+
+				if(x1 == this.coordonnex && y1 == this.coordonney){
+						return 1;
+					}
+				else {
+					return 0;
+				}
+		}
 	
 }

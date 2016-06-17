@@ -17,5 +17,9 @@ public interface IMobile {
 	int getY();
 	
 	IProjectile getProjectile();
+
+	int Collision(int x, int y);
+
+	void mortProjectile();
 	
 }

@@ -23,6 +23,8 @@ class ViewPanel extends JPanel implements Observer {
 	private static final long	serialVersionUID	= -998294702363713521L;
 	private int x = 20;
 	private int y = 20;
+	private int xp;
+	private int yp;
 	private IMobile mobile;
 	public int compt = 0;
 	private IProjectile projectile;
@@ -76,6 +78,7 @@ class ViewPanel extends JPanel implements Observer {
 	protected void paintComponent(final Graphics graphics) {
 		/*this.x = this.viewFrame.getX();
 		this.y = this.viewFrame.getY();*/
+		int collision;
 		setHero();
 		setX();
 		setY();
@@ -87,11 +90,16 @@ class ViewPanel extends JPanel implements Observer {
 			this.projectile.deplacement();
 			setXP();
 			setYP();
-			graphics.drawString("projectile", x, y);
+			graphics.drawString("projectile", xp, yp);
 			if(compt == 10){
 				this.projectile.changeDirection();
-				System.out.println("test");
 				compt = 0;
+			}
+			collision = this.mobile.Collision(xp,yp);
+			if(collision == 1){
+				this.mobile.mortProjectile();
+				graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
+				graphics.drawString("hero", x, y);
 			}
 		}
 		
@@ -111,9 +119,9 @@ class ViewPanel extends JPanel implements Observer {
 		this.projectile = this.mobile.getProjectile();
 	}
 	public void setXP(){
-		this.x = this.projectile.getX();
+		this.xp = this.projectile.getX();
 	}
 	public void setYP(){
-		this.y = this.projectile.getY();
+		this.yp = this.projectile.getY();
 	}
 }

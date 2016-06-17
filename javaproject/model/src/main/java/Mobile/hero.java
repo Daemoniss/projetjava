@@ -15,25 +15,14 @@ public class hero extends mobile implements IMobile{
 	}
 	
 	public void tire(){
-		if(this.dir == 1){
-			final projectile tire = new projectile(coordonnex, this.coordonney -10);
-			this.tiree = tire;
-		}
-		if(this.dir == 2){
-			final projectile tire = new projectile(coordonnex, this.coordonney +10);
-			this.tiree = tire;
-		}
-		if(this.dir == 3){
-			final projectile tire = new projectile(coordonnex -10, this.coordonney);
-			this.tiree = tire;
-		}
-		if(this.dir == 4){
-			final projectile tire = new projectile(coordonnex +10, this.coordonney);
-			this.tiree = tire;
-		}
+		final projectile tire = new projectile(coordonnex, this.coordonney);
+		this.tiree = tire;
 		this.tiree.setDirection(dir);
 	}
 	
+	public void mortProjectile(){
+		this.tiree = null;
+	}
 	public IProjectile getProjectile(){
 		return tiree;
 	}
