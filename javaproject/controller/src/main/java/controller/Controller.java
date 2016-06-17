@@ -41,7 +41,7 @@ public class Controller implements IController {
 	 * @see contract.IController#control()
 	 */
 	public void control() {
-		this.view.printMessage("Appuyer sur les touches 'E', 'F', 'D' ou 'I', pour afficher Hello world dans la langue d votre choix.");
+		this.view.printMessage("Bienvenue dans les grandes cavernes de Nova-Ann, Lorann ! \nTu dois traverser les 5 cryptes et les libérer du mal de Nekron le Maléfique. Mais attention, tu n'as le droit qu'à 3 chances !");
 	}
 
 	/**
@@ -65,7 +65,7 @@ public class Controller implements IController {
 	}
 	
 	private void setMobile(){
-		this.mobile = this.model.getHero();;
+		this.mobile = this.model.getHero();
 	}
 
 	/*

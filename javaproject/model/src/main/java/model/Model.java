@@ -4,8 +4,10 @@ package model;
 import java.util.Observable;
 
 import Mobile.hero;
+import Mobile.monstre;
 import contract.IModel;
 import contract.IMobile;
+import contract.IMonstre;
 
 /**
  * The Class Model.
@@ -18,12 +20,14 @@ public class Model extends Observable implements IModel {
 	/*private String message;*/
 
 	private IMobile mobile;
+	private IMonstre monstre;
 	/**
 	 * Instantiates a new model.
 	 */
 	public Model() {
 		/*this.message = "";*/
 		initHero();
+		initMonstre();
 	}
 
 	/*
@@ -61,13 +65,25 @@ public class Model extends Observable implements IModel {
 		}
 	}*/
 	public void initHero(){
-		final hero hero = new hero(20,20);
-		this.mobile = hero;
+		this.mobile = new hero(32,32);
 
 	}
 	
 	public IMobile getHero(){
 		return mobile;
+	}
+	
+	public void initMonstre(){
+		this.monstre = new monstre(64, 96);
+	}
+	public IMonstre getMonstre(){
+		return monstre;
+	}
+	public void deadHero(){
+		this.mobile = null;
+	}
+	public void deadMonstre(){
+		this.monstre = null;
 	}
 
 	/*

@@ -7,6 +7,7 @@ import java.util.Observer;
 import javax.swing.JPanel;
 
 import contract.IMobile;
+import contract.IMonstre;
 import contract.IProjectile;
 
 
@@ -25,9 +26,12 @@ class ViewPanel extends JPanel implements Observer {
 	private int y = 20;
 	private int xp;
 	private int yp;
+	private int xm;
+	private int ym;
 	private IMobile mobile;
 	public int compt = 0;
 	private IProjectile projectile;
+	private IMonstre monstre;
 
 	/**
 	 * Instantiates a new view panel.
@@ -39,6 +43,8 @@ class ViewPanel extends JPanel implements Observer {
 		
 		this.setViewFrame(viewFrame);
 		viewFrame.getModel().getObservable().addObserver(this);
+		setMonstre();
+		setHero();
 	}
 
 	/**
@@ -79,11 +85,13 @@ class ViewPanel extends JPanel implements Observer {
 		/*this.x = this.viewFrame.getX();
 		this.y = this.viewFrame.getY();*/
 		int collision;
-		setHero();
-		setX();
-		setY();
-		graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-		graphics.drawString("hero", x, y);
+		if(mobile != null){
+			setX();
+			setY();
+			graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
+			graphics.drawString("hero", x, y);
+		}
+		
 		setProjectile();
 		if(this.projectile != null){
 			compt += 1;
@@ -102,8 +110,32 @@ class ViewPanel extends JPanel implements Observer {
 				graphics.drawString("hero", x, y);
 			}
 		}
-		
-		
+		if(monstre != null){
+			setMonstre();
+			this.monstre.patternCarre(xm,ym);
+			setXM();
+			setYM();
+			graphics.drawString("monstre", xm, ym);
+			collision = this.monstre.Collision(x,y);
+			if(collision == 1){
+				this.mobile = null;
+				this.viewFrame.getModel().deadHero();
+				graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
+				graphics.drawString("dead", x, y);
+				graphics.drawString("monstre", xm, ym);
+				
+			}
+			collision = this.monstre.Collision(xp,yp);
+			if(collision == 1){
+				this.mobile.mortProjectile();
+				this.viewFrame.getModel().deadMonstre();
+				this.monstre = null;
+				this.ym = 0;
+				this.xm = 0;
+				graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
+				graphics.drawString("hero", x, y);
+			}
+		}		
 		
 	}
 	public void setX(){
@@ -123,5 +155,14 @@ class ViewPanel extends JPanel implements Observer {
 	}
 	public void setYP(){
 		this.yp = this.projectile.getY();
+	}
+	public void setMonstre(){
+		this.monstre = this.viewFrame.getModel().getMonstre();
+	}
+	public void setXM(){
+		this.xm = this.monstre.getX();
+	}
+	public void setYM(){
+		this.ym = this.monstre.getY();
 	}
 }

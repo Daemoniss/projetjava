@@ -36,4 +36,10 @@ public interface IModel {
 	IMobile getHero();
 
 	void refresh();
+
+	IMonstre getMonstre();
+
+	void deadHero();
+
+	void deadMonstre();
 }
