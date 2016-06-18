@@ -1,10 +1,10 @@
 package controller;
 
 import contract.IController;
-import contract.IMobile;
 import contract.IModel;
 import contract.IView;
 import contract.direction;
+import contract.IMobile;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -17,9 +17,10 @@ public class Controller implements IController {
 
 	/** The model. */
 	private IModel	model;
-
+	
 	private IMobile mobile;
-	public int dire;
+	public int dire ;
+
 	/**
 	 * Instantiates a new controller.
 	 *
@@ -28,8 +29,6 @@ public class Controller implements IController {
 	 * @param model
 	 *          the model
 	 */
-	
-	
 	public Controller(final IView view, final IModel model) {
 		this.setView(view);
 		this.setModel(model);
@@ -42,7 +41,7 @@ public class Controller implements IController {
 	 * @see contract.IController#control()
 	 */
 	public void control() {
-		this.view.printMessage("Appuyer sur les touches 'E', 'F', 'D' ou 'I', pour afficher Hello world dans la langue d votre choix.");
+		this.view.printMessage("Bienvenue dans les grandes cavernes de Nova-Ann, Lorann ! \nTu dois traverser les 5 cryptes et les libÃ©rer du mal de Nekron le MalÃ©fique. Mais attention, tu n'as le droit qu'Ã  3 chances !");
 	}
 
 	/**
@@ -64,36 +63,9 @@ public class Controller implements IController {
 	private void setModel(final IModel model) {
 		this.model = model;
 	}
-
-
 	
 	private void setMobile(){
 		this.mobile = this.model.getHero();
-	}
-	
-	
-	public void orderPerform(final direction direction) {
-		switch (direction) {
-		case HAUT:			
-			this.dire = 1;
-			this.mobile.setdirection(dire);
-			break;
-		case BAS:		
-			this.dire = 2;
-			this.mobile.setdirection(dire);
-			break;
-		case GAUCHE:
-			this.dire = 3;
-			this.mobile.setdirection(dire);
-			break;
-		case DROIT:		
-			this.dire = 4;
-			this.mobile.setdirection(dire);
-			break;
-
-		default:
-			break;
-		
 	}
 
 	/*
@@ -101,6 +73,63 @@ public class Controller implements IController {
 	 *
 	 * @see contract.IController#orderPerform(contract.ControllerOrder)
 	 */
+	public void orderPerform(final direction direction) {
+		switch (direction) {
+			case HAUT:
+				/*this.model.loadMessage("GB");*/
+				this.model.refresh();
+				this.dire = 1;
+				this.mobile.setDirection(dire);
+				break;
+			case BAS:
+				/*this.model.loadMessage("FR");*/
+				this.model.refresh();
+				this.dire = 2;
+				this.mobile.setDirection(dire);
+				break;
+			case GAUCHE:
+				/*this.model.loadMessage("DE");*/
+				this.model.refresh();
+				this.dire = 3;
+				this.mobile.setDirection(dire);
+				break;
+			case DROITE:
+				/*this.model.loadMessage("ID");*/
+				this.model.refresh();
+				this.dire = 4;
+				this.mobile.setDirection(dire);
+				break;
+			case DROITEBAS:
+				this.model.refresh();
+				this.dire = 5;
+				this.mobile.setDirection(dire);
+				break;
+			case DROITEHAUT:
+				this.model.refresh();
+				this.dire = 6;
+				this.mobile.setDirection(dire);
+				break;
+			case GAUCHEBAS:
+				this.model.refresh();
+				this.dire = 7;
+				this.mobile.setDirection(dire);
+				break;
+			case GAUCHEHAUT:
+				this.model.refresh();
+				this.dire = 8;
+				this.mobile.setDirection(dire);
+				break;
+			case ESPACE:
+				this.model.refresh();
+				this.mobile.tire();
+				break;
 
-}
+			default:
+				this.model.refresh();
+				this.dire = 0;
+				this.mobile.setDirection(dire);
+				break;
+		}
+	}
+
 }
