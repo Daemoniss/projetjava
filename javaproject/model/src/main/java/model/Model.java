@@ -1,6 +1,7 @@
 package model;
 
 /*import java.sql.SQLException;*/
+import java.sql.SQLException;
 import java.util.Observable;
 
 import Mobile.hero;
@@ -8,6 +9,7 @@ import Mobile.monstre;
 import contract.IModel;
 import contract.IMobile;
 import contract.IMonstre;
+import contract.changeMap;
 
 /**
  * The Class Model.
@@ -21,6 +23,7 @@ public class Model extends Observable implements IModel {
 
 	private IMobile mobile;
 	private IMonstre monstre;
+	private String map;
 	/**
 	 * Instantiates a new model.
 	 */
@@ -50,22 +53,50 @@ public class Model extends Observable implements IModel {
 		this.setChanged();
 		this.notifyObservers();
 	}
-
+	public void setMap(String map){
+		this.map = map;	
+		
+	}
+	public String getMap(){
+		return map;
+	}
 	/*
 	 * (non-Javadoc)
 	 *
 	 * @see contract.IModel#getMessage(java.lang.String)
 	 */
-	/*public void loadMessage(final String key) {
+	public void loadMessage(final changeMap l1) {
+		String Map = null;
+		switch(l1){
+		case L1:
+			Map = "L1";
+			break;
+		case L2:
+			Map = "L2";
+			break;
+		case L3:
+			Map = "L3";
+			break;
+		case L4:
+			Map = "L4";
+			break;
+		case L5:
+			Map = "L5";
+			break;
+		default:
+			break;
+		}
 		try {
 			final DAOHelloWorld daoHelloWorld = new DAOHelloWorld(DBConnection.getInstance().getConnection());
-			this.setMessage(daoHelloWorld.find(key).getMessage());
+			this.setMap(daoHelloWorld.find(Map).getMaptxt());
 		} catch (final SQLException e) {
 			e.printStackTrace();
 		}
-	}*/
+		
+	}
 	public void initHero(){
-		this.mobile = new hero(32,32);
+		this.mobile = new hero(18*32,192);
+		loadMessage(changeMap.L2);
 
 	}
 	
@@ -74,7 +105,7 @@ public class Model extends Observable implements IModel {
 	}
 	
 	public void initMonstre(){
-		this.monstre = new monstre(64, 96);
+		this.monstre = new monstre(160, 192);
 	}
 	public IMonstre getMonstre(){
 		return monstre;

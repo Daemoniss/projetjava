@@ -8,7 +8,6 @@ import contract.direction;
 import contract.IController;
 import contract.IModel;
 import contract.IView;
-import contract.IMobile;
 /**
  * The Class View.
  *
@@ -18,8 +17,7 @@ public class View implements IView, Runnable {
 
 	/** The frame. */
 	private final ViewFrame viewFrame;
-	private IModel model;
-	private IMobile mobile;
+	//private IModel model;
 
 	/**
 	 * Instantiates a new view.
@@ -29,7 +27,7 @@ public class View implements IView, Runnable {
 	 */
 	public View(final IModel model) {
 		this.viewFrame = new ViewFrame(model);
-		this.model = model;
+		//this.model = model;
 		//this.mobile.setViewPanel(viewFrame);
 		SwingUtilities.invokeLater(this);
 	}
@@ -54,8 +52,6 @@ public class View implements IView, Runnable {
 				return direction.Droite;
 			case KeyEvent.VK_SPACE:
 				return direction.Espace;
-			case 1:
-				return direction.Bas;
 			default:
 				return direction.No;
 		}
@@ -89,7 +85,5 @@ public class View implements IView, Runnable {
 		this.viewFrame.setController(controller);
 	}
 	
-	public void getMobile(){
-		this.mobile = this.model.getHero();
-	}
+
 }
