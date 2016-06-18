@@ -94,7 +94,7 @@ class ViewPanel extends JPanel implements Observer {
 	protected void paintComponent(final Graphics graphics) {
 		/*this.x = this.viewFrame.getX();
 		this.y = this.viewFrame.getY();*/
-		
+		graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
 		int collision;
 		int recup = 0;
 		if(mobile != null){
@@ -102,11 +102,12 @@ class ViewPanel extends JPanel implements Observer {
 			setY();
 			graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
 			graphics.drawString("H", x, y);
+			setProjectile();
 			
 		}
 		
 		
-		setProjectile();
+		
 		
 		
 		if(this.projectile != null){
@@ -131,6 +132,7 @@ class ViewPanel extends JPanel implements Observer {
 				this.mobile.mortProjectile();
 				graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
 				graphics.drawString("H", x, y);
+				collision=0;
 			}
 		}
 		
@@ -170,7 +172,9 @@ class ViewPanel extends JPanel implements Observer {
 				graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
 				graphics.drawString("D", x, y);
 				graphics.drawString("M", xm, ym);
-				
+				collision=0;
+				x=0;
+				y=0;
 			}
 			
 			
@@ -185,8 +189,10 @@ class ViewPanel extends JPanel implements Observer {
 				this.xm = 0;
 				graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
 				graphics.drawString("H", x, y);
+				collision=0;
 			}
-		}		
+		}	
+		
 		
 	}
 	

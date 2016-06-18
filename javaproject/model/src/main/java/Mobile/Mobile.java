@@ -33,6 +33,7 @@ public class Mobile{
 		this.dir = direction;
 		deplacement();
 	}
+	
 	public void deplacement(){
 		switch(dir){
 		case 1 :
