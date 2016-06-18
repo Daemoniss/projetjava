@@ -53,26 +53,35 @@ public class mobile{
 		case 5 :
 			coordonney += 32;
 			coordonnex += 32;
+			System.out.println("test4");
 			/*this.View.setX(coordonnex);
 			this.View.setY(coordonney);*/
+			break;
 		case 6 :
 			coordonney -= 32;
 			coordonnex += 32;
+			System.out.println("test1");
 			/*this.View.setX(coordonnex);
 			this.View.setY(coordonney);*/
+			break;
 		case 7 :
 			coordonney += 32;
 			coordonnex -= 32;
+			System.out.println("test2");
 			/*this.View.setX(coordonnex);
 			this.View.setY(coordonney);*/
+			break;
 		case 8 :
 			coordonney -= 32;
 			coordonnex -= 32;
+			System.out.println("test3");
 			/*this.View.setX(coordonnex);
 			this.View.setY(coordonney);*/
+			break;
 		case 0 : 
 			/*this.View.setY(coordonney);
 			this.View.setX(coordonnex);*/
+			break;
 		default:
 			break;
 		}

@@ -96,6 +96,7 @@ class ViewPanel extends JPanel implements Observer {
 		if(mobile != null){
 			setX();
 			setY();
+			setProjectile();
 			try {
 				Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/lorann_r.png"));
 				graphics.drawImage(img, x, y, this);
@@ -104,7 +105,6 @@ class ViewPanel extends JPanel implements Observer {
 			}
 		}
 		
-		setProjectile();
 		if(this.projectile != null){
 			compt += 1;
 			this.projectile.deplacement();
@@ -122,6 +122,7 @@ class ViewPanel extends JPanel implements Observer {
 			}
 			collision = this.mobile.Collision(xp,yp);
 			if(collision == 1){
+				collision =0;
 				this.mobile.mortProjectile();
 				graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
 				afficheMap(map, graphics);
@@ -146,6 +147,7 @@ class ViewPanel extends JPanel implements Observer {
 			}
 			collision = this.monstre.Collision(x,y);
 			if(collision == 1){
+				collision =0;
 				this.mobile = null;
 				this.viewFrame.getModel().deadHero();
 				graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
@@ -161,6 +163,7 @@ class ViewPanel extends JPanel implements Observer {
 			}
 			collision = this.monstre.Collision(xp,yp);
 			if(collision == 1){
+				collision =0;
 				this.mobile.mortProjectile();
 				this.viewFrame.getModel().deadMonstre();
 				this.monstre = null;

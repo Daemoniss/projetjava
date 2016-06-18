@@ -50,6 +50,14 @@ public class View implements IView, Runnable {
 				return direction.Gauche;
 			case KeyEvent.VK_D:
 				return direction.Droite;
+			case KeyEvent.VK_A:
+				return direction.GaucheHaut;
+			case KeyEvent.VK_E:
+				return direction.DroiteHaut;
+			case KeyEvent.VK_W:
+				return direction.GaucheBas;
+			case KeyEvent.VK_C:
+				return direction.DroiteBas;
 			case KeyEvent.VK_SPACE:
 				return direction.Espace;
 			default:
