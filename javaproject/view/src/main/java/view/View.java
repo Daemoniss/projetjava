@@ -4,12 +4,12 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.SwingUtilities;
 
+import contract.ICrystal;
+import contract.direction;
 import contract.IController;
 import contract.IModel;
 import contract.IView;
 import contract.IMobile;
-import contract.direction;
-
 /**
  * The Class View.
  *
@@ -31,20 +31,20 @@ public class View implements IView, Runnable {
 	public View(final IModel model) {
 		this.viewFrame = new ViewFrame(model);
 		this.model = model;
-		getMobile();
-		this.mobile.setViewPanel(viewFrame);
+		//this.mobile.setViewPanel(viewFrame);
 		SwingUtilities.invokeLater(this);
 	}
 
-	
-	
-	
-	
-	
-	
-	
+	/**
+	 * Key code to controller order.
+	 *
+	 * @param keyCode
+	 *          the key code
+	 * @return the controller order
+	 */
 	protected static direction keyCodeToControllerOrder(final int keyCode) {
 		switch (keyCode) {
+		
 			case KeyEvent.VK_Z:
 				return direction.HAUT;
 			case KeyEvent.VK_S:
@@ -52,12 +52,14 @@ public class View implements IView, Runnable {
 			case KeyEvent.VK_Q:
 				return direction.GAUCHE;
 			case KeyEvent.VK_D:
-				return direction.DROIT;
+				return direction.DROITE;
+			case KeyEvent.VK_SPACE:
+				return direction.ESPACE;
+			case 1:
+				return direction.BAS;
 			default:
-				return direction.HAUT;
+				return direction.NO;
 		}
-		
-	
 	}
 
 	/*
@@ -86,8 +88,5 @@ public class View implements IView, Runnable {
 	 */
 	public void setController(final IController controller) {
 		this.viewFrame.setController(controller);
-	}
-	public void getMobile(){
-		this.mobile = this.model.getHero();
 	}
 }

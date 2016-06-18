@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import contract.IController;
 import contract.IModel;
 import contract.IViewFrame;
+/*import contract.IMobile;*/
 
 /**
  * The Class ViewFrame.
@@ -25,9 +26,10 @@ class ViewFrame extends JFrame implements KeyListener, IViewFrame{
 	/** The controller. */
 	private IController				controller;
 	/** The Constant serialVersionUID. */
+	/*private IMobile mobile;*/
 	private static final long	serialVersionUID	= -697358409737458175L;
-	public int x = 50;
-	public int y = 50;
+	/*public int x = 20;
+	public int y = 20;*/
 
 	/**
 	 * Instantiates a new view frame.
@@ -40,6 +42,7 @@ class ViewFrame extends JFrame implements KeyListener, IViewFrame{
 	public ViewFrame(final IModel model) throws HeadlessException {
 		this.buildViewFrame(model);
 	}
+
 	/**
 	 * Instantiates a new view frame.
 	 *
@@ -48,7 +51,6 @@ class ViewFrame extends JFrame implements KeyListener, IViewFrame{
 	 * @param gc
 	 *          the gc
 	 */
-	
 	public ViewFrame(final IModel model, final GraphicsConfiguration gc) {
 		super(gc);
 		this.buildViewFrame(model);
@@ -163,6 +165,7 @@ class ViewFrame extends JFrame implements KeyListener, IViewFrame{
 	 * @see java.awt.event.KeyListener#keyPressed(java.awt.event.KeyEvent)
 	 */
 	public void keyPressed(final KeyEvent e) {
+
 		this.getController().orderPerform(View.keyCodeToControllerOrder(e.getKeyCode()));
 	}
 
@@ -174,16 +177,20 @@ class ViewFrame extends JFrame implements KeyListener, IViewFrame{
 	public void keyReleased(final KeyEvent e) {
 
 	}
-
-	public void setY(int coordonneY) {
-		// TODO Auto-generated method stub
-		this.y = coordonneY;
+	
+	public void jeu(){
 		
 	}
 
-	public void setX(int coordonneX) {
+	/*public void setY(int coordonney) {
 		// TODO Auto-generated method stub
-		this.x = coordonneX;
+		this.y = coordonney;
+		
+	}
+
+	public void setX(int coordonnex) {
+		// TODO Auto-generated method stub
+		this.x = coordonnex;
 		
 	}
 	public int getX(){
@@ -191,5 +198,5 @@ class ViewFrame extends JFrame implements KeyListener, IViewFrame{
 	}
 	public int getY(){
 		return y;
-	}
+	}*/
 }
