@@ -38,8 +38,12 @@ public interface IModel {
 	void refresh();
 
 	IMonstre getMonstre();
+	
+	ICrystal getCrystal();
 
 	void deadHero();
 
 	void deadMonstre();
+
+	void deadCrystal();
 }

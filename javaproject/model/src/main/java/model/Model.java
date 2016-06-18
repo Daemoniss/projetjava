@@ -3,8 +3,10 @@ package model;
 /*import java.sql.SQLException;*/
 import java.util.Observable;
 
+import Mobile.Crystal;
 import Mobile.hero;
 import Mobile.monstre;
+import contract.ICrystal;
 import contract.IModel;
 import contract.IMobile;
 import contract.IMonstre;
@@ -21,6 +23,7 @@ public class Model extends Observable implements IModel {
 
 	private IMobile mobile;
 	private IMonstre monstre;
+	private ICrystal crystal;
 	/**
 	 * Instantiates a new model.
 	 */
@@ -28,6 +31,7 @@ public class Model extends Observable implements IModel {
 		/*this.message = "";*/
 		initHero();
 		initMonstre();
+		initCrystal();
 	}
 
 	/*
@@ -68,9 +72,16 @@ public class Model extends Observable implements IModel {
 		this.mobile = new hero(32,32);
 
 	}
+	public void initCrystal(){
+		this.crystal = new Crystal(128,128);
+
+	}
 	
 	public IMobile getHero(){
 		return mobile;
+	}
+	public ICrystal getCrystal(){
+		return crystal;
 	}
 	
 	public void initMonstre(){
@@ -82,9 +93,13 @@ public class Model extends Observable implements IModel {
 	public void deadHero(){
 		this.mobile = null;
 	}
+	
 	public void deadMonstre(){
 		this.monstre = null;
 	}
+	/*public void deadCrystal(){
+		this.crystal = null;
+	}*/
 
 	/*
 	 * (non-Javadoc)
@@ -94,5 +109,10 @@ public class Model extends Observable implements IModel {
 	
 	public Observable getObservable() {
 		return this;
+	}
+
+	public void deadCrystal() {
+		// TODO Auto-generated method stub
+		
 	}
 }

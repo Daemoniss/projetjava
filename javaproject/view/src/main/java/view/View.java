@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.SwingUtilities;
 
+import contract.ICrystal;
 import contract.direction;
 import contract.IController;
 import contract.IModel;
@@ -87,9 +88,5 @@ public class View implements IView, Runnable {
 	 */
 	public void setController(final IController controller) {
 		this.viewFrame.setController(controller);
-	}
-	
-	public void getMobile(){
-		this.mobile = this.model.getHero();
 	}
 }
