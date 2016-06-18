@@ -14,5 +14,13 @@ public enum direction {
 	/** The Deutch. */
 	GAUCHE, 
 	/** The Indonesia. */
-	DROIT
+	DROITE,
+
+	DROITEBAS,
+	DROITEHAUT,
+	GAUCHEHAUT,
+	GAUCHEBAS,
+	ESPACE,
+	NO
+
 }

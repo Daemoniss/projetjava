@@ -1,9 +1,13 @@
 package contract;
 
 public interface IViewFrame {
+
+	/*void setY(int coordonney);
+
+	void setX(int coordonnex);
+
+	int getX();
+
+	int getY();*/
 	
-void setY(int coordonneY);
-
-void setX(int coordonneX);
-
 }
