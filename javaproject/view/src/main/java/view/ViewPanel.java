@@ -91,18 +91,47 @@ class ViewPanel extends JPanel implements Observer {
 		/*this.x = this.viewFrame.getX();
 		this.y = this.viewFrame.getY();*/
 		int collision;
+		int detection;
 		graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
 		afficheMap(map, graphics);
 		if(mobile != null){
 			setX();
 			setY();
 			setProjectile();
-			try {
+			detection = this.viewFrame.getModel().verifPos(x,y);
+			if(detection == 1){
+				this.mobile.ResetMove();
+				setX();
+				setY();
+			}
+			else if(detection == 2){
+				
+			}
+			else if(detection == 3){
+				this.mobile = null;
+				this.viewFrame.getModel().deadHero();
+				graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
+				afficheMap(map, graphics);
+				graphics.drawString("dead", x, y);
+				try {
+					Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/monster_1.png"));
+					graphics.drawImage(img, xm, ym, this);
+				} catch (final IOException e) {
+					e.printStackTrace();
+				}
+			}
+			else if(detection ==4){
+				
+			}
+			if(detection != 3){
+				try {
 				Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/lorann_r.png"));
 				graphics.drawImage(img, x, y, this);
 			} catch (final IOException e) {
 				e.printStackTrace();
 			}
+			}
+			
 		}
 		
 		if(this.projectile != null){

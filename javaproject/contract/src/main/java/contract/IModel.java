@@ -44,4 +44,6 @@ public interface IModel {
 	void deadMonstre();
 
 	String getMap();
+
+	int verifPos(int x, int y);
 }

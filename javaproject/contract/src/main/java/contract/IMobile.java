@@ -23,5 +23,7 @@ public interface IMobile {
 	void mortProjectile();
 
 	void deplacement();
+
+	void ResetMove();
 	
 }

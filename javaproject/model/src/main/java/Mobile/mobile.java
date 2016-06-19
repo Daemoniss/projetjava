@@ -94,5 +94,56 @@ public class mobile{
 		public void setDire(int dir){
 			this.dir = dir;
 		}
+		public void ResetMove(){
+			switch(dir){
+			case 1 :
+				coordonney += 32;
+				//this.View.setY(coordonney);
+				break;
+			case 2 : 
+				coordonney -= 32;
+				///this.View.setY(coordonney);
+				break;
+			case 3 :
+				coordonnex += 32;
+				//this.View.setX(coordonnex);
+				break;
+			case 4 : 
+				coordonnex -= 32;
+				//this.View.setX(coordonnex);
+				break;
+			case 5 :
+				coordonney -= 32;
+				coordonnex -= 32;
+				/*this.View.setX(coordonnex);
+				this.View.setY(coordonney);*/
+				break;
+			case 6 :
+				coordonney += 32;
+				coordonnex -= 32;
+				/*this.View.setX(coordonnex);
+				this.View.setY(coordonney);*/
+				break;
+			case 7 :
+				coordonney -= 32;
+				coordonnex += 32;
+				/*this.View.setX(coordonnex);
+				this.View.setY(coordonney);*/
+				break;
+			case 8 :
+				coordonney += 32;
+				coordonnex += 32;
+				/*this.View.setX(coordonnex);
+				this.View.setY(coordonney);*/
+				break;
+			case 0 : 
+				/*this.View.setY(coordonney);
+				this.View.setX(coordonnex);*/
+				break;
+			default:
+				break;
+				
+			}
+		}
 	
 }

@@ -25,6 +25,7 @@ public class Model extends Observable implements IModel {
 
 	private IMobile mobile;
 	private IMonstre monstre;
+	private IElement element;
 	private String map;
 	/**
 	 * Instantiates a new model.
@@ -64,7 +65,14 @@ public class Model extends Observable implements IModel {
 		return map;
 	}
 	public void initElementMap(String map){
-		IElement element = new element(map);
+		this.element = new element(map);
+	}
+	
+	public int verifPos(int x, int y){
+		int collision;
+		collision = this.element.VerifPosition(y,x);
+		return collision;
+		
 	}
 	/*
 	 * (non-Javadoc)

@@ -71,4 +71,36 @@ public class element implements IElement{
 			}
 		}
 	}
+	public int VerifPosition(int y, int x){
+		int j = x/32;
+		int i = y/32;
+		if(map2[j][i] == ' '){
+			return 0;
+		}
+		else if(map2[j][i] == 'V'){
+			return 1;
+		}
+		else if(map2[j][i] == 'H'){
+			return 1;
+		}
+		else if(map2[j][i] == 'P'){
+			return 2;
+		}
+		else if(map2[j][i] == 'C'){
+			return 2;
+		}
+		else if(map2[j][i] == 'S'){
+			return 3;
+		}
+		else if(map2[j][i] == 'B'){
+			return 1;
+		}
+		else if(map2[j][i] == 'O'){
+			return 4;
+		}
+		else {
+			return 0;
+		}
+		
+	}
 }
