@@ -42,14 +42,16 @@ public interface IModel {
 	void deadHero();
 
 	void deadMonstre();
-	
-	ICrystal getCrystal();
-	
-	void deadCrystal();
 
 	String getMap();
 
-	void deadBourse();
+	int verifPos(int x, int y);
 	
+	int CrystalRecup();
+	
+	ICrystal getCrystal();
+				
+	void setCrystalRecup(int crystalRecup);
+
 	IBourse getBourse();
 }

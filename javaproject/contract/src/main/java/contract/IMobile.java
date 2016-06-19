@@ -21,5 +21,9 @@ public interface IMobile {
 	int Collision(int x, int y);
 
 	void mortProjectile();
+
+	void deplacement();
+
+	void ResetMove();
 	
 }

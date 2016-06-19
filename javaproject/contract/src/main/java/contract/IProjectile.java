@@ -12,4 +12,6 @@ public interface IProjectile {
 
 	void changeDirection();
 
+	void setDire(int dir);
+
 }

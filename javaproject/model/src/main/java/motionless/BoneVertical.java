@@ -1,8 +1,11 @@
 package motionless;
 
-public class BoneVertical extends motionLessElement{
+import contract.IBoneVertical;
+import contract.permeability;
 
-	public BoneVertical(int x, int y, String permeability) {
+public class BoneVertical extends motionLessElement implements IBoneVertical{
+
+	public BoneVertical(int x, int y, permeability permeability) {
 		super(x, y, permeability);
 		// TODO Auto-generated constructor stub
 	}

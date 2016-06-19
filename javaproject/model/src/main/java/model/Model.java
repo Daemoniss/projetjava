@@ -4,16 +4,17 @@ package model;
 import java.sql.SQLException;
 import java.util.Observable;
 
-import Mobile.Bourse;
+import Mobile.Crystal;
 import Mobile.Hero;
 import Mobile.Monstre;
-import Mobile.Crystal;
 import contract.IBourse;
+import contract.ICrystal;
+import contract.IElement;
 import contract.IModel;
 import contract.IMobile;
 import contract.IMonstre;
 import contract.changeMap;
-import contract.ICrystal;
+import element.element;
 
 /**
  * The Class Model.
@@ -27,9 +28,10 @@ public class Model extends Observable implements IModel {
 
 	private IMobile mobile;
 	private IMonstre monstre;
-	private IBourse bourse;
-	ICrystal crystal;
+	private IElement element;
+	private ICrystal crystal;
 	private String map;
+	private int Crystalrecup;
 	/**
 	 * Instantiates a new model.
 	 */
@@ -38,7 +40,6 @@ public class Model extends Observable implements IModel {
 		initHero();
 		initMonstre();
 		initCrystal();
-		initBourse();
 	}
 
 	/*
@@ -62,11 +63,22 @@ public class Model extends Observable implements IModel {
 		this.notifyObservers();
 	}
 	public void setMap(String map){
-		this.map = map;	
+		this.map = map;
+		initElementMap(map);
 		
 	}
 	public String getMap(){
 		return map;
+	}
+	public void initElementMap(String map){
+		this.element = new element(map);
+	}
+	
+	public int verifPos(int x, int y){
+		int collision;
+		collision = this.element.VerifPosition(y,x);
+		return collision;
+		
 	}
 	/*
 	 * (non-Javadoc)
@@ -102,27 +114,20 @@ public class Model extends Observable implements IModel {
 		}
 		
 	}
-	
-	public ICrystal getCrystal(){
-		return crystal;
-	}
-	
-	public void initCrystal(){
-		this.crystal = new Crystal(64,64);
+	public void initHero(){
+		this.mobile = new Hero(14*32,6*32);
+		loadMessage(changeMap.L2);
 
 	}
 	
-	public void initHero(){
-		this.mobile = new Hero(18*32,192);
-		loadMessage(changeMap.L2);
-		
-	}
-	
-	public void initBourse(){
-	this.bourse = new Bourse(64,64);
-	}
 	public IMobile getHero(){
 		return mobile;
+	}
+	public ICrystal getCrystal(){
+		return crystal;
+	}
+	public void initCrystal(){
+		this.crystal = new Crystal();
 	}
 	
 	public void initMonstre(){
@@ -137,14 +142,6 @@ public class Model extends Observable implements IModel {
 	public void deadMonstre(){
 		this.monstre = null;
 	}
-	public void deadCrystal() {
-		this.crystal = null;
-		
-	}
-	public void deadBourse() {
-		this.bourse = null;
-		
-	}
 
 	/*
 	 * (non-Javadoc)
@@ -156,9 +153,21 @@ public class Model extends Observable implements IModel {
 		return this;
 	}
 
+	public int CrystalRecup() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	public void setCrystalRecup(int Crystalrecup ){
+		this.Crystalrecup = Crystalrecup;
+		this.element.setCrystalRecup(this.Crystalrecup);
+		}
+
 	@Override
 	public IBourse getBourse() {
-		
-		return bourse;
+		// TODO Auto-generated method stub
+		return null;
 	}
+	
+	
 }

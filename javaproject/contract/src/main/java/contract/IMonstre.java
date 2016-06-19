@@ -6,8 +6,12 @@ public interface IMonstre {
 
 	int getY();
 
-	void patternCarre(int xm, int ym);
-
 	int Collision(int xp, int yp);
+
+	void deplacement();
+
+	void Pattern(int x, int y);
+
+	void ResetMove();
 
 }

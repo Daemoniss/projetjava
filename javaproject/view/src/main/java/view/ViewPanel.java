@@ -10,7 +10,6 @@ import java.util.Observer;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-import contract.IBourse;
 import contract.ICrystal;
 import contract.IMobile;
 import contract.IMonstre;
@@ -32,19 +31,18 @@ class ViewPanel extends JPanel implements Observer {
 	private int y;
 	private int xp;
 	private int yp;
-	private int xb;
-	private int yb;
 	private int xm;
 	private int ym;
 	private int xc;
 	private int yc;
+	private int xd,yd;
 	private IMobile mobile;
-	private ICrystal crystal;
-	private IBourse bourse;
 	public int compt = 0;
 	private IProjectile projectile;
 	private IMonstre monstre;
+	private ICrystal crystal;
 	private String map;
+	int CrystalRecup =0;
 
 	/**
 	 * Instantiates a new view panel.
@@ -60,7 +58,6 @@ class ViewPanel extends JPanel implements Observer {
 		setMonstre();
 		setHero();
 		setCrystal();
-		setBourse();
 	}
 
 	/**
@@ -100,23 +97,97 @@ class ViewPanel extends JPanel implements Observer {
 	protected void paintComponent(final Graphics graphics) {
 		/*this.x = this.viewFrame.getX();
 		this.y = this.viewFrame.getY();*/
+		int recup = 0;
 		int collision;
+		int detection;
 		graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-		int recup  = 0 ;
-		
 		afficheMap(map, graphics);
 		if(mobile != null){
 			setX();
 			setY();
 			setProjectile();
-			try {
+			detection = this.viewFrame.getModel().verifPos(x,y);
+			
+			if(detection == 1){
+				this.mobile.ResetMove();
+				setX();
+				setY();
+			}
+			else if(detection == 2){
+				
+			}
+			else if(detection == 3){
+				this.mobile = null;
+				this.viewFrame.getModel().deadHero();
+				graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
+				afficheMap(map, graphics);
+				graphics.drawString("dead", x, y);
+				try {
+					Image img = ImageIO.read(new File("E:/Téléchargements/projetjava-loys1/javaproject/sprite/monster_1.png"));
+					graphics.drawImage(img, xm, ym, this);
+				} catch (final IOException e) {
+					e.printStackTrace();
+				}
+			}
+			else if(detection ==4){
+
+			
+			}
+			if(detection != 3){
+				try {
 				Image img = ImageIO.read(new File("E:/Téléchargements/projetjava-loys1/javaproject/sprite/lorann_r.png"));
 				graphics.drawImage(img, x, y, this);
 			} catch (final IOException e) {
 				e.printStackTrace();
 			}
+			}
+			detection =0;
 			
 		}
+		
+		if(crystal != null){
+			
+			/*setXC();
+			setYC();*/
+			System.out.print("ds");
+			try {
+				Image img = ImageIO.read(new File("E:/Téléchargements/projetjava-loys1/javaproject/sprite/crystal_ball.png"));
+				graphics.drawImage(img, xc, yc, this);
+			} catch (final IOException e) {
+				e.printStackTrace();
+			}
+			if(xc==x &&yc==y ){
+			 recup = 1;
+			}
+			//collision = this.crystal.Collision(xc,yc);
+			if(recup == 1){
+				this.crystal = null;
+				CrystalRecup=1;
+				this.viewFrame.getModel().setCrystalRecup(CrystalRecup);
+				try {
+					Image img = ImageIO.read(new File("E:/Téléchargements/projetjava-loys1/javaproject/sprite/lorann_r.png"));
+					graphics.drawImage(img, xc, yc, this);
+				
+				} catch (final IOException e) {
+					e.printStackTrace();
+				}
+				try {
+					Image img = ImageIO.read(new File("E:/Téléchargements/projetjava-loys1/javaproject/sprite/gate_open.png"));
+					graphics.drawImage(img, xd, yd, this);
+				
+				} catch (final IOException e) {
+					e.printStackTrace();
+				}
+				
+			//	this.viewFrame.getModel().deadCrystal();
+				//graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
+				//setMap();
+				setHero();
+				//graphics.drawString("H", x, y);	
+				recup=0;
+			}
+			}
+		
 		
 		if(this.projectile != null){
 			compt += 1;
@@ -146,66 +217,19 @@ class ViewPanel extends JPanel implements Observer {
 					e.printStackTrace();
 				}
 			}
-			
 		}
-		
-		if(crystal != null){
-			
-			/*setXC();
-			setYC();*/
-			try {
-				Image img = ImageIO.read(new File("E:/Téléchargements/projetjava-loys1/javaproject/sprite/crystal_ball.png"));
-				graphics.drawImage(img, xc, yc, this);
-			} catch (final IOException e) {
-				e.printStackTrace();
-			}
-			if(xc==x &&yc==y ){
-			 recup = 1;
-			}
-			//collision = this.crystal.Collision(xc,yc);
-			if(recup == 1){
-				this.crystal = null;
-				this.viewFrame.getModel().deadCrystal();
-				//graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-				setMap();
-				setHero();
-				//graphics.drawString("H", x, y);	
-				recup=0;
-			}
-		}
-		
-		if(bourse != null){
-			System.out.print("ds");
-			setBourse();
-			/*setXC();
-			setYC();*/
-		
-			try {
-				Image img = ImageIO.read(new File("E:/Téléchargements/projetjava-loys1/javaproject/sprite/purse.png"));
-				graphics.drawImage(img, xb, yb, this);
-			} catch (final IOException e) {
-				e.printStackTrace();
-			}
-			if(xb==x &&yb==y ){
-			 recup = 1;
-			}
-			//collision = this.crystal.Collision(xc,yc);
-			if(recup == 1){
-				this.bourse = null;
-				this.viewFrame.getModel().deadBourse();
-				//graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-				setMap();
-				setHero();
-				//graphics.drawString("H", x, y);
-				recup=0;
-			}
-		}
-		
 		if(monstre != null){
 			setMonstre();
-			this.monstre.patternCarre(xm,ym);
+			//this.monstre.patternLineaire(xm);
+			this.monstre.Pattern(x,y);
 			setXM();
 			setYM();
+			detection = this.viewFrame.getModel().verifPos(xm,ym);
+			if(detection == 1){
+				this.monstre.ResetMove();
+				setXM();
+				setYM();
+			}
 			try {
 				Image img = ImageIO.read(new File("E:/Téléchargements/projetjava-loys1/javaproject/sprite/monster_1.png"));
 				graphics.drawImage(img, xm, ym, this);
@@ -221,7 +245,7 @@ class ViewPanel extends JPanel implements Observer {
 				afficheMap(map, graphics);
 				graphics.drawString("dead", x, y);
 				try {
-					Image img = ImageIO.read(new File("E:/Téléchargements/projetjava-loys1/javaproject/sprite/monster_1.png"));
+					Image img = ImageIO.read(new File("E:/Téléchargements/projetjava-loys1/javaproject/sprite/sprite/monster_1.png"));
 					graphics.drawImage(img, xm, ym, this);
 				} catch (final IOException e) {
 					e.printStackTrace();
@@ -248,38 +272,29 @@ class ViewPanel extends JPanel implements Observer {
 		}		
 		
 	}
+	
+	
 	public void setX(){
 		this.x = this.mobile.getX();
 	}
 	public void setY(){
 		this.y = this.mobile.getY();
 	}
-	
 	public void setHero(){
 		this.mobile = this.viewFrame.getModel().getHero();
-	}
-	public void setProjectile(){
-		this.projectile = this.mobile.getProjectile();
 	}
 	public void setCrystal(){
 		this.crystal = this.viewFrame.getModel().getCrystal();
 	}
-	public void setBourse(){
-		this.bourse = this.viewFrame.getModel().getBourse();
+	public void setProjectile(){
+		this.projectile = this.mobile.getProjectile();
 	}
-	
 	public void setXP(){
 		this.xp = this.projectile.getX();
 	}
 	public void setYP(){
 		this.yp = this.projectile.getY();
 	}
-	/*public void setXC(){
-		this.xc = this.crystal.getX();
-	}
-	public void setYC(){
-		this.yc = this.crystal.getY();
-	}*/
 	public void setMonstre(){
 		this.monstre = this.viewFrame.getModel().getMonstre();
 	}
@@ -292,6 +307,8 @@ class ViewPanel extends JPanel implements Observer {
 	public void setMap(){
 		this.map = this.viewFrame.getModel().getMap();
 	}
+	
+	
 
 	public void afficheMap(String map, final Graphics graphics){
 		int k = 0;
@@ -333,19 +350,33 @@ class ViewPanel extends JPanel implements Observer {
 					}
 				}
 				else if(affiche.equals("S")){
+						if(CrystalRecup==1){
 					try {
-						Image img = ImageIO.read(new File("E:/Téléchargements/projetjava-loys1/javaproject/sprite/gate_closed.png"));
+						Image img = ImageIO.read(new File("E:/Téléchargements/projetjava-loys1/javaproject/sprite/gate_open.png"));
 						graphics.drawImage(img, j*32, i*32, this);
+						xd=j*32;
+						yd=i*32;
 					} catch (final IOException e) {
 						e.printStackTrace();
 					}
 				}
+					else{
+						try {
+								Image img = ImageIO.read(new File("E:/Téléchargements/projetjava-loys1/javaproject/sprite/gate_closed.png"));
+								graphics.drawImage(img, j*32, i*32, this);
+								xd=j*32;
+								yd=i*32;
+							} catch (final IOException e) {
+								e.printStackTrace();
+							}
+						}
+						
+				}
+				
 				else if(affiche.equals("G")){
 					try {
-						Image img = ImageIO.read(new File("E:/Téléchargements/projetjava-loys1/javaproject/sprite/case.jpg"));
+						Image img = ImageIO.read(new File("E:/Téléchargements/projetjava-loys1/javaproject/sprite/purse.png"));
 						graphics.drawImage(img, j*32, i*32, this);
-						xb=j*32;
-						yb=i*32;
 					} catch (final IOException e) {
 						e.printStackTrace();
 					}
@@ -360,7 +391,6 @@ class ViewPanel extends JPanel implements Observer {
 						e.printStackTrace();
 					}
 				}
-				//graphics.drawString(affiche, j*32, i*32);
 				
 				k++;
 			}

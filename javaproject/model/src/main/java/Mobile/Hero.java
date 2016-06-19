@@ -15,9 +15,10 @@ public class Hero extends Mobile implements IMobile{
 	}
 	
 	public void tire(){
-		final Projectile tire = new Projectile(coordonnex, this.coordonney);
+		final Projectile tire = new Projectile(this.coordonnex, this.coordonney);
 		this.tiree = tire;
-		this.tiree.setDirection(dir);
+		this.tiree.setDire(dir);
+		
 	}
 	
 	public void mortProjectile(){
