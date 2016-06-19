@@ -41,7 +41,7 @@ public class Controller implements IController {
 	 * @see contract.IController#control()
 	 */
 	public void control() {
-		this.view.printMessage("Bienvenue dans les grandes cavernes de Nova-Ann, Lorann ! \nTu dois traverser les 5 cryptes et les libÃ©rer du mal de Nekron le MalÃ©fique. Mais attention, tu n'as le droit qu'Ã  3 chances !");
+		this.view.printMessage("Bienvenue dans les grandes cavernes de Nova-Ann, Lorann ! \nTu dois traverser les 5 cryptes et les libérer du mal de Nekron le Maléfique. Mais attention, tu n'as le droit qu'à 3 chances !");
 	}
 
 	/**
@@ -75,51 +75,55 @@ public class Controller implements IController {
 	 */
 	public void orderPerform(final direction direction) {
 		switch (direction) {
-			case HAUT:
+			case Haut:
 				/*this.model.loadMessage("GB");*/
 				this.model.refresh();
 				this.dire = 1;
 				this.mobile.setDirection(dire);
 				break;
-			case BAS:
+			case Bas:
 				/*this.model.loadMessage("FR");*/
 				this.model.refresh();
 				this.dire = 2;
 				this.mobile.setDirection(dire);
 				break;
-			case GAUCHE:
+			case Gauche:
 				/*this.model.loadMessage("DE");*/
 				this.model.refresh();
 				this.dire = 3;
 				this.mobile.setDirection(dire);
 				break;
-			case DROITE:
+			case Droite:
 				/*this.model.loadMessage("ID");*/
 				this.model.refresh();
 				this.dire = 4;
 				this.mobile.setDirection(dire);
 				break;
-			case DROITEBAS:
+			case DroiteBas:
 				this.model.refresh();
 				this.dire = 5;
+				System.out.println("test5");
 				this.mobile.setDirection(dire);
 				break;
-			case DROITEHAUT:
+			case DroiteHaut:
 				this.model.refresh();
 				this.dire = 6;
+				System.out.println("test6");
 				this.mobile.setDirection(dire);
 				break;
-			case GAUCHEBAS:
+			case GaucheBas:
 				this.model.refresh();
 				this.dire = 7;
+				System.out.println("test7");
 				this.mobile.setDirection(dire);
 				break;
-			case GAUCHEHAUT:
+			case GaucheHaut:
 				this.model.refresh();
 				this.dire = 8;
+				System.out.println("test7");
 				this.mobile.setDirection(dire);
 				break;
-			case ESPACE:
+			case Espace:
 				this.model.refresh();
 				this.mobile.tire();
 				break;

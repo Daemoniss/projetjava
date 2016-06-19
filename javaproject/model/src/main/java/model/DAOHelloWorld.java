@@ -10,7 +10,7 @@ import java.sql.SQLException;
  *
  * @author Jean-Aymeric Diet
  */
-class DAOHelloWorld extends DAOEntity<HelloWorld> {
+class DAOHelloWorld extends DAOEntity<Map> {
 
 	/**
 	 * Instantiates a new DAO hello world.
@@ -30,7 +30,7 @@ class DAOHelloWorld extends DAOEntity<HelloWorld> {
 	 * @see model.DAOEntity#create(model.Entity)
 	 */
 	@Override
-	public boolean create(final HelloWorld entity) {
+	public boolean create(final Map entity) {
 		// Not implemented
 		return false;
 	}
@@ -41,7 +41,7 @@ class DAOHelloWorld extends DAOEntity<HelloWorld> {
 	 * @see model.DAOEntity#delete(model.Entity)
 	 */
 	@Override
-	public boolean delete(final HelloWorld entity) {
+	public boolean delete(final Map entity) {
 		// Not implemented
 		return false;
 	}
@@ -52,7 +52,7 @@ class DAOHelloWorld extends DAOEntity<HelloWorld> {
 	 * @see model.DAOEntity#update(model.Entity)
 	 */
 	@Override
-	public boolean update(final HelloWorld entity) {
+	public boolean update(final Map entity) {
 		// Not implemented
 		return false;
 	}
@@ -63,8 +63,8 @@ class DAOHelloWorld extends DAOEntity<HelloWorld> {
 	 * @see model.DAOEntity#find(int)
 	 */
 	@Override
-	public HelloWorld find(final int id) {
-		HelloWorld helloWorld = new HelloWorld();
+	public Map find(final int id) {
+		Map helloWorld = new Map();
 
 		try {
 			final String sql = "{call helloworldById(?)}";
@@ -73,7 +73,7 @@ class DAOHelloWorld extends DAOEntity<HelloWorld> {
 			call.execute();
 			final ResultSet resultSet = call.getResultSet();
 			if (resultSet.first()) {
-				helloWorld = new HelloWorld(id, resultSet.getString("key"), resultSet.getString("message"));
+				helloWorld = new Map(id, resultSet.getString("key"), resultSet.getString("message"));
 			}
 			return helloWorld;
 		} catch (final SQLException e) {
@@ -88,8 +88,8 @@ class DAOHelloWorld extends DAOEntity<HelloWorld> {
 	 * @see model.DAOEntity#find(java.lang.String)
 	 */
 	@Override
-	public HelloWorld find(final String key) {
-		HelloWorld helloWorld = new HelloWorld();
+	public Map find(final String key) {
+		Map map = new Map();
 
 		try {
 			final String sql = "{call helloworldByKey(?)}";
@@ -98,13 +98,12 @@ class DAOHelloWorld extends DAOEntity<HelloWorld> {
 			call.execute();
 			final ResultSet resultSet = call.getResultSet();
 			if (resultSet.first()) {
-				helloWorld = new HelloWorld(resultSet.getInt("id"), key, resultSet.getString("message"));
+				map = new Map(resultSet.getInt("id"), key, resultSet.getString("message"));
 			}
-			return helloWorld;
+			return map;
 		} catch (final SQLException e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
-
 }

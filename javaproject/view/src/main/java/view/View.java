@@ -4,12 +4,10 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.SwingUtilities;
 
-import contract.ICrystal;
 import contract.direction;
 import contract.IController;
 import contract.IModel;
 import contract.IView;
-import contract.IMobile;
 /**
  * The Class View.
  *
@@ -19,8 +17,7 @@ public class View implements IView, Runnable {
 
 	/** The frame. */
 	private final ViewFrame viewFrame;
-	private IModel model;
-	private IMobile mobile;
+	//private IModel model;
 
 	/**
 	 * Instantiates a new view.
@@ -30,7 +27,7 @@ public class View implements IView, Runnable {
 	 */
 	public View(final IModel model) {
 		this.viewFrame = new ViewFrame(model);
-		this.model = model;
+		//this.model = model;
 		//this.mobile.setViewPanel(viewFrame);
 		SwingUtilities.invokeLater(this);
 	}
@@ -46,19 +43,25 @@ public class View implements IView, Runnable {
 		switch (keyCode) {
 		
 			case KeyEvent.VK_Z:
-				return direction.HAUT;
+				return direction.Haut;
 			case KeyEvent.VK_S:
-				return direction.BAS;
+				return direction.Bas;
 			case KeyEvent.VK_Q:
-				return direction.GAUCHE;
+				return direction.Gauche;
 			case KeyEvent.VK_D:
-				return direction.DROITE;
+				return direction.Droite;
+			case KeyEvent.VK_A:
+				return direction.GaucheHaut;
+			case KeyEvent.VK_E:
+				return direction.DroiteHaut;
+			case KeyEvent.VK_W:
+				return direction.GaucheBas;
+			case KeyEvent.VK_C:
+				return direction.DroiteBas;
 			case KeyEvent.VK_SPACE:
-				return direction.ESPACE;
-			case 1:
-				return direction.BAS;
+				return direction.Espace;
 			default:
-				return direction.NO;
+				return direction.No;
 		}
 	}
 
@@ -89,4 +92,6 @@ public class View implements IView, Runnable {
 	public void setController(final IController controller) {
 		this.viewFrame.setController(controller);
 	}
+	
+
 }

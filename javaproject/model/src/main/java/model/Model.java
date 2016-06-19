@@ -1,15 +1,17 @@
 package model;
 
 /*import java.sql.SQLException;*/
+import java.sql.SQLException;
 import java.util.Observable;
 
-import Mobile.Crystal;
 import Mobile.Hero;
 import Mobile.Monstre;
-import contract.ICrystal;
+import Mobile.Crystal;
 import contract.IModel;
 import contract.IMobile;
 import contract.IMonstre;
+import contract.changeMap;
+import contract.ICrystal;
 
 /**
  * The Class Model.
@@ -23,7 +25,8 @@ public class Model extends Observable implements IModel {
 
 	private IMobile mobile;
 	private IMonstre monstre;
-	private ICrystal crystal;
+	ICrystal crystal;
+	private String map;
 	/**
 	 * Instantiates a new model.
 	 */
@@ -54,38 +57,69 @@ public class Model extends Observable implements IModel {
 		this.setChanged();
 		this.notifyObservers();
 	}
-
+	public void setMap(String map){
+		this.map = map;	
+		
+	}
+	public String getMap(){
+		return map;
+	}
 	/*
 	 * (non-Javadoc)
 	 *
 	 * @see contract.IModel#getMessage(java.lang.String)
 	 */
-	/*public void loadMessage(final String key) {
+	public void loadMessage(final changeMap l1) {
+		String Map = null;
+		switch(l1){
+		case L1:
+			Map = "L1";
+			break;
+		case L2:
+			Map = "L2";
+			break;
+		case L3:
+			Map = "L3";
+			break;
+		case L4:
+			Map = "L4";
+			break;
+		case L5:
+			Map = "L5";
+			break;
+		default:
+			break;
+		}
 		try {
 			final DAOHelloWorld daoHelloWorld = new DAOHelloWorld(DBConnection.getInstance().getConnection());
-			this.setMessage(daoHelloWorld.find(key).getMessage());
+			this.setMap(daoHelloWorld.find(Map).getMaptxt());
 		} catch (final SQLException e) {
 			e.printStackTrace();
 		}
-	}*/
-	public void initHero(){
-		this.mobile = new Hero(32,32);
+		
+	}
+	
+	public ICrystal getCrystal(){
+		return crystal;
+	}
+	
+	public void initCrystal(){
+		this.crystal = new Crystal(64,64);
 
 	}
-	public void initCrystal(){
-		this.crystal = new Crystal(128,128);
+	
+	public void initHero(){
+		this.mobile = new Hero(18*32,192);
+		loadMessage(changeMap.L2);
 
 	}
 	
 	public IMobile getHero(){
 		return mobile;
 	}
-	public ICrystal getCrystal(){
-		return crystal;
-	}
 	
 	public void initMonstre(){
-		this.monstre = new Monstre(64, 96);
+		this.monstre = new Monstre(160, 192);
 	}
 	public IMonstre getMonstre(){
 		return monstre;
@@ -93,13 +127,13 @@ public class Model extends Observable implements IModel {
 	public void deadHero(){
 		this.mobile = null;
 	}
-	
 	public void deadMonstre(){
 		this.monstre = null;
 	}
-	/*public void deadCrystal(){
-		this.crystal = null;
-	}*/
+	public void deadCrystal() {
+		// TODO Auto-generated method stub
+		
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -109,10 +143,5 @@ public class Model extends Observable implements IModel {
 	
 	public Observable getObservable() {
 		return this;
-	}
-
-	public void deadCrystal() {
-		// TODO Auto-generated method stub
-		
 	}
 }
