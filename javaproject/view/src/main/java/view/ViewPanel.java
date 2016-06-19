@@ -165,7 +165,8 @@ class ViewPanel extends JPanel implements Observer {
 		}
 		if(monstre != null){
 			setMonstre();
-			this.monstre.patternCarre(xm,ym);
+			//this.monstre.patternLineaire(xm);
+			this.monstre.Pattern(x,y);
 			setXM();
 			setYM();
 			try {
@@ -304,7 +305,6 @@ class ViewPanel extends JPanel implements Observer {
 						e.printStackTrace();
 					}
 				}
-				//graphics.drawString(affiche, j*32, i*32);
 				
 				k++;
 			}
