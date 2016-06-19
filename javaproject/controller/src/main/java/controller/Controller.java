@@ -102,25 +102,21 @@ public class Controller implements IController {
 			case DroiteBas:
 				this.model.refresh();
 				this.dire = 5;
-				System.out.println("test5");
 				this.mobile.setDirection(dire);
 				break;
 			case DroiteHaut:
 				this.model.refresh();
 				this.dire = 6;
-				System.out.println("test6");
 				this.mobile.setDirection(dire);
 				break;
 			case GaucheBas:
 				this.model.refresh();
 				this.dire = 7;
-				System.out.println("test7");
 				this.mobile.setDirection(dire);
 				break;
 			case GaucheHaut:
 				this.model.refresh();
 				this.dire = 8;
-				System.out.println("test7");
 				this.mobile.setDirection(dire);
 				break;
 			case Espace:

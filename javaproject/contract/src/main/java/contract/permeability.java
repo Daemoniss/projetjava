@@ -2,5 +2,6 @@ package contract;
 
 public enum permeability {
 	Pass,
-	Block
+	Block,
+	Kill
 }

@@ -1,4 +1,4 @@
-package main;
+	package main;
 
 import controller.Controller;
 import model.Model;

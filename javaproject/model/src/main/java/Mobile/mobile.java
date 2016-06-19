@@ -53,28 +53,24 @@ public class mobile{
 		case 5 :
 			coordonney += 32;
 			coordonnex += 32;
-			System.out.println("test4");
 			/*this.View.setX(coordonnex);
 			this.View.setY(coordonney);*/
 			break;
 		case 6 :
 			coordonney -= 32;
 			coordonnex += 32;
-			System.out.println("test1");
 			/*this.View.setX(coordonnex);
 			this.View.setY(coordonney);*/
 			break;
 		case 7 :
 			coordonney += 32;
 			coordonnex -= 32;
-			System.out.println("test2");
 			/*this.View.setX(coordonnex);
 			this.View.setY(coordonney);*/
 			break;
 		case 8 :
 			coordonney -= 32;
 			coordonnex -= 32;
-			System.out.println("test3");
 			/*this.View.setX(coordonnex);
 			this.View.setY(coordonney);*/
 			break;
@@ -94,6 +90,9 @@ public class mobile{
 				else {
 					return 0;
 				}
+		}
+		public void setDire(int dir){
+			this.dir = dir;
 		}
 	
 }

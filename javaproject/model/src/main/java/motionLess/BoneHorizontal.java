@@ -1,8 +1,12 @@
 package motionLess;
 
-public class BoneHorizontal extends motionLessElement{
+import contract.IBoneHorizontal;
+import contract.permeability;
 
-	public BoneHorizontal(int x, int y, String permeability) {
+
+public class BoneHorizontal extends motionLessElement implements IBoneHorizontal{
+
+	public BoneHorizontal(int x, int y, permeability permeability) {
 		super(x, y, permeability);
 		// TODO Auto-generated constructor stub
 	}

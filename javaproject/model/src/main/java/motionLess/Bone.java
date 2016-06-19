@@ -1,9 +1,11 @@
 package motionLess;
 
-public class Bone extends motionLessElement{
+import contract.IBone;
 
-	public Bone(int x, int y, String permeability) {
-		super(x, y, permeability);
+public class Bone extends motionLessElement implements IBone{
+
+	public Bone(int x, int y, contract.permeability block) {
+		super(x, y, block);
 		// TODO Auto-generated constructor stub
 	}
 

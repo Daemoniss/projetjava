@@ -6,10 +6,12 @@ import java.util.Observable;
 
 import Mobile.hero;
 import Mobile.monstre;
+import contract.IElement;
 import contract.IModel;
 import contract.IMobile;
 import contract.IMonstre;
 import contract.changeMap;
+import element.element;
 
 /**
  * The Class Model.
@@ -54,11 +56,15 @@ public class Model extends Observable implements IModel {
 		this.notifyObservers();
 	}
 	public void setMap(String map){
-		this.map = map;	
+		this.map = map;
+		initElementMap(map);
 		
 	}
 	public String getMap(){
 		return map;
+	}
+	public void initElementMap(String map){
+		IElement element = new element(map);
 	}
 	/*
 	 * (non-Javadoc)
@@ -95,7 +101,7 @@ public class Model extends Observable implements IModel {
 		
 	}
 	public void initHero(){
-		this.mobile = new hero(18*32,192);
+		this.mobile = new hero(14*32,6*32);
 		loadMessage(changeMap.L2);
 
 	}

@@ -1,8 +1,11 @@
 package motionLess;
 
-public class Crystal extends motionLessElement{
+import contract.ICrystal;
+import contract.permeability;
 
-	public Crystal(int x, int y, String permeability) {
+public class Crystal extends motionLessElement implements ICrystal{
+
+	public Crystal(int x, int y, permeability permeability) {
 		super(x, y, permeability);
 		// TODO Auto-generated constructor stub
 	}

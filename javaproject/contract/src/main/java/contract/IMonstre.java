@@ -10,4 +10,6 @@ public interface IMonstre {
 
 	int Collision(int xp, int yp);
 
+	void deplacement();
+
 }
