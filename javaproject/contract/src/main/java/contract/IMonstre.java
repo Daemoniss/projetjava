@@ -12,4 +12,6 @@ public interface IMonstre {
 
 	void Pattern(int x, int y);
 
+	void ResetMove();
+
 }

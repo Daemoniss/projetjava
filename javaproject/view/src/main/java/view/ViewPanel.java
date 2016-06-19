@@ -131,6 +131,7 @@ class ViewPanel extends JPanel implements Observer {
 				e.printStackTrace();
 			}
 			}
+			detection =0;
 			
 		}
 		
@@ -169,6 +170,12 @@ class ViewPanel extends JPanel implements Observer {
 			this.monstre.Pattern(x,y);
 			setXM();
 			setYM();
+			detection = this.viewFrame.getModel().verifPos(xm,ym);
+			if(detection == 1){
+				this.monstre.ResetMove();
+				setXM();
+				setYM();
+			}
 			try {
 				Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/monster_1.png"));
 				graphics.drawImage(img, xm, ym, this);
