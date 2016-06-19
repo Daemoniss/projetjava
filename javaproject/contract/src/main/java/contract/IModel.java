@@ -48,4 +48,8 @@ public interface IModel {
 	void deadCrystal();
 
 	String getMap();
+
+	void deadBourse();
+	
+	IBourse getBourse();
 }

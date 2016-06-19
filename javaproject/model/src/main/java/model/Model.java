@@ -4,9 +4,11 @@ package model;
 import java.sql.SQLException;
 import java.util.Observable;
 
+import Mobile.Bourse;
 import Mobile.Hero;
 import Mobile.Monstre;
 import Mobile.Crystal;
+import contract.IBourse;
 import contract.IModel;
 import contract.IMobile;
 import contract.IMonstre;
@@ -25,6 +27,7 @@ public class Model extends Observable implements IModel {
 
 	private IMobile mobile;
 	private IMonstre monstre;
+	private IBourse bourse;
 	ICrystal crystal;
 	private String map;
 	/**
@@ -35,6 +38,7 @@ public class Model extends Observable implements IModel {
 		initHero();
 		initMonstre();
 		initCrystal();
+		initBourse();
 	}
 
 	/*
@@ -111,9 +115,12 @@ public class Model extends Observable implements IModel {
 	public void initHero(){
 		this.mobile = new Hero(18*32,192);
 		loadMessage(changeMap.L2);
-
+		
 	}
 	
+	public void initBourse(){
+	this.bourse = new Bourse(64,64);
+	}
 	public IMobile getHero(){
 		return mobile;
 	}
@@ -131,7 +138,11 @@ public class Model extends Observable implements IModel {
 		this.monstre = null;
 	}
 	public void deadCrystal() {
-		// TODO Auto-generated method stub
+		this.crystal = null;
+		
+	}
+	public void deadBourse() {
+		this.bourse = null;
 		
 	}
 
@@ -143,5 +154,11 @@ public class Model extends Observable implements IModel {
 	
 	public Observable getObservable() {
 		return this;
+	}
+
+	@Override
+	public IBourse getBourse() {
+		
+		return bourse;
 	}
 }
