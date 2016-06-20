@@ -6,12 +6,12 @@ import java.util.Observable;
 
 import motionLess.Crystal;
 import Mobile.hero;
-import Mobile.monstre;
+import Mobile.monster;
 import contract.ICrystal;
 import contract.IElement;
 import contract.IModel;
 import contract.IMobile;
-import contract.IMonstre;
+import contract.IMonster;
 import contract.changeMap;
 import element.element;
 
@@ -26,7 +26,7 @@ public class Model extends Observable implements IModel {
 	/*private String message;*/
 
 	private IMobile mobile;
-	private IMonstre monstre;
+	private IMonster monstre;
 	private IElement element;
 	private String map;
 	private ICrystal crystal;
@@ -144,27 +144,27 @@ public class Model extends Observable implements IModel {
 	}
 	
 	public void initMonstre(int x, int y){
-		this.monstre = new monstre(x, y);
+		this.monstre = new monster(x, y);
 	}
-	public IMonstre getMonstre(){
+	public IMonster getMonstre(){
 		return monstre;
 	}
 	public void initMonstre1(int x, int y){
-		this.monstre = new monstre(x, y);
+		this.monstre = new monster(x, y);
 	}
-	public IMonstre getMonstre1(){
+	public IMonster getMonstre1(){
 		return monstre;
 	}
 	public void initMonstre2(int x, int y){
-		this.monstre = new monstre(x, y);
+		this.monstre = new monster(x, y);
 	}
-	public IMonstre getMonstre2(){
+	public IMonster getMonstre2(){
 		return monstre;
 	}
 	public void initMonstre3(int x, int y){
-		this.monstre = new monstre(x, y);
+		this.monstre = new monster(x, y);
 	}
-	public IMonstre getMonstre3(){
+	public IMonster getMonstre3(){
 		return monstre;
 	}
 	public void deadHero(){

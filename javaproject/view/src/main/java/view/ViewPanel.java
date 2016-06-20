@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 
 import contract.ICrystal;
 import contract.IMobile;
-import contract.IMonstre;
+import contract.IMonster;
 import contract.IProjectile;
 import contract.changeMap;
 
@@ -40,12 +40,12 @@ class ViewPanel extends JPanel implements Observer {
 	private int ym2 = 32 * 11;
 	private int xm3 = 32 * 8;
 	private int ym3 = 32 * 2;
-	private IMobile mobile;
+	private IMobile hero;
 	private IProjectile projectile;
-	private IMonstre monstre;
-	private IMonstre monstre1;
-	private IMonstre monstre2;
-	private IMonstre monstre3;
+	private IMonster monster;
+	private IMonster monster1;
+	private IMonster monster2;
+	private IMonster monster3;
 	private String map;
 	private int xc;
 	private int yc;
@@ -72,12 +72,12 @@ class ViewPanel extends JPanel implements Observer {
 		this.viewFrame.getModel().initMonstre1( xm1, ym1);
 		this.viewFrame.getModel().initMonstre2( xm2, ym2);
 		this.viewFrame.getModel().initMonstre3( xm3, ym3);
-		setMonstre();
-		setMonstre1();
-		setMonstre2();
-		setMonstre3();
+		setMonster();
+		setMonster1();
+		setMonster2();
+		setMonster3();
 		setHero();
-		this.viewFrame.setVie(this.mobile.getVie());
+		this.viewFrame.setLife(this.hero.getLife());
 		setCrystal();
 	}
 
@@ -129,14 +129,14 @@ class ViewPanel extends JPanel implements Observer {
 		int correction = 0;
 		int recup = 0;
 		graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-		afficheMap(map, graphics, 0);
-		if(mobile != null){
+		DisplayMap(map, graphics, 0);
+		if(hero != null){
 			setX();
 			setY();
 			setProjectile();
 			detection = this.viewFrame.getModel().verifPos(x,y);
 			if(detection == 1){
-				this.mobile.ResetMove();
+				this.hero.ResetMove();
 				setX();
 				setY();
 			}
@@ -147,30 +147,30 @@ class ViewPanel extends JPanel implements Observer {
 				setMap();
 			}
 			else if(detection == 3){
-				this.mobile.perteVie();
-				if(this.mobile.getVie() != 0){
-					this.mobile.ResetCompt();
+				this.hero.LoseLife();
+				if(this.hero.getLife() != 0){
+					this.hero.ResetCompt();
 					collision =0;
-					this.mobile.mortProjectile();
-					this.mobile = null;
-					this.monstre =null;
+					this.hero.DeathProjectile();
+					this.hero = null;
+					this.monster =null;
 					graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-					afficheMap(map, graphics, 1);
+					DisplayMap(map, graphics, 1);
 					setHero();
-					this.mobile.setX(x);
-					this.mobile.setY(y);
-					setMonstre();
-					this.monstre.setX(xm);
-					this.monstre.setY(ym);
-					setMonstre1();
-					this.monstre1.setX(xm1);
-					this.monstre1.setY(ym1);
-					setMonstre2();
-					this.monstre2.setX(xm2);
-					this.monstre2.setY(ym2);
-					setMonstre3();
-					this.monstre3.setX(xm3);
-					this.monstre3.setY(ym3);
+					this.hero.setX(x);
+					this.hero.setY(y);
+					setMonster();
+					this.monster.setX(xm);
+					this.monster.setY(ym);
+					setMonster1();
+					this.monster1.setX(xm1);
+					this.monster1.setY(ym1);
+					setMonster2();
+					this.monster2.setX(xm2);
+					this.monster2.setY(ym2);
+					setMonster3();
+					this.monster3.setX(xm3);
+					this.monster3.setY(ym3);
 					
 					try {
 						Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/monster_1.png"));
@@ -180,10 +180,10 @@ class ViewPanel extends JPanel implements Observer {
 					}
 				}
 				else{
-					this.mobile = null;
+					this.hero = null;
 				this.viewFrame.getModel().deadHero();
 				graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-				afficheMap(map, graphics, 0);
+				DisplayMap(map, graphics, 0);
 				graphics.drawString("dead", x, y);
 				try {
 					Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/monster_1.png"));
@@ -207,104 +207,104 @@ class ViewPanel extends JPanel implements Observer {
 				if(map1 == 2){
 					this.viewFrame.getModel().loadMessage(changeMap.L2);
 					setMap();
-					this.mobile = null;
-					this.monstre = null;
-					this.monstre1 = null;
-					this.monstre2 = null;
-					this.monstre3 = null;
-					afficheMap(map, graphics, 1);
+					this.hero = null;
+					this.monster = null;
+					this.monster1 = null;
+					this.monster2 = null;
+					this.monster3 = null;
+					DisplayMap(map, graphics, 1);
 					setHero();
-					this.mobile.setX(x);
-					this.mobile.setY(y);
-					setMonstre();
-					this.monstre.setX(xm);
-					this.monstre.setY(ym);
-					setMonstre1();
-					this.monstre1.setX(xm1);
-					this.monstre1.setY(ym1);
-					setMonstre2();
-					this.monstre2.setX(xm2);
-					this.monstre2.setY(ym2);
+					this.hero.setX(x);
+					this.hero.setY(y);
+					setMonster();
+					this.monster.setX(xm);
+					this.monster.setY(ym);
+					setMonster1();
+					this.monster1.setX(xm1);
+					this.monster1.setY(ym1);
+					setMonster2();
+					this.monster2.setX(xm2);
+					this.monster2.setY(ym2);
 					this.xm3 = 0;
 					this.ym3  = -32;
 				}
 				else if(map1 == 3){
 					this.viewFrame.getModel().loadMessage(changeMap.L3);
 					setMap();
-					this.mobile = null;
-					this.monstre = null;
-					this.monstre1 = null;
-					this.monstre2 = null;
-					this.monstre3 = null;
-					afficheMap(map, graphics, 1);
+					this.hero = null;
+					this.monster = null;
+					this.monster1 = null;
+					this.monster2 = null;
+					this.monster3 = null;
+					DisplayMap(map, graphics, 1);
 					setHero();
-					this.mobile.setX(x);
-					this.mobile.setY(y);
-					setMonstre();
-					this.monstre.setX(xm);
-					this.monstre.setY(ym);
-					setMonstre1();
-					this.monstre1.setX(xm1);
-					this.monstre1.setY(ym1);
-					setMonstre2();
-					this.monstre2.setX(xm2);
-					this.monstre2.setY(ym2);
-					setMonstre3();
-					this.monstre3.setX(xm3);
-					this.monstre3.setY(ym3);
+					this.hero.setX(x);
+					this.hero.setY(y);
+					setMonster();
+					this.monster.setX(xm);
+					this.monster.setY(ym);
+					setMonster1();
+					this.monster1.setX(xm1);
+					this.monster1.setY(ym1);
+					setMonster2();
+					this.monster2.setX(xm2);
+					this.monster2.setY(ym2);
+					setMonster3();
+					this.monster3.setX(xm3);
+					this.monster3.setY(ym3);
 				}
 				else if(map1 == 4){
 					this.viewFrame.getModel().loadMessage(changeMap.L4);
 					setMap();
-					this.mobile = null;
-					this.monstre = null;
-					this.monstre1 = null;
-					this.monstre2 = null;
-					this.monstre3 = null;
-					afficheMap(map, graphics, 1);
+					this.hero = null;
+					this.monster = null;
+					this.monster1 = null;
+					this.monster2 = null;
+					this.monster3 = null;
+					DisplayMap(map, graphics, 1);
 					setHero();
-					this.mobile.setX(x);
-					this.mobile.setY(y);
-					setMonstre();
-					this.monstre.setX(xm);
-					this.monstre.setY(ym);
-					setMonstre1();
-					this.monstre1.setX(xm1);
-					this.monstre1.setY(ym1);
-					setMonstre2();
-					this.monstre2.setX(xm2);
-					this.monstre2.setY(ym2);
+					this.hero.setX(x);
+					this.hero.setY(y);
+					setMonster();
+					this.monster.setX(xm);
+					this.monster.setY(ym);
+					setMonster1();
+					this.monster1.setX(xm1);
+					this.monster1.setY(ym1);
+					setMonster2();
+					this.monster2.setX(xm2);
+					this.monster2.setY(ym2);
 					this.xm3 = 0;
 					this.ym3 = -32;
 				}
 				else if(map1 == 5){
 					this.viewFrame.getModel().loadMessage(changeMap.L5);
 					setMap();
-					this.mobile = null;
-					this.monstre = null;
-					this.monstre1 = null;
-					this.monstre2 = null;
-					this.monstre3 = null;
-					afficheMap(map, graphics, 1);
+					this.hero = null;
+					this.monster = null;
+					this.monster1 = null;
+					this.monster2 = null;
+					this.monster3 = null;
+					DisplayMap(map, graphics, 1);
 					setHero();
-					this.mobile.setX(x);
-					this.mobile.setY(y);
-					setMonstre();
-					this.monstre.setX(xm);
-					this.monstre.setY(ym);
-					setMonstre1();
-					this.monstre1.setX(xm1);
-					this.monstre1.setY(ym1);
-					setMonstre2();
-					this.monstre2.setX(xm2);
-					this.monstre2.setY(ym2);
-					setMonstre3();
-					this.monstre3.setX(xm3);
-					this.monstre3.setY(ym3);
+					this.hero.setX(x);
+					this.hero.setY(y);
+					setMonster();
+					this.monster.setX(xm);
+					this.monster.setY(ym);
+					setMonster1();
+					this.monster1.setX(xm1);
+					this.monster1.setY(ym1);
+					setMonster2();
+					this.monster2.setX(xm2);
+					this.monster2.setY(ym2);
+					setMonster3();
+					this.monster3.setX(xm3);
+					this.monster3.setY(ym3);
 				}
 				else if(map1 == 6)
 				{
-					this.viewFrame.getController().messageEnd(score* this.mobile.getVie(), this.mobile.getVie());
+					this.viewFrame.getController().messageEnd(score* this.hero.getLife(), this.hero.getLife());
 				}
 				
 				setCrystal();
@@ -312,7 +312,7 @@ class ViewPanel extends JPanel implements Observer {
 				
 				
 			}
-			if(this.mobile.getVie() != 0){
+			if(this.hero.getLife() != 0){
 				try {
 				Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/lorann_r.png"));
 				graphics.drawImage(img, x, y, this);
@@ -352,7 +352,7 @@ class ViewPanel extends JPanel implements Observer {
 			}
 		
 		if(this.projectile != null){
-			this.projectile.deplacement();
+			this.projectile.move();
 			setXP();
 			setYP();
 			detection = this.viewFrame.getModel().verifPos(xp,yp);
@@ -361,7 +361,7 @@ class ViewPanel extends JPanel implements Observer {
 				setXP();
 				setYP();
 				this.projectile.changeDirection();
-				this.projectile.deplacement();
+				this.projectile.move();
 				setXP();
 				setYP();
 			}
@@ -371,13 +371,13 @@ class ViewPanel extends JPanel implements Observer {
 			} catch (final IOException e) {
 				e.printStackTrace();
 			}
-			collision = this.mobile.Collision(xp,yp, x,y);
+			collision = this.hero.Collision(xp,yp, x,y);
 			if(collision == 1){
-				this.mobile.ResetCompt();
+				this.hero.ResetCompt();
 				collision =0;
-				this.mobile.mortProjectile();
+				this.hero.DeathProjectile();
 				graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-				afficheMap(map, graphics, 0);
+				DisplayMap(map, graphics, 0);
 				
 			}
 			collision = this.projectile.Collision(xp,yp, xm,ym);
@@ -387,63 +387,63 @@ class ViewPanel extends JPanel implements Observer {
 			if(collision == 1){
 				score = score + 50 ;
 				this.viewFrame.setScore(score);
-				this.mobile.ResetCompt();
+				this.hero.ResetCompt();
 				collision =0;
-				this.mobile.mortProjectile();
+				this.hero.DeathProjectile();
 				//this.viewFrame.getModel().deadMonstre();
-				this.monstre = null;
+				this.monster = null;
 				this.ym = -32;
 				this.xm = 0;
 				graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-				afficheMap(map, graphics, 0);
+				DisplayMap(map, graphics, 0);
 				
 			}
 			else if(collision1 == 1){
 				score = score + 50 ;
 				this.viewFrame.setScore(score);
-				this.mobile.ResetCompt();
+				this.hero.ResetCompt();
 				collision1 =0;
-				this.mobile.mortProjectile();
+				this.hero.DeathProjectile();
 				//this.viewFrame.getModel().deadMonstre();
-				this.monstre1 = null;
+				this.monster1 = null;
 				this.ym1 = -32;
 				this.xm1 = 0;
 				graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-				afficheMap(map, graphics, 0);
+				DisplayMap(map, graphics, 0);
 				
 			}
 			else if(collision2 == 1){
 				score = score + 50 ;
 				this.viewFrame.setScore(score);
-				this.mobile.ResetCompt();
+				this.hero.ResetCompt();
 				collision2 =0;
-				this.mobile.mortProjectile();
+				this.hero.DeathProjectile();
 				//this.viewFrame.getModel().deadMonstre();
-				this.monstre2 = null;
+				this.monster2 = null;
 				this.ym2 = -32;
 				this.xm2 = 0;
 				graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-				afficheMap(map, graphics, 0);
+				DisplayMap(map, graphics, 0);
 				
 			}
 			else if(collision3 == 1){
 				score = score + 50 ;
 				this.viewFrame.setScore(score);
-				this.mobile.ResetCompt();
+				this.hero.ResetCompt();
 				collision3 =0;
-				this.mobile.mortProjectile();
+				this.hero.DeathProjectile();
 				//this.viewFrame.getModel().deadMonstre();
-				this.monstre3 = null;
+				this.monster3 = null;
 				this.ym3 = -32;
 				this.xm3 = 0;
 				graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-				afficheMap(map, graphics, 0);
+				DisplayMap(map, graphics, 0);
 				
 			}
 			
 		}
-		if(monstre != null){
-			setMonstre();
+		if(monster != null){
+			setMonster();
 			//this.monstre.patternLineaire(xm);
 			/*this.monstre.Pattern(x,y, correction);
 			setXM();
@@ -489,8 +489,8 @@ class ViewPanel extends JPanel implements Observer {
 			
 		}
 
-			if(monstre1 != null){
-				setMonstre1();
+			if(monster1 != null){
+				setMonster1();
 				/*this.monstre1.Pattern(x,y, correction);
 				setXM1();
 				setYM1();
@@ -534,8 +534,8 @@ class ViewPanel extends JPanel implements Observer {
 				
 			}
 				
-				if(monstre2 != null){
-					setMonstre2();
+				if(monster2 != null){
+					setMonster2();
 					/*this.monstre2.Pattern(x,y, correction);
 					setXM2();
 					setYM2();
@@ -578,8 +578,8 @@ class ViewPanel extends JPanel implements Observer {
 						//correction = 0;
 					
 				}
-				if(monstre3 != null){
-					setMonstre3();
+				if(monster3 != null){
+					setMonster3();
 					/*this.monstre3.Pattern(x,y, correction);
 					setXM3();
 					setYM3();
@@ -627,119 +627,119 @@ class ViewPanel extends JPanel implements Observer {
 				collision2 = 0;
 				collision3 = 0;
 				
-				if(this.mobile != null){
-					collision = this.mobile.Collision(x,y, xm,ym);
-					collision1 = this.mobile.Collision(x, y, xm1, ym1);
-					collision2 = this.mobile.Collision(x, y, xm2, ym2);
-					collision3 = this.mobile.Collision(x, y, xm3, ym3);
+				if(this.hero != null){
+					collision = this.hero.Collision(x,y, xm,ym);
+					collision1 = this.hero.Collision(x, y, xm1, ym1);
+					collision2 = this.hero.Collision(x, y, xm2, ym2);
+					collision3 = this.hero.Collision(x, y, xm3, ym3);
 				}
 					
 					if(collision == 1){
 						collision =0;
-						this.mobile.perteVie();
-						this.viewFrame.setVie(this.mobile.getVie());
-						if(this.mobile.getVie() != 0){
-							this.mobile.ResetCompt();
-							this.mobile.mortProjectile();
-							this.mobile = null;
-							this.monstre =null;
+						this.hero.LoseLife();
+						this.viewFrame.setLife(this.hero.getLife());
+						if(this.hero.getLife() != 0){
+							this.hero.ResetCompt();
+							this.hero.DeathProjectile();
+							this.hero = null;
+							this.monster =null;
 							graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-							afficheMap(map, graphics, 1);
+							DisplayMap(map, graphics, 1);
 							setHero();
-							this.mobile.setX(x);
-							this.mobile.setY(y);
-							setMonstre();
-							this.monstre.setX(xm);
-							this.monstre.setY(ym);
+							this.hero.setX(x);
+							this.hero.setY(y);
+							setMonster();
+							this.monster.setX(xm);
+							this.monster.setY(ym);
 						}
 						else {
-							this.mobile = null;
+							this.hero = null;
 						this.viewFrame.getModel().deadHero();
 						graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-						afficheMap(map, graphics, 0);
+						DisplayMap(map, graphics, 0);
 						graphics.drawString("dead", x, y);
-						this.viewFrame.getController().messageMort(score);
+						this.viewFrame.getController().messageDeath(score);
 						}						
 					}
 					else if(collision1 == 1){
 						collision1 =0;
-						this.mobile.perteVie();
-						this.viewFrame.setVie(this.mobile.getVie());
-						if(this.mobile.getVie() != 0){
-							this.mobile.ResetCompt();
-							this.mobile.mortProjectile();
-							this.mobile = null;
-							this.monstre =null;
+						this.hero.LoseLife();
+						this.viewFrame.setLife(this.hero.getLife());
+						if(this.hero.getLife() != 0){
+							this.hero.ResetCompt();
+							this.hero.DeathProjectile();
+							this.hero = null;
+							this.monster =null;
 							graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-							afficheMap(map, graphics, 1);
+							DisplayMap(map, graphics, 1);
 							setHero();
-							this.mobile.setX(x);
-							this.mobile.setY(y);
-							setMonstre();
-							this.monstre.setX(xm);
-							this.monstre.setY(ym);
+							this.hero.setX(x);
+							this.hero.setY(y);
+							setMonster();
+							this.monster.setX(xm);
+							this.monster.setY(ym);
 						}
 						else {
-							this.mobile = null;
+							this.hero = null;
 						this.viewFrame.getModel().deadHero();
 						graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-						afficheMap(map, graphics, 0);
+						DisplayMap(map, graphics, 0);
 						graphics.drawString("dead", x, y);
-						this.viewFrame.getController().messageMort(score);
+						this.viewFrame.getController().messageDeath(score);
 						}
 					}
 					else if(collision2 == 1){
 						collision2 =0;
-						this.mobile.perteVie();
-						this.viewFrame.setVie(this.mobile.getVie());
-						if(this.mobile.getVie() != 0){
-							this.mobile.ResetCompt();
-							this.mobile.mortProjectile();
-							this.mobile = null;
-							this.monstre =null;
+						this.hero.LoseLife();
+						this.viewFrame.setLife(this.hero.getLife());
+						if(this.hero.getLife() != 0){
+							this.hero.ResetCompt();
+							this.hero.DeathProjectile();
+							this.hero = null;
+							this.monster =null;
 							graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-							afficheMap(map, graphics, 1);
+							DisplayMap(map, graphics, 1);
 							setHero();
-							this.mobile.setX(x);
-							this.mobile.setY(y);
-							setMonstre();
-							this.monstre.setX(xm);
-							this.monstre.setY(ym);
+							this.hero.setX(x);
+							this.hero.setY(y);
+							setMonster();
+							this.monster.setX(xm);
+							this.monster.setY(ym);
 						}
 						else {
-							this.mobile = null;
+							this.hero = null;
 						this.viewFrame.getModel().deadHero();
 						graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-						afficheMap(map, graphics, 0);
+						DisplayMap(map, graphics, 0);
 						graphics.drawString("dead", x, y);
-						this.viewFrame.getController().messageMort(score);
+						this.viewFrame.getController().messageDeath(score);
 						}
 					}
 					else if(collision3 == 1){
 						collision3 =0;
-						this.mobile.perteVie();
-						this.viewFrame.setVie(this.mobile.getVie());
-						if(this.mobile.getVie() != 0){
-							this.mobile.ResetCompt();
-							this.mobile.mortProjectile();
-							this.mobile = null;
-							this.monstre =null;
+						this.hero.LoseLife();
+						this.viewFrame.setLife(this.hero.getLife());
+						if(this.hero.getLife() != 0){
+							this.hero.ResetCompt();
+							this.hero.DeathProjectile();
+							this.hero = null;
+							this.monster =null;
 							graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-							afficheMap(map, graphics, 1);
+							DisplayMap(map, graphics, 1);
 							setHero();
-							this.mobile.setX(x);
-							this.mobile.setY(y);
-							setMonstre();
-							this.monstre.setX(xm);
-							this.monstre.setY(ym);
+							this.hero.setX(x);
+							this.hero.setY(y);
+							setMonster();
+							this.monster.setX(xm);
+							this.monster.setY(ym);
 						}
 						else {
-							this.mobile = null;
+							this.hero = null;
 						this.viewFrame.getModel().deadHero();
 						graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-						afficheMap(map, graphics, 0);
+						DisplayMap(map, graphics, 0);
 						graphics.drawString("dead", x, y);
-						this.viewFrame.getController().messageMort(score);
+						this.viewFrame.getController().messageDeath(score);
 						}
 					}
 				
@@ -747,7 +747,6 @@ class ViewPanel extends JPanel implements Observer {
 				Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/lorann_r.png"));
 				graphics.drawImage(img, x, y, this);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			try {
@@ -781,16 +780,16 @@ class ViewPanel extends JPanel implements Observer {
 		this.crystal = this.viewFrame.getModel().getCrystal();
 	}
 	public void setX(){
-		this.x = this.mobile.getX();
+		this.x = this.hero.getX();
 	}
 	public void setY(){
-		this.y = this.mobile.getY();
+		this.y = this.hero.getY();
 	}
 	public void setHero(){
-		this.mobile = this.viewFrame.getModel().getHero();
+		this.hero = this.viewFrame.getModel().getHero();
 	}
 	public void setProjectile(){
-		this.projectile = this.mobile.getProjectile();
+		this.projectile = this.hero.getProjectile();
 	}
 	public void setXP(){
 		this.xp = this.projectile.getX();
@@ -798,47 +797,47 @@ class ViewPanel extends JPanel implements Observer {
 	public void setYP(){
 		this.yp = this.projectile.getY();
 	}
-	public void setMonstre(){
-		this.monstre = this.viewFrame.getModel().getMonstre();
+	public void setMonster(){
+		this.monster = this.viewFrame.getModel().getMonstre();
 	}
 	public void setXM(){
-		this.xm = this.monstre.getX();
+		this.xm = this.monster.getX();
 	}
 	public void setYM(){
-		this.ym = this.monstre.getY();
+		this.ym = this.monster.getY();
 	}
 	public void setMap(){
 		this.map = this.viewFrame.getModel().getMap();
 	}
-	public void setMonstre1(){
-		this.monstre1 = this.viewFrame.getModel().getMonstre1();
+	public void setMonster1(){
+		this.monster1 = this.viewFrame.getModel().getMonstre1();
 	}
 	public void setXM1(){
-		this.xm1 = this.monstre1.getX();
+		this.xm1 = this.monster1.getX();
 	}
 	public void setYM1(){
-		this.ym1 = this.monstre1.getY();
+		this.ym1 = this.monster1.getY();
 	}
-	public void setMonstre2(){
-		this.monstre2 = this.viewFrame.getModel().getMonstre2();
+	public void setMonster2(){
+		this.monster2 = this.viewFrame.getModel().getMonstre2();
 	}
 	public void setXM2(){
-		this.xm2 = this.monstre2.getX();
+		this.xm2 = this.monster2.getX();
 	}
 	public void setYM2(){
-		this.ym2 = this.monstre2.getY();
+		this.ym2 = this.monster2.getY();
 	}
-	public void setMonstre3(){
-		this.monstre3 = this.viewFrame.getModel().getMonstre3();
+	public void setMonster3(){
+		this.monster3 = this.viewFrame.getModel().getMonstre3();
 	}
 	public void setXM3(){
-		this.xm3 = this.monstre3.getX();
+		this.xm3 = this.monster3.getX();
 	}
 	public void setYM3(){
-		this.ym3 = this.monstre3.getY();
+		this.ym3 = this.monster3.getY();
 	}
 
-	public void afficheMap(String map, final Graphics graphics, int change){
+	public void DisplayMap(String map, final Graphics graphics, int change){
 		int k = 0;
 		char[] map1 = map.toCharArray();
 		String affiche;
@@ -922,7 +921,7 @@ class ViewPanel extends JPanel implements Observer {
 					try {
 						Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/case.jpg"));
 						graphics.drawImage(img, j*32, i*32, this);
-						if(this.monstre == null && change == 1){
+						if(this.monster == null && change == 1){
 							xm = j*32;
 							ym = i*32;
 						}
@@ -935,7 +934,7 @@ class ViewPanel extends JPanel implements Observer {
 					try {
 						Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/case.jpg"));
 						graphics.drawImage(img, j*32, i*32, this);
-						if(this.monstre == null && change == 1){
+						if(this.monster == null && change == 1){
 							xm1 = j*32;
 							ym1 = i*32;
 						}
@@ -948,7 +947,7 @@ class ViewPanel extends JPanel implements Observer {
 					try {
 						Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/case.jpg"));
 						graphics.drawImage(img, j*32, i*32, this);
-						if(this.monstre == null && change == 1){
+						if(this.monster == null && change == 1){
 							xm2 = j*32;
 							ym2 = i*32;
 						}
@@ -961,7 +960,7 @@ class ViewPanel extends JPanel implements Observer {
 					try {
 						Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/case.jpg"));
 						graphics.drawImage(img, j*32, i*32, this);
-						if(this.monstre == null && change == 1){
+						if(this.monster == null && change == 1){
 							xm3 = j*32;
 							ym3 = i*32;
 						}
@@ -974,7 +973,7 @@ class ViewPanel extends JPanel implements Observer {
 					try {
 						Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/case.jpg"));
 						graphics.drawImage(img, j*32, i*32, this);
-						if(this.mobile == null && change == 1){
+						if(this.hero == null && change == 1){
 							x = j*32;
 							y = i*32;
 						}

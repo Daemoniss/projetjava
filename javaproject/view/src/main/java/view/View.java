@@ -4,7 +4,7 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.SwingUtilities;
 
-import contract.direction;
+import contract.Action;
 import contract.IController;
 import contract.IModel;
 import contract.IView;
@@ -39,29 +39,29 @@ public class View implements IView, Runnable {
 	 *          the key code
 	 * @return the controller order
 	 */
-	protected static direction keyCodeToControllerOrder(final int keyCode) {
+	protected static Action keyCodeToControllerOrder(final int keyCode) {
 		switch (keyCode) {
 		
 			case KeyEvent.VK_Z:
-				return direction.Haut;
+				return Action.Up;
 			case KeyEvent.VK_S:
-				return direction.Bas;
+				return Action.Down;
 			case KeyEvent.VK_Q:
-				return direction.Gauche;
+				return Action.Left;
 			case KeyEvent.VK_D:
-				return direction.Droite;
+				return Action.Right;
 			case KeyEvent.VK_A:
-				return direction.GaucheHaut;
+				return Action.LeftUp;
 			case KeyEvent.VK_E:
-				return direction.DroiteHaut;
+				return Action.RightUp;
 			case KeyEvent.VK_W:
-				return direction.GaucheBas;
+				return Action.LeftDown;
 			case KeyEvent.VK_C:
-				return direction.DroiteBas;
+				return Action.RightDown;
 			case KeyEvent.VK_SPACE:
-				return direction.Espace;
+				return Action.Shoot;
 			default:
-				return direction.No;
+				return Action.No;
 		}
 	}
 

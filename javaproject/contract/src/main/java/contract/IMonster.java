@@ -1,6 +1,6 @@
 package contract;
 
-public interface IMonstre {
+public interface IMonster {
 
 	int getX();
 
@@ -8,7 +8,7 @@ public interface IMonstre {
 
 	int Collision(int xp, int yp, int xm, int ym);
 
-	void deplacement();
+	void move();
 
 	void Pattern(int x, int y, int correction);
 

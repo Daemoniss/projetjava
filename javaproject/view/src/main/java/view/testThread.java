@@ -1,4 +1,4 @@
-package main;
+package view;
 
 import contract.IModel;
 
@@ -7,9 +7,11 @@ public class testThread extends Thread{
 	public testThread(IModel model){
 		setModel(model);
 	}
+	
 	public void setModel(IModel model){
 		this.model = model;
 	}
+	
 	public void run(){
 		while(true){
 			long start=System.nanoTime(); 

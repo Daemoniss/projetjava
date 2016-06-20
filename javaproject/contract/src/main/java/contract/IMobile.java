@@ -10,8 +10,6 @@ public interface IMobile {
 
 	void setY(int i);
 
-	void tire();
-
 	int getX();
 
 	int getY();
@@ -20,16 +18,18 @@ public interface IMobile {
 
 	int Collision(int x, int y, int x2, int y2);
 
-	void mortProjectile();
+	void DeathProjectile();
 
-	void deplacement();
+	void move();
 
 	void ResetMove();
 
 	void ResetCompt();
 
-	void perteVie();
+	void LoseLife();
 
-	int getVie();
+	void shoot();
+
+	int getLife();
 	
 }

@@ -37,7 +37,7 @@ public interface IModel {
 
 	void refresh();
 
-	IMonstre getMonstre();
+	IMonster getMonstre();
 
 	void deadHero();
 
@@ -65,9 +65,9 @@ public interface IModel {
 
 	void initMonstre3(int xm3, int ym3);
 
-	IMonstre getMonstre1();
+	IMonster getMonstre1();
 
-	IMonstre getMonstre2();
+	IMonster getMonstre2();
 
-	IMonstre getMonstre3();
+	IMonster getMonstre3();
 }

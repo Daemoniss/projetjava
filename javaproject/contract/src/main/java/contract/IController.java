@@ -20,9 +20,9 @@ public interface IController {
 	 * @param controllerOrder
 	 *          the controller order
 	 */
-	public void orderPerform(direction direction);
+	public void orderPerform(Action action);
 
-	public void messageMort(int score);
+	public void messageDeath(int score);
 
 	public void messageEnd(int i, int j);
 }

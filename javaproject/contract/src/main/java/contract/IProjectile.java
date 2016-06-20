@@ -8,7 +8,7 @@ public interface IProjectile {
 
 	int getY();
 
-	void deplacement();
+	void move();
 
 	void changeDirection();
 

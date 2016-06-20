@@ -4,8 +4,8 @@ package Mobile;
 //import contract.IViewFrame;
 
 public class mobile{
-	public int coordonnex;
-	public int coordonney;
+	public int coordinateX;
+	public int coordinateY;
 	public int dir;
 	//private IViewFrame View;
 	
@@ -14,63 +14,63 @@ public class mobile{
 		setY(y);
 	}
 	public void setX(int x){
-		this.coordonnex = x;
+		this.coordinateX = x;
 	}
 	public void setY(int y){
-		this.coordonney = y;
+		this.coordinateY = y;
 	}
 	public int getX(){
-		return coordonnex;
+		return coordinateX;
 	}
 	public int getY(){
-		return coordonney;
+		return coordinateY;
 	}
 	/*public void setViewPanel(IViewFrame View){
 		this.View = View;
 	}*/
 	public void setDirection(int direction){
 		this.dir = direction;
-		deplacement();
+		move();
 	}
-	public void deplacement(){
+	public void move(){
 		switch(dir){
 		case 1 :
-			coordonney -= 32;
+			coordinateY -= 32;
 			//this.View.setY(coordonney);
 			break;
 		case 2 : 
-			coordonney += 32;
+			coordinateY += 32;
 			///this.View.setY(coordonney);
 			break;
 		case 3 :
-			coordonnex -= 32;
+			coordinateX -= 32;
 			//this.View.setX(coordonnex);
 			break;
 		case 4 : 
-			coordonnex += 32;
+			coordinateX += 32;
 			//this.View.setX(coordonnex);
 			break;
 		case 5 :
-			coordonney += 32;
-			coordonnex += 32;
+			coordinateY += 32;
+			coordinateX += 32;
 			/*this.View.setX(coordonnex);
 			this.View.setY(coordonney);*/
 			break;
 		case 6 :
-			coordonney -= 32;
-			coordonnex += 32;
+			coordinateY -= 32;
+			coordinateX += 32;
 			/*this.View.setX(coordonnex);
 			this.View.setY(coordonney);*/
 			break;
 		case 7 :
-			coordonney += 32;
-			coordonnex -= 32;
+			coordinateY += 32;
+			coordinateX -= 32;
 			/*this.View.setX(coordonnex);
 			this.View.setY(coordonney);*/
 			break;
 		case 8 :
-			coordonney -= 32;
-			coordonnex -= 32;
+			coordinateY -= 32;
+			coordinateX -= 32;
 			/*this.View.setX(coordonnex);
 			this.View.setY(coordonney);*/
 			break;
@@ -96,42 +96,42 @@ public class mobile{
 		public void ResetMove(){
 			switch(dir){
 			case 1 :
-				coordonney += 32;
+				coordinateY += 32;
 				//this.View.setY(coordonney);
 				break;
 			case 2 : 
-				coordonney -= 32;
+				coordinateY -= 32;
 				///this.View.setY(coordonney);
 				break;
 			case 3 :
-				coordonnex += 32;
+				coordinateX += 32;
 				//this.View.setX(coordonnex);
 				break;
 			case 4 : 
-				coordonnex -= 32;
+				coordinateX -= 32;
 				//this.View.setX(coordonnex);
 				break;
 			case 5 :
-				coordonney -= 32;
-				coordonnex -= 32;
+				coordinateY -= 32;
+				coordinateX -= 32;
 				/*this.View.setX(coordonnex);
 				this.View.setY(coordonney);*/
 				break;
 			case 6 :
-				coordonney += 32;
-				coordonnex -= 32;
+				coordinateY += 32;
+				coordinateX -= 32;
 				/*this.View.setX(coordonnex);
 				this.View.setY(coordonney);*/
 				break;
 			case 7 :
-				coordonney -= 32;
-				coordonnex += 32;
+				coordinateY -= 32;
+				coordinateX += 32;
 				/*this.View.setX(coordonnex);
 				this.View.setY(coordonney);*/
 				break;
 			case 8 :
-				coordonney += 32;
-				coordonnex += 32;
+				coordinateY += 32;
+				coordinateX += 32;
 				/*this.View.setX(coordonnex);
 				this.View.setY(coordonney);*/
 				break;

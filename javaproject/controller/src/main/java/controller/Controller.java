@@ -1,9 +1,9 @@
 package controller;
 
+import contract.Action;
 import contract.IController;
 import contract.IModel;
 import contract.IView;
-import contract.direction;
 import contract.IMobile;
 
 // TODO: Auto-generated Javadoc
@@ -41,13 +41,14 @@ public class Controller implements IController {
 	 * @see contract.IController#control()
 	 */
 	public void control() {
-		this.view.printMessage("Bienvenue dans les grandes cavernes de Nova-Ann, Lorann ! \nTu dois traverser les 5 cryptes et les libérer du mal de Nekron le Maléfique. Mais attention, tu n'as le droit qu'à 3 chances !");
+		this.view.printMessage("Welcome to the great caverns of Nova-Ann, Lorann ! You must pass through the 5 crypts and free them from Nekron's evil. But watch out ! You only have 3 chances !");
 	}
 	
 	public void messageEnd(int score, int life) {
 		this.view.printMessage("You have win\nScore : " + score + "\n life : " + life);
 	}
-	public void messageMort(int score) {
+	
+	public void messageDeath(int score) {
 		this.view.printMessage("You are dead\nScore : " + score);
 	}
 
@@ -80,55 +81,55 @@ public class Controller implements IController {
 	 *
 	 * @see contract.IController#orderPerform(contract.ControllerOrder)
 	 */
-	public void orderPerform(final direction direction) {
+	public void orderPerform(final Action direction) {
 		switch (direction) {
-			case Haut:
+			case Up:
 				/*this.model.loadMessage("GB");*/
 				this.model.refresh();
 				this.dire = 1;
 				this.mobile.setDirection(dire);
 				break;
-			case Bas:
+			case Down:
 				/*this.model.loadMessage("FR");*/
 				this.model.refresh();
 				this.dire = 2;
 				this.mobile.setDirection(dire);
 				break;
-			case Gauche:
+			case Left:
 				/*this.model.loadMessage("DE");*/
 				this.model.refresh();
 				this.dire = 3;
 				this.mobile.setDirection(dire);
 				break;
-			case Droite:
+			case Right:
 				/*this.model.loadMessage("ID");*/
 				this.model.refresh();
 				this.dire = 4;
 				this.mobile.setDirection(dire);
 				break;
-			case DroiteBas:
+			case RightDown:
 				this.model.refresh();
 				this.dire = 5;
 				this.mobile.setDirection(dire);
 				break;
-			case DroiteHaut:
+			case RightUp:
 				this.model.refresh();
 				this.dire = 6;
 				this.mobile.setDirection(dire);
 				break;
-			case GaucheBas:
+			case LeftDown:
 				this.model.refresh();
 				this.dire = 7;
 				this.mobile.setDirection(dire);
 				break;
-			case GaucheHaut:
+			case LeftUp:
 				this.model.refresh();
 				this.dire = 8;
 				this.mobile.setDirection(dire);
 				break;
-			case Espace:
+			case Shoot:
 				this.model.refresh();
-				this.mobile.tire();
+				this.mobile.shoot();
 				break;
 
 			default:

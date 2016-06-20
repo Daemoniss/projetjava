@@ -27,7 +27,7 @@ class ViewFrame extends JFrame implements KeyListener, IViewFrame{
 
 	/** The controller. */
 	private IController				controller;
-	private int score, vie;
+	private int score, Life;
 	/** The Constant serialVersionUID. */
 	/*private IMobile mobile;*/
 	private static final long	serialVersionUID	= -697358409737458175L;
@@ -184,7 +184,7 @@ class ViewFrame extends JFrame implements KeyListener, IViewFrame{
 	void afficherScore(){
 		JPanel panel = new JPanel();
 		setScore(score);
-		JLabel label = new JLabel("Votre score est de : " + score + ". Il vous reste : " + vie + ".");
+		JLabel label = new JLabel("Votre score est de : " + score + ". Il vous reste : " + Life + ".");
 		panel.add(label);
 		this.getContentPane().removeAll();
 		this.getContentPane().add((label), BorderLayout.SOUTH);
@@ -200,13 +200,13 @@ class ViewFrame extends JFrame implements KeyListener, IViewFrame{
 		return score;
 	}
 	
-	public void setVie(int vie){
-		this.vie = vie;
+	public void setLife(int Life){
+		this.Life = Life;
 
 	}
 
-	public int getVie(int vie) {
-		return vie;
+	public int getVie(int Life) {
+		return Life;
 	}
 	
 

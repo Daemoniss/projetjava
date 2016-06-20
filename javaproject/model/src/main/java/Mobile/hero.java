@@ -7,20 +7,20 @@ import contract.IProjectile;
 
 public class hero extends mobile implements IMobile{
 	int compt = 0;
-	private IProjectile tiree;
-	private int vie;
+	private IProjectile shoot;
+	private int Life;
 
 	public hero(int x, int y) {
 		super(x, y);
-		this.vie = 3;
+		this.Life = 3;
 		
 	}
 	
-	public void tire(){
+	public void shoot(){
 		if (compt == 0){
-		final projectile tire = new projectile(coordonnex, coordonney);
-		this.tiree = tire;
-		this.tiree.setDire(dir);
+		final projectile shoot = new projectile(coordinateX, coordinateY);
+		this.shoot = shoot;
+		this.shoot.setDire(dir);
 		this.compt = 1;
 		}
 		else{
@@ -29,20 +29,20 @@ public class hero extends mobile implements IMobile{
 		
 	}
 	
-	public void mortProjectile(){
-		this.tiree = null;
+	public void DeathProjectile(){
+		this.shoot = null;
 	}
 	public IProjectile getProjectile(){
-		return tiree;
+		return shoot;
 	}
 	public void ResetCompt(){
 		this.compt = 0;
 	}
-	public void perteVie(){
-		this.vie -= 1;
+	public void LoseLife(){
+		this.Life -= 1;
 	}
-	public int getVie(){
-		return this.vie;
+	public int getLife(){
+		return this.Life;
 	}
 	
 }
