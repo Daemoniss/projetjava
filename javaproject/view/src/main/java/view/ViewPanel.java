@@ -120,7 +120,7 @@ class ViewPanel extends JPanel implements Observer {
 			else if(detection == 2){
 				this.viewFrame.getModel().changeMap(x,y);
 				setMap();
-				score = 1000 ;
+				score = score + 75 ;
 				this.viewFrame.setScore(score);
 			}
 			else if(detection == 3){
@@ -186,9 +186,8 @@ class ViewPanel extends JPanel implements Observer {
 			 recup = 1;
 			}
 			if(recup == 1){
-				score = 1000 ;
+				score = score + 100 ;
 				this.viewFrame.setScore(score);
-				
 				this.crystal = null;
 				CrystalRecup=1;
 				this.viewFrame.getModel().setCrystalRecup(CrystalRecup);
@@ -314,6 +313,8 @@ class ViewPanel extends JPanel implements Observer {
 				graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
 				afficheMap(map, graphics);
 				graphics.drawString("dead", x, y);
+				score = score + 50 ;
+				this.viewFrame.setScore(score);
 				try {
 					Image img = ImageIO.read(new File("E:/sprite/monster_1.png"));
 					graphics.drawImage(img, xm, ym, this);
@@ -340,7 +341,7 @@ class ViewPanel extends JPanel implements Observer {
 					e.printStackTrace();
 				}
 			}
-		}		
+		}
 		
 	}
 	public void setCrystal(){

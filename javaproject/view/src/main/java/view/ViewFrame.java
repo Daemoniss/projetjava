@@ -213,7 +213,8 @@ class ViewFrame extends JFrame implements KeyListener, IViewFrame{
 	}
 	
 	public void setScore(int score){
-		this.score = this.score + score;
+		this.score = score;
+
 	}
 
 	public int getScore(int score) {
