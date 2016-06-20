@@ -14,4 +14,6 @@ public interface IProjectile {
 
 	void setDire(int dir);
 
+	void ResetMove();
+
 }

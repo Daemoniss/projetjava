@@ -8,9 +8,11 @@ import contract.IProjectile;
 public class hero extends mobile implements IMobile{
 	int compt = 0;
 	private IProjectile tiree;
+	private int vie;
 
 	public hero(int x, int y) {
 		super(x, y);
+		this.vie = 3;
 		
 	}
 	
@@ -35,6 +37,12 @@ public class hero extends mobile implements IMobile{
 	}
 	public void ResetCompt(){
 		this.compt = 0;
+	}
+	public void perteVie(){
+		this.vie -= 1;
+	}
+	public int getVie(){
+		return this.vie;
 	}
 	
 }

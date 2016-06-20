@@ -6,7 +6,7 @@ public interface IMonstre {
 
 	int getY();
 
-	int Collision(int xp, int yp);
+	int Collision(int xp, int yp, int xm, int ym);
 
 	void deplacement();
 

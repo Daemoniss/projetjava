@@ -23,7 +23,7 @@ public abstract class Main {
 		final Controller controller = new Controller(view, model);
 		view.setController(controller);
 		//controller.control();
-		testThread t = new testThread(model);
-		t.start();
+		/*testThread t = new testThread(model);
+		t.start();*/
 	}
 }

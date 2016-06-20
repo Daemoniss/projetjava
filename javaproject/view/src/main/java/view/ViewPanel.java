@@ -27,7 +27,7 @@ class ViewPanel extends JPanel implements Observer {
 	/** The view frame. */
 	private ViewFrame	viewFrame;
 	/** The Constant serialVersionUID. */
-	private static final long	serialVersionUID	= -998294702363713521L;
+	private static final long	serialVersionUID	= -998294702363713521L;	
 	private int x = 18*32;
 	private int y = 8 *32;
 	private int xp;
@@ -106,12 +106,13 @@ class ViewPanel extends JPanel implements Observer {
 		int correction = 0;
 		int recup = 0;
 		graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-		afficheMap(map, graphics);
+		afficheMap(map, graphics, 0);
 		if(mobile != null){
 			setX();
 			setY();
 			setProjectile();
 			detection = this.viewFrame.getModel().verifPos(x,y);
+			System.out.println(detection);
 			if(detection == 1){
 				this.mobile.ResetMove();
 				setX();
@@ -119,13 +120,37 @@ class ViewPanel extends JPanel implements Observer {
 			}
 			else if(detection == 2){
 				this.viewFrame.getModel().changeMap(x,y);
+
 				setMap();
 			}
 			else if(detection == 3){
-				this.mobile = null;
+				this.mobile.perteVie();
+				if(this.mobile.getVie() != 0){
+					this.mobile.ResetCompt();
+					collision =0;
+					this.mobile.mortProjectile();
+					this.mobile = null;
+					this.monstre =null;
+					graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
+					afficheMap(map, graphics, 1);
+					setHero();
+					this.mobile.setX(x);
+					this.mobile.setY(y);
+					setMonstre();
+					this.monstre.setX(xm);
+					this.monstre.setY(ym);
+					try {
+						Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/monster_1.png"));
+						graphics.drawImage(img, xm, ym, this);
+					} catch (final IOException e) {
+						e.printStackTrace();
+					}
+				}
+				else{
+					this.mobile = null;
 				this.viewFrame.getModel().deadHero();
 				graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-				afficheMap(map, graphics);
+				afficheMap(map, graphics, 0);
 				graphics.drawString("dead", x, y);
 				try {
 					Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/monster_1.png"));
@@ -133,6 +158,8 @@ class ViewPanel extends JPanel implements Observer {
 				} catch (final IOException e) {
 					e.printStackTrace();
 				}
+				}
+				
 			}
 			else if(detection ==4){
 				map1++;
@@ -149,11 +176,12 @@ class ViewPanel extends JPanel implements Observer {
 					this.viewFrame.getModel().loadMessage(changeMap.L5);
 				}
 				setMap();
-				afficheMap(map, graphics);
-				this.viewFrame.getModel().initHero( x, y);
+				this.mobile = null;
+				afficheMap(map, graphics, 1);
+				setHero();
 				this.mobile.setX(x);
 				this.mobile.setY(y);
-				this.viewFrame.getModel().initMonstre( xm, ym);
+				setMonstre();
 				this.monstre.setX(xm);
 				this.monstre.setY(ym);
 				setCrystal();
@@ -161,7 +189,7 @@ class ViewPanel extends JPanel implements Observer {
 				
 				
 			}
-			if(detection != 3){
+			if(this.mobile.getVie() != 0){
 				try {
 				Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/lorann_r.png"));
 				graphics.drawImage(img, x, y, this);
@@ -211,7 +239,7 @@ class ViewPanel extends JPanel implements Observer {
 			setYP();
 			detection = this.viewFrame.getModel().verifPos(xp,yp);
 			if(detection != 0){
-				this.mobile.ResetMove();
+				this.projectile.ResetMove();
 				setXP();
 				setYP();
 				this.projectile.changeDirection();
@@ -225,13 +253,13 @@ class ViewPanel extends JPanel implements Observer {
 			} catch (final IOException e) {
 				e.printStackTrace();
 			}
-			collision = this.mobile.Collision(xp,yp);
+			collision = this.mobile.Collision(xp,yp, x,y);
 			if(collision == 1){
 				this.mobile.ResetCompt();
 				collision =0;
 				this.mobile.mortProjectile();
 				graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-				afficheMap(map, graphics);
+				afficheMap(map, graphics, 0);
 				try {
 					Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/lorann_r.png"));
 					graphics.drawImage(img, x, y, this);
@@ -239,16 +267,17 @@ class ViewPanel extends JPanel implements Observer {
 					e.printStackTrace();
 				}
 			}
+			
 		}
 		if(monstre != null){
 			setMonstre();
 			//this.monstre.patternLineaire(xm);
-			/*this.monstre.Pattern(x,y, correction);
+			this.monstre.Pattern(x,y, correction);
 			setXM();
 			setYM();
-			detection = this.viewFrame.getModel().verifPos(xm,ym);*/
-			//while(detection == 1 || detection == 2){
-			  /* if(detection != 0){
+			detection = this.viewFrame.getModel().verifPos(xm,ym);
+			/*while(detection == 1 || detection == 2){*/
+			   if(detection != 0){
 					this.monstre.ResetMove();
 					setXM();
 					setYM();
@@ -292,7 +321,7 @@ class ViewPanel extends JPanel implements Observer {
 					setYM();
 					detection = this.viewFrame.getModel().verifPos(xm,ym);
 				}*/
-				/*correction = 0;*/
+				correction = 0;
 			//}
 			
 			try {
@@ -301,13 +330,30 @@ class ViewPanel extends JPanel implements Observer {
 			} catch (final IOException e) {
 				e.printStackTrace();
 			}
-			collision = this.monstre.Collision(x,y);
+			collision = this.monstre.Collision(x,y, xm,ym);
 			if(collision == 1){
 				collision =0;
-				this.mobile = null;
+				this.mobile.perteVie();
+				if(this.mobile.getVie() != 0){
+					this.mobile.ResetCompt();
+					collision =0;
+					this.mobile.mortProjectile();
+					this.mobile = null;
+					this.monstre =null;
+					graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
+					afficheMap(map, graphics, 1);
+					setHero();
+					this.mobile.setX(x);
+					this.mobile.setY(y);
+					setMonstre();
+					this.monstre.setX(xm);
+					this.monstre.setY(ym);
+				}
+				else {
+					this.mobile = null;
 				this.viewFrame.getModel().deadHero();
 				graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-				afficheMap(map, graphics);
+				afficheMap(map, graphics, 0);
 				graphics.drawString("dead", x, y);
 				try {
 					Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/monster_1.png"));
@@ -315,25 +361,40 @@ class ViewPanel extends JPanel implements Observer {
 				} catch (final IOException e) {
 					e.printStackTrace();
 				}
+				}
+				
 				
 			}
-			collision = this.monstre.Collision(xp,yp);
+			collision = this.monstre.Collision(xp,yp, xm,ym);
 			if(collision == 1){
 				this.mobile.ResetCompt();
 				collision =0;
 				this.mobile.mortProjectile();
-				this.viewFrame.getModel().deadMonstre();
+				//this.viewFrame.getModel().deadMonstre();
 				this.monstre = null;
 				this.ym = 0;
 				this.xm = 0;
 				graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-				afficheMap(map, graphics);
+				afficheMap(map, graphics, 0);
 				try {
 					Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/lorann_r.png"));
 					graphics.drawImage(img, x, y, this);
 				} catch (final IOException e) {
 					e.printStackTrace();
 				}
+			}
+			try {
+				Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/lorann_r.png"));
+				graphics.drawImage(img, x, y, this);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/monster_1.png"));
+				graphics.drawImage(img, xm, ym, this);
+			} catch (final IOException e) {
+				e.printStackTrace();
 			}
 		}		
 		
@@ -372,7 +433,7 @@ class ViewPanel extends JPanel implements Observer {
 		this.map = this.viewFrame.getModel().getMap();
 	}
 
-	public void afficheMap(String map, final Graphics graphics){
+	public void afficheMap(String map, final Graphics graphics, int change){
 		int k = 0;
 		char[] map1 = map.toCharArray();
 		String affiche;
@@ -383,26 +444,6 @@ class ViewPanel extends JPanel implements Observer {
 					try {
 						Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/case.jpg"));
 						graphics.drawImage(img, j*32, i*32, this);
-					} catch (final IOException e) {
-						e.printStackTrace();
-					}
-				}
-				else if(affiche.equals("M")){
-					try {
-						Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/case.jpg"));
-						graphics.drawImage(img, j*32, i*32, this);
-						xm = j*32;
-						ym = i*32;
-					} catch (final IOException e) {
-						e.printStackTrace();
-					}
-				}
-				else if(affiche.equals("H")){
-					try {
-						Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/case.jpg"));
-						graphics.drawImage(img, j*32, i*32, this);
-						x = j*32;
-						y = i*32;
 					} catch (final IOException e) {
 						e.printStackTrace();
 					}
@@ -468,6 +509,33 @@ class ViewPanel extends JPanel implements Observer {
 						graphics.drawImage(img, j*32, i*32, this);
 						xc=j*32;
 						yc=i*32;
+					} catch (final IOException e) {
+						e.printStackTrace();
+					}
+				}
+				else if(affiche.equals("M")){
+					try {
+						Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/case.jpg"));
+						graphics.drawImage(img, j*32, i*32, this);
+						if(this.monstre == null && change == 1){
+							System.out.println("test");
+							xm = j*32;
+							ym = i*32;
+						}
+						
+					} catch (final IOException e) {
+						e.printStackTrace();
+					}
+				}
+				else if(affiche.equals("H")){
+					try {
+						Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/case.jpg"));
+						graphics.drawImage(img, j*32, i*32, this);
+						if(this.mobile == null && change == 1){
+							x = j*32;
+							y = i*32;
+						}
+						
 					} catch (final IOException e) {
 						e.printStackTrace();
 					}

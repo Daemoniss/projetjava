@@ -18,7 +18,7 @@ public interface IMobile {
 	
 	IProjectile getProjectile();
 
-	int Collision(int x, int y);
+	int Collision(int x, int y, int x2, int y2);
 
 	void mortProjectile();
 
@@ -27,5 +27,9 @@ public interface IMobile {
 	void ResetMove();
 
 	void ResetCompt();
+
+	void perteVie();
+
+	int getVie();
 	
 }
