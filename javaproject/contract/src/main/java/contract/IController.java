@@ -22,7 +22,7 @@ public interface IController {
 	 */
 	public void orderPerform(direction direction);
 
-	public void messageMort();
+	public void messageMort(int score);
 
-	public void messageEnd();
+	public void messageEnd(int i, int j);
 }

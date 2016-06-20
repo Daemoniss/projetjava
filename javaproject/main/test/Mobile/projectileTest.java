@@ -1,4 +1,4 @@
-package view;
+package Mobile;
 
 import static org.junit.Assert.*;
 
@@ -6,7 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ViewTest {
+public class projectileTest {
 
 	@Before
 	public void setUp() throws Exception {
@@ -17,7 +17,12 @@ public class ViewTest {
 	}
 
 	@Test
-	public final void test() {
+	public final void testProjectile() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public final void testChangeDirection() {
 		fail("Not yet implemented"); // TODO
 	}
 

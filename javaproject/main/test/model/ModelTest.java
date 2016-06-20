@@ -6,21 +6,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import contract.IMobile;
-import contract.IModel;
-
-import java.util.Observable;
-
 public class ModelTest {
-	
-	public IMobile mobile;
-	public IModel model;
 
 	@Before
 	public void setUp() throws Exception {
-		final Model Model = new Model();
-		this.model = Model;
-		
 	}
 
 	@After
@@ -29,36 +18,122 @@ public class ModelTest {
 
 	@Test
 	public final void testModel() {
-		if(this.model == null){
-			fail("Not yet implemented"); // TODO
-		}
-		
+		fail("Not yet implemented"); // TODO
 	}
 
-	/*@Test
-	public final void testGetMessage() {
+	@Test
+	public final void testRefresh() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public final void testSetMap() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public final void testChangeMap() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public final void testGetMap() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public final void testInitElementMap() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public final void testVerifPos() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public final void testGetCrystal() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public final void testInitCrystal() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public final void testSetCrystalRecup() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
 	public final void testLoadMessage() {
 		fail("Not yet implemented"); // TODO
-	}*/
+	}
 
 	@Test
-	public final void testGetHeroEtInitHero() {
-		this.mobile = this.model.getHero();
-		if(mobile == null){
-			fail("Not yet implemented"); // TODO	
-		}
+	public final void testInitHero() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public final void testGetHero() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public final void testInitMonstre() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public final void testGetMonstre() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public final void testInitMonstre1() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public final void testGetMonstre1() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public final void testInitMonstre2() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public final void testGetMonstre2() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public final void testInitMonstre3() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public final void testGetMonstre3() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public final void testDeadHero() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public final void testDeadMonstre() {
+		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
 	public final void testGetObservable() {
-		Observable observation = this.model.getObservable();
-		if(observation == null){
-			fail("Not yet implemented"); // TODO
-		}
+		fail("Not yet implemented"); // TODO
 	}
 
 }

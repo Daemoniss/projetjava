@@ -6,7 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class heroTest {
+public class mobileTest {
 
 	@Before
 	public void setUp() throws Exception {
@@ -17,37 +17,52 @@ public class heroTest {
 	}
 
 	@Test
-	public final void testHero() {
+	public final void testMobile() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public final void testTire() {
+	public final void testSetX() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public final void testMortProjectile() {
+	public final void testSetY() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public final void testGetProjectile() {
+	public final void testGetX() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public final void testResetCompt() {
+	public final void testGetY() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public final void testPerteVie() {
+	public final void testSetDirection() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public final void testGetVie() {
+	public final void testDeplacement() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public final void testCollision() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public final void testSetDire() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public final void testResetMove() {
 		fail("Not yet implemented"); // TODO
 	}
 

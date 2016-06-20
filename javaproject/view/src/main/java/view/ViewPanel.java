@@ -54,6 +54,7 @@ class ViewPanel extends JPanel implements Observer {
 	private ICrystal crystal;
 	public int CrystalRecup =0;
 	public int map1 = 1;
+	int score=0;
 
 	/**
 	 * Instantiates a new view panel.
@@ -76,6 +77,7 @@ class ViewPanel extends JPanel implements Observer {
 		setMonstre2();
 		setMonstre3();
 		setHero();
+		this.viewFrame.setVie(this.mobile.getVie());
 		setCrystal();
 	}
 
@@ -112,6 +114,9 @@ class ViewPanel extends JPanel implements Observer {
 	 *
 	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
 	 */
+	/* (non-Javadoc)
+	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
+	 */
 	@Override
 	protected void paintComponent(final Graphics graphics) {
 		/*this.x = this.viewFrame.getX();
@@ -137,7 +142,8 @@ class ViewPanel extends JPanel implements Observer {
 			}
 			else if(detection == 2){
 				this.viewFrame.getModel().changeMap(x,y);
-
+				score = score + 75 ;
+				this.viewFrame.setScore(score);
 				setMap();
 			}
 			else if(detection == 3){
@@ -196,6 +202,8 @@ class ViewPanel extends JPanel implements Observer {
 			}
 			else if(detection ==4){
 				map1++;
+				score = score + 200 ;
+				this.viewFrame.setScore(score);
 				if(map1 == 2){
 					this.viewFrame.getModel().loadMessage(changeMap.L2);
 					setMap();
@@ -296,7 +304,7 @@ class ViewPanel extends JPanel implements Observer {
 				}
 				else if(map1 == 6)
 				{
-					this.viewFrame.getController().messageEnd();
+					this.viewFrame.getController().messageEnd(score* this.mobile.getVie(), this.mobile.getVie());
 				}
 				
 				setCrystal();
@@ -327,6 +335,8 @@ class ViewPanel extends JPanel implements Observer {
 			 recup = 1;
 			}
 			if(recup == 1){
+				score = score + 100 ;
+				this.viewFrame.setScore(score);
 				this.crystal = null;
 				CrystalRecup=1;
 				this.viewFrame.getModel().setCrystalRecup(CrystalRecup);
@@ -375,6 +385,8 @@ class ViewPanel extends JPanel implements Observer {
 			collision2 = this.projectile.Collision(xp,yp, xm2,ym2);
 			collision3 = this.projectile.Collision(xp,yp, xm3,ym3);
 			if(collision == 1){
+				score = score + 50 ;
+				this.viewFrame.setScore(score);
 				this.mobile.ResetCompt();
 				collision =0;
 				this.mobile.mortProjectile();
@@ -387,6 +399,8 @@ class ViewPanel extends JPanel implements Observer {
 				
 			}
 			else if(collision1 == 1){
+				score = score + 50 ;
+				this.viewFrame.setScore(score);
 				this.mobile.ResetCompt();
 				collision1 =0;
 				this.mobile.mortProjectile();
@@ -399,6 +413,8 @@ class ViewPanel extends JPanel implements Observer {
 				
 			}
 			else if(collision2 == 1){
+				score = score + 50 ;
+				this.viewFrame.setScore(score);
 				this.mobile.ResetCompt();
 				collision2 =0;
 				this.mobile.mortProjectile();
@@ -411,6 +427,8 @@ class ViewPanel extends JPanel implements Observer {
 				
 			}
 			else if(collision3 == 1){
+				score = score + 50 ;
+				this.viewFrame.setScore(score);
 				this.mobile.ResetCompt();
 				collision3 =0;
 				this.mobile.mortProjectile();
@@ -619,6 +637,7 @@ class ViewPanel extends JPanel implements Observer {
 					if(collision == 1){
 						collision =0;
 						this.mobile.perteVie();
+						this.viewFrame.setVie(this.mobile.getVie());
 						if(this.mobile.getVie() != 0){
 							this.mobile.ResetCompt();
 							this.mobile.mortProjectile();
@@ -639,12 +658,13 @@ class ViewPanel extends JPanel implements Observer {
 						graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
 						afficheMap(map, graphics, 0);
 						graphics.drawString("dead", x, y);
-						this.viewFrame.getController().messageMort();
+						this.viewFrame.getController().messageMort(score);
 						}						
 					}
 					else if(collision1 == 1){
 						collision1 =0;
 						this.mobile.perteVie();
+						this.viewFrame.setVie(this.mobile.getVie());
 						if(this.mobile.getVie() != 0){
 							this.mobile.ResetCompt();
 							this.mobile.mortProjectile();
@@ -665,12 +685,13 @@ class ViewPanel extends JPanel implements Observer {
 						graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
 						afficheMap(map, graphics, 0);
 						graphics.drawString("dead", x, y);
-						this.viewFrame.getController().messageMort();
+						this.viewFrame.getController().messageMort(score);
 						}
 					}
 					else if(collision2 == 1){
 						collision2 =0;
 						this.mobile.perteVie();
+						this.viewFrame.setVie(this.mobile.getVie());
 						if(this.mobile.getVie() != 0){
 							this.mobile.ResetCompt();
 							this.mobile.mortProjectile();
@@ -691,12 +712,13 @@ class ViewPanel extends JPanel implements Observer {
 						graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
 						afficheMap(map, graphics, 0);
 						graphics.drawString("dead", x, y);
-						this.viewFrame.getController().messageMort();
+						this.viewFrame.getController().messageMort(score);
 						}
 					}
 					else if(collision3 == 1){
 						collision3 =0;
 						this.mobile.perteVie();
+						this.viewFrame.setVie(this.mobile.getVie());
 						if(this.mobile.getVie() != 0){
 							this.mobile.ResetCompt();
 							this.mobile.mortProjectile();
@@ -717,7 +739,7 @@ class ViewPanel extends JPanel implements Observer {
 						graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
 						afficheMap(map, graphics, 0);
 						graphics.drawString("dead", x, y);
-						this.viewFrame.getController().messageMort();
+						this.viewFrame.getController().messageMort(score);
 						}
 					}
 				

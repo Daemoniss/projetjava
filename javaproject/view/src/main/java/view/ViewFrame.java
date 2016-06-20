@@ -1,12 +1,15 @@
 package view;
 
+import java.awt.BorderLayout;
 import java.awt.GraphicsConfiguration;
 import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import contract.IController;
 import contract.IModel;
@@ -24,6 +27,7 @@ class ViewFrame extends JFrame implements KeyListener, IViewFrame{
 
 	/** The controller. */
 	private IController				controller;
+	private int score, vie;
 	/** The Constant serialVersionUID. */
 	/*private IMobile mobile;*/
 	private static final long	serialVersionUID	= -697358409737458175L;
@@ -165,6 +169,8 @@ class ViewFrame extends JFrame implements KeyListener, IViewFrame{
 	 */
 	public void keyPressed(final KeyEvent e) {
 		this.getController().orderPerform(View.keyCodeToControllerOrder(e.getKeyCode()));
+		setScore(score);
+		afficherScore();
 	}
 
 	/*
@@ -174,6 +180,33 @@ class ViewFrame extends JFrame implements KeyListener, IViewFrame{
 	 */
 	public void keyReleased(final KeyEvent e) {
 
+	}
+	void afficherScore(){
+		JPanel panel = new JPanel();
+		setScore(score);
+		JLabel label = new JLabel("Votre score est de : " + score + ". Il vous reste : " + vie + ".");
+		panel.add(label);
+		this.getContentPane().removeAll();
+		this.getContentPane().add((label), BorderLayout.SOUTH);
+		this.getContentPane().revalidate();
+		
+	}
+	public void setScore(int score){
+		this.score = score;
+
+	}
+
+	public int getScore(int score) {
+		return score;
+	}
+	
+	public void setVie(int vie){
+		this.vie = vie;
+
+	}
+
+	public int getVie(int vie) {
+		return vie;
 	}
 	
 

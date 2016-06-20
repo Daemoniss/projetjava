@@ -1,4 +1,4 @@
-package Mobile;
+package model;
 
 import static org.junit.Assert.*;
 
@@ -6,7 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class heroTest {
+public class MapTest {
 
 	@Before
 	public void setUp() throws Exception {
@@ -17,37 +17,42 @@ public class heroTest {
 	}
 
 	@Test
-	public final void testHero() {
+	public final void testMapIntStringString() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public final void testTire() {
+	public final void testMap() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public final void testMortProjectile() {
+	public final void testGetId() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public final void testGetProjectile() {
+	public final void testSetId() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public final void testResetCompt() {
+	public final void testGetKey() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public final void testPerteVie() {
+	public final void testSetKey() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public final void testGetVie() {
+	public final void testGetMaptxt() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public final void testSetMaptxt() {
 		fail("Not yet implemented"); // TODO
 	}
 

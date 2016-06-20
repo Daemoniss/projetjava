@@ -1,4 +1,4 @@
-package controller;
+package motionLess;
 
 import static org.junit.Assert.*;
 
@@ -6,7 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ControllerTest {
+public class motionLessElementTest {
 
 	@Before
 	public void setUp() throws Exception {
@@ -17,27 +17,22 @@ public class ControllerTest {
 	}
 
 	@Test
-	public final void testController() {
+	public final void testMotionLessElement() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public final void testControl() {
+	public final void testGetX() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public final void testMessageEnd() {
+	public final void testGetY() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public final void testMessageMort() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testOrderPerform() {
+	public final void testSetPermeability() {
 		fail("Not yet implemented"); // TODO
 	}
 
