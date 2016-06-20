@@ -10,9 +10,11 @@ import java.util.Observer;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+import contract.ICrystal;
 import contract.IMobile;
 import contract.IMonstre;
 import contract.IProjectile;
+import contract.changeMap;
 
 
 /**
@@ -26,16 +28,23 @@ class ViewPanel extends JPanel implements Observer {
 	private ViewFrame	viewFrame;
 	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= -998294702363713521L;
-	private int x;
-	private int y;
+	private int x = 18*32;
+	private int y = 8 *32;
 	private int xp;
 	private int yp;
-	private int xm;
-	private int ym;
+	private int xm = 32 * 8;
+	private int ym = 32 * 6;
 	private IMobile mobile;
 	private IProjectile projectile;
 	private IMonstre monstre;
 	private String map;
+	private int xc;
+	private int yc;
+	private int xd;
+	private int yd;
+	private ICrystal crystal;
+	public int CrystalRecup =0;
+	public int map1 = 1;
 
 	/**
 	 * Instantiates a new view panel.
@@ -48,8 +57,11 @@ class ViewPanel extends JPanel implements Observer {
 		this.setViewFrame(viewFrame);
 		viewFrame.getModel().getObservable().addObserver(this);
 		setMap();
+		this.viewFrame.getModel().initHero( x, y);
+		this.viewFrame.getModel().initMonstre( xm, ym);
 		setMonstre();
 		setHero();
+		setCrystal();
 	}
 
 	/**
@@ -92,6 +104,7 @@ class ViewPanel extends JPanel implements Observer {
 		int collision;
 		int detection;
 		int correction = 0;
+		int recup = 0;
 		graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
 		afficheMap(map, graphics);
 		if(mobile != null){
@@ -105,7 +118,8 @@ class ViewPanel extends JPanel implements Observer {
 				setY();
 			}
 			else if(detection == 2){
-				
+				this.viewFrame.getModel().changeMap(x,y);
+				setMap();
 			}
 			else if(detection == 3){
 				this.mobile = null;
@@ -121,6 +135,30 @@ class ViewPanel extends JPanel implements Observer {
 				}
 			}
 			else if(detection ==4){
+				map1++;
+				if(map1 == 2){
+					this.viewFrame.getModel().loadMessage(changeMap.L2);
+				}
+				else if(map1 == 3){
+					this.viewFrame.getModel().loadMessage(changeMap.L3);
+				}
+				if(map1 == 4){
+					this.viewFrame.getModel().loadMessage(changeMap.L4);
+				}
+				if(map1 == 5){
+					this.viewFrame.getModel().loadMessage(changeMap.L5);
+				}
+				setMap();
+				afficheMap(map, graphics);
+				this.viewFrame.getModel().initHero( x, y);
+				this.mobile.setX(x);
+				this.mobile.setY(y);
+				this.viewFrame.getModel().initMonstre( xm, ym);
+				this.monstre.setX(xm);
+				this.monstre.setY(ym);
+				setCrystal();
+				CrystalRecup = 0;
+				
 				
 			}
 			if(detection != 3){
@@ -132,8 +170,40 @@ class ViewPanel extends JPanel implements Observer {
 			}
 			}
 			detection =0;
-			
 		}
+		if(crystal != null){
+			
+			
+			try {
+				Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/crystal_ball.png"));
+				graphics.drawImage(img, xc, yc, this);
+			} catch (final IOException e) {
+				e.printStackTrace();
+			}
+			if(xc==x &&yc==y ){
+			 recup = 1;
+			}
+			if(recup == 1){
+				this.crystal = null;
+				CrystalRecup=1;
+				this.viewFrame.getModel().setCrystalRecup(CrystalRecup);
+				try {
+					Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/lorann_r.png"));
+					graphics.drawImage(img, xc, yc, this);
+				
+				} catch (final IOException e) {
+					e.printStackTrace();
+				}
+				try {
+					Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/gate_open.png"));
+					graphics.drawImage(img, xd, yd, this);
+				
+				} catch (final IOException e) {
+					e.printStackTrace();
+				}	
+				recup=0;
+			}
+			}
 		
 		if(this.projectile != null){
 			this.projectile.deplacement();
@@ -173,12 +243,12 @@ class ViewPanel extends JPanel implements Observer {
 		if(monstre != null){
 			setMonstre();
 			//this.monstre.patternLineaire(xm);
-			this.monstre.Pattern(x,y, correction);
+			/*this.monstre.Pattern(x,y, correction);
 			setXM();
 			setYM();
-			detection = this.viewFrame.getModel().verifPos(xm,ym);
-			/*while(detection == 1 || detection == 2){*/
-			   if(detection == 1){
+			detection = this.viewFrame.getModel().verifPos(xm,ym);*/
+			//while(detection == 1 || detection == 2){
+			  /* if(detection != 0){
 					this.monstre.ResetMove();
 					setXM();
 					setYM();
@@ -187,7 +257,7 @@ class ViewPanel extends JPanel implements Observer {
 					setXM();
 					setYM();
 					detection = this.viewFrame.getModel().verifPos(xm,ym);
-					if(detection == 1){
+					if(detection != 0){
 						this.monstre.ResetMove();
 						setXM();
 						setYM();
@@ -196,7 +266,7 @@ class ViewPanel extends JPanel implements Observer {
 						setXM();
 						setYM();
 						detection = this.viewFrame.getModel().verifPos(xm,ym);
-						if(detection == 1){
+						if(detection != 0){
 							this.monstre.ResetMove();
 							setXM();
 							setYM();
@@ -211,36 +281,7 @@ class ViewPanel extends JPanel implements Observer {
 						
 					}
 				}
-			   else if(detection == 2){
-					this.monstre.ResetMove();
-					setXM();
-					setYM();
-					correction = 1;
-					this.monstre.Pattern(x,y, correction);
-					setXM();
-					setYM();
-					detection = this.viewFrame.getModel().verifPos(xm,ym);
-					if(detection == 2){
-						this.monstre.ResetMove();
-						setXM();
-						setYM();
-						correction = 2;
-						this.monstre.Pattern(x,y, correction);
-						setXM();
-						setYM();
-						detection = this.viewFrame.getModel().verifPos(xm,ym);
-						if(detection == 2){
-							this.monstre.ResetMove();
-							setXM();
-							setYM();
-							correction = 3;
-							this.monstre.Pattern(x,y, correction);
-							setXM();
-							setYM();
-							detection = this.viewFrame.getModel().verifPos(xm,ym);
-						}
-					}
-			   }
+			   
 			/*else if(detection == 2 && (x != xm || y != ym)){
 					this.monstre.ResetMove();
 					setXM();
@@ -251,7 +292,7 @@ class ViewPanel extends JPanel implements Observer {
 					setYM();
 					detection = this.viewFrame.getModel().verifPos(xm,ym);
 				}*/
-				correction = 0;
+				/*correction = 0;*/
 			//}
 			
 			try {
@@ -296,6 +337,9 @@ class ViewPanel extends JPanel implements Observer {
 			}
 		}		
 		
+	}
+	public void setCrystal(){
+		this.crystal = this.viewFrame.getModel().getCrystal();
 	}
 	public void setX(){
 		this.x = this.mobile.getX();
@@ -343,6 +387,26 @@ class ViewPanel extends JPanel implements Observer {
 						e.printStackTrace();
 					}
 				}
+				else if(affiche.equals("M")){
+					try {
+						Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/case.jpg"));
+						graphics.drawImage(img, j*32, i*32, this);
+						xm = j*32;
+						ym = i*32;
+					} catch (final IOException e) {
+						e.printStackTrace();
+					}
+				}
+				else if(affiche.equals("H")){
+					try {
+						Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/case.jpg"));
+						graphics.drawImage(img, j*32, i*32, this);
+						x = j*32;
+						y = i*32;
+					} catch (final IOException e) {
+						e.printStackTrace();
+					}
+				}
 				else if(affiche.equals("o")){
 					try {
 						Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/bone.png"));
@@ -368,13 +432,28 @@ class ViewPanel extends JPanel implements Observer {
 					}
 				}
 				else if(affiche.equals("S")){
-					try {
-						Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/gate_closed.png"));
-						graphics.drawImage(img, j*32, i*32, this);
-					} catch (final IOException e) {
-						e.printStackTrace();
+					if(CrystalRecup==1){
+						try {
+							Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/gate_open.png"));
+							graphics.drawImage(img, j*32, i*32, this);
+							xd=j*32;
+							yd=i*32;
+						} catch (final IOException e) {
+							e.printStackTrace();
+						}
 					}
-				}
+						else{
+							try {
+									Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/gate_closed.png"));
+									graphics.drawImage(img, j*32, i*32, this);
+									xd=j*32;
+									yd=i*32;
+								} catch (final IOException e) {
+									e.printStackTrace();
+								}
+							}
+							
+					}
 				else if(affiche.equals("G")){
 					try {
 						Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/purse.png"));
@@ -385,8 +464,10 @@ class ViewPanel extends JPanel implements Observer {
 				}
 				else if(affiche.equals("B")){
 					try {
-						Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/crystal_ball.png"));
+						Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/case.jpg"));
 						graphics.drawImage(img, j*32, i*32, this);
+						xc=j*32;
+						yc=i*32;
 					} catch (final IOException e) {
 						e.printStackTrace();
 					}

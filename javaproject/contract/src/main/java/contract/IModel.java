@@ -46,4 +46,16 @@ public interface IModel {
 	String getMap();
 
 	int verifPos(int x, int y);
+
+	void setCrystalRecup(int crystalRecup);
+
+	ICrystal getCrystal();
+
+	void loadMessage(changeMap l1);
+
+	void initHero(int x, int y);
+
+	void initMonstre(int xm, int ym);
+
+	void changeMap( int x, int y);
 }

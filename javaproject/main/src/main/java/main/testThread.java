@@ -13,7 +13,7 @@ public class testThread extends Thread{
 	public void run(){
 		while(true){
 			long start=System.nanoTime(); 
-			while((System.nanoTime()-start)<500000000); 
+			while((System.nanoTime()-start)<300000000); 
 			this.model.refresh();
 		}
 	}

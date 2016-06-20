@@ -4,8 +4,10 @@ package model;
 import java.sql.SQLException;
 import java.util.Observable;
 
+import motionLess.Crystal;
 import Mobile.hero;
 import Mobile.monstre;
+import contract.ICrystal;
 import contract.IElement;
 import contract.IModel;
 import contract.IMobile;
@@ -27,13 +29,17 @@ public class Model extends Observable implements IModel {
 	private IMonstre monstre;
 	private IElement element;
 	private String map;
+	private ICrystal crystal;
+	private int Crystalrecup;
+	private String map3 = null;
+	private char[] map2;
 	/**
 	 * Instantiates a new model.
 	 */
 	public Model() {
 		/*this.message = "";*/
-		initHero();
-		initMonstre();
+		initCrystal();
+		loadMessage(changeMap.L1);
 	}
 
 	/*
@@ -61,6 +67,16 @@ public class Model extends Observable implements IModel {
 		initElementMap(map);
 		
 	}
+	public void changeMap(int x,int y){
+		int pos = (x/32)+(((y-1)/32)*20);
+		this.map2 = this.map.toCharArray();
+		map2[pos] = ' ';
+		map3 = Character.toString(map2[0]);
+		for(int j = 1; j <=239; j++){
+			map3 = map3 + map2[j];
+		}
+		this.map = map3;
+	}
 	public String getMap(){
 		return map;
 	}
@@ -74,6 +90,16 @@ public class Model extends Observable implements IModel {
 		return collision;
 		
 	}
+	public ICrystal getCrystal(){
+		return crystal;
+	}
+	public void initCrystal(){
+		this.crystal = new Crystal(0,0, null);
+	}
+	public void setCrystalRecup(int Crystalrecup ){
+		this.Crystalrecup = Crystalrecup;
+		this.element.setCrystalRecup(this.Crystalrecup);
+		}
 	/*
 	 * (non-Javadoc)
 	 *
@@ -108,9 +134,8 @@ public class Model extends Observable implements IModel {
 		}
 		
 	}
-	public void initHero(){
-		this.mobile = new hero(14*32,6*32);
-		loadMessage(changeMap.L2);
+	public void initHero(int x, int y){
+		this.mobile = new hero(x,y);
 
 	}
 	
@@ -118,8 +143,8 @@ public class Model extends Observable implements IModel {
 		return mobile;
 	}
 	
-	public void initMonstre(){
-		this.monstre = new monstre(160, 192);
+	public void initMonstre(int x, int y){
+		this.monstre = new monstre(x, y);
 	}
 	public IMonstre getMonstre(){
 		return monstre;

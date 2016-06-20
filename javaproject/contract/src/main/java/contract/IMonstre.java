@@ -14,4 +14,8 @@ public interface IMonstre {
 
 	void ResetMove();
 
+	void setX(int xm);
+
+	void setY(int ym);
+
 }

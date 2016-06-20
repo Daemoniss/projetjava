@@ -27,6 +27,7 @@ public class element implements IElement{
 	private IBoneVertical[] boneVertical = new BoneVertical[200];
 	private IGateClosed GateClosed = null;
 	private ICrystal Crystal = null;
+	int CrystalRecup;
 	
 	public element(String map){
 		
@@ -74,6 +75,7 @@ public class element implements IElement{
 	public int VerifPosition(int y, int x){
 		int j = x/32;
 		int i = y/32;
+		setCrystalRecup(CrystalRecup);
 		if(map2[j][i] == ' '){
 			return 0;
 		}
@@ -84,13 +86,20 @@ public class element implements IElement{
 			return 1;
 		}
 		else if(map2[j][i] == 'P'){
+			map2[j][i]=' ';
 			return 2;
 		}
 		else if(map2[j][i] == 'C'){
-			return 2;
+			return 6;
 		}
 		else if(map2[j][i] == 'S'){
-			return 3;
+			
+			if(CrystalRecup==1){
+				return 4;
+			}
+			else{
+				return 3;
+			}
 		}
 		else if(map2[j][i] == 'B'){
 			return 1;
@@ -103,4 +112,7 @@ public class element implements IElement{
 		}
 		
 	}
+	public void setCrystalRecup(int Crystalrecup ){
+		this.CrystalRecup = Crystalrecup;
+		}
 }
