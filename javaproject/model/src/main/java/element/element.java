@@ -3,14 +3,14 @@ package element;
 import motionLess.Bone;
 import motionLess.BoneHorizontal;
 import motionLess.BoneVertical;
-import motionLess.Case;
+import motionLess.Tile;
 import motionLess.GateClosed;
 import motionLess.Purse;
 import motionLess.Crystal;
 import contract.IBone;
 import contract.IBoneHorizontal;
 import contract.IBoneVertical;
-import contract.ICase;
+import contract.ITile;
 import contract.ICrystal;
 import contract.IElement;
 import contract.IGateClosed;
@@ -21,7 +21,7 @@ public class element implements IElement{
 	
 	private char[][] map2 = new char[20][13];
 	private IBone[] bone = new Bone[200];
-	private ICase[] Case = new Case[200];
+	private ITile[] tile = new Tile[200];
 	private IPurse[] purse = new Purse[200];
 	private IBoneHorizontal[] boneHorizontal = new BoneHorizontal[200];
 	private IBoneVertical[] boneVertical = new BoneVertical[200];
@@ -45,7 +45,7 @@ public class element implements IElement{
 					map2[j][i] = 'B';
 				}
 				else if (map1[k] == ' '){
-					Case[c] = new Case(j*32, i*32, permeability.Pass);
+					tile[c] = new Tile(j*32, i*32, permeability.Pass);
 					map2[j][i] = ' ';
 				}
 				else if (map1[k] == 'G'){

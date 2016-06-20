@@ -1,5 +1,5 @@
 package contract;
 
-public interface ICase {
+public interface ITile {
 
 }
