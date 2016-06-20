@@ -21,4 +21,8 @@ public interface IController {
 	 *          the controller order
 	 */
 	public void orderPerform(direction direction);
+
+	public void messageMort();
+
+	public void messageEnd();
 }

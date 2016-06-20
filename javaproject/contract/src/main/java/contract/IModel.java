@@ -58,4 +58,16 @@ public interface IModel {
 	void initMonstre(int xm, int ym);
 
 	void changeMap( int x, int y);
+
+	void initMonstre1(int xm1, int ym1);
+
+	void initMonstre2(int xm2, int ym2);
+
+	void initMonstre3(int xm3, int ym3);
+
+	IMonstre getMonstre1();
+
+	IMonstre getMonstre2();
+
+	IMonstre getMonstre3();
 }

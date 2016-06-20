@@ -149,6 +149,24 @@ public class Model extends Observable implements IModel {
 	public IMonstre getMonstre(){
 		return monstre;
 	}
+	public void initMonstre1(int x, int y){
+		this.monstre = new monstre(x, y);
+	}
+	public IMonstre getMonstre1(){
+		return monstre;
+	}
+	public void initMonstre2(int x, int y){
+		this.monstre = new monstre(x, y);
+	}
+	public IMonstre getMonstre2(){
+		return monstre;
+	}
+	public void initMonstre3(int x, int y){
+		this.monstre = new monstre(x, y);
+	}
+	public IMonstre getMonstre3(){
+		return monstre;
+	}
 	public void deadHero(){
 		this.mobile = null;
 	}

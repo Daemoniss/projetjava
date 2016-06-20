@@ -16,4 +16,6 @@ public interface IProjectile {
 
 	void ResetMove();
 
+	int Collision(int xp, int yp, int xm, int ym);
+
 }

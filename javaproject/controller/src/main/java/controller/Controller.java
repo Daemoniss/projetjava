@@ -43,6 +43,13 @@ public class Controller implements IController {
 	public void control() {
 		this.view.printMessage("Bienvenue dans les grandes cavernes de Nova-Ann, Lorann ! \nTu dois traverser les 5 cryptes et les libérer du mal de Nekron le Maléfique. Mais attention, tu n'as le droit qu'à 3 chances !");
 	}
+	
+	public void messageEnd() {
+		this.view.printMessage("You have win");
+	}
+	public void messageMort() {
+		this.view.printMessage("You are dead");
+	}
 
 	/**
 	 * Sets the view.
