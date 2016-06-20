@@ -1,12 +1,18 @@
 package view;
 
+import java.awt.BorderLayout;
 import java.awt.GraphicsConfiguration;
 import java.awt.HeadlessException;
+import java.awt.TextArea;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.text.TableView;
 
 import contract.IController;
 import contract.IModel;
@@ -21,15 +27,16 @@ import contract.IViewFrame;
 class ViewFrame extends JFrame implements KeyListener, IViewFrame{
 	/** The model. */
 	private IModel						model;
-
+	private int score, vie;
 	/** The controller. */
 	private IController				controller;
+	int initialisation = 0;
 	/** The Constant serialVersionUID. */
 	/*private IMobile mobile;*/
 	private static final long	serialVersionUID	= -697358409737458175L;
 	/*public int x = 20;
 	public int y = 20;*/
-
+	
 	/**
 	 * Instantiates a new view frame.
 	 *
@@ -40,6 +47,7 @@ class ViewFrame extends JFrame implements KeyListener, IViewFrame{
 	 */
 	public ViewFrame(final IModel model) throws HeadlessException {
 		this.buildViewFrame(model);
+		
 	}
 
 	/**
@@ -53,6 +61,7 @@ class ViewFrame extends JFrame implements KeyListener, IViewFrame{
 	public ViewFrame(final IModel model, final GraphicsConfiguration gc) {
 		super(gc);
 		this.buildViewFrame(model);
+		 
 	}
 
 	/**
@@ -68,6 +77,7 @@ class ViewFrame extends JFrame implements KeyListener, IViewFrame{
 	public ViewFrame(final IModel model, final String title) throws HeadlessException {
 		super(title);
 		this.buildViewFrame(model);
+	
 	}
 
 	/**
@@ -83,6 +93,7 @@ class ViewFrame extends JFrame implements KeyListener, IViewFrame{
 	public ViewFrame(final IModel model, final String title, final GraphicsConfiguration gc) {
 		super(title, gc);
 		this.buildViewFrame(model);
+		
 	}
 
 	/**
@@ -102,6 +113,7 @@ class ViewFrame extends JFrame implements KeyListener, IViewFrame{
 	 */
 	protected void setController(final IController controller) {
 		this.controller = controller;
+		
 	}
 
 	/**
@@ -130,17 +142,38 @@ class ViewFrame extends JFrame implements KeyListener, IViewFrame{
 	 *          the model
 	 */
 	private void buildViewFrame(final IModel model) {
+		
+		
 		this.setModel(model);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
+		 this.setLayout(new BorderLayout());
 		this.addKeyListener(this);
+		
 		this.setContentPane(new ViewPanel(this));
 		this.setSize(700 + this.getInsets().left + this.getInsets().right, 600 + this.getInsets().top + this.getInsets().bottom);
 		this.setLocationRelativeTo(null);
+		
+		
+		// p.add(new TextArea(), BorderLayout.CENTER)
+
+		
+	}
+	void afficherScore(){
+		JPanel panel = new JPanel();
+		setScore(score);
+		System.out.println(score);
+		JLabel label = new JLabel("Votre score est de : " + score);
+		panel.add(label);
+		this.getContentPane().removeAll();
+		this.getContentPane().add((label), BorderLayout.SOUTH);
+		this.getContentPane().revalidate();
+		
 	}
 
 	/**
 	 * Prints the message.
+	 *
 	 *
 	 * @param message
 	 *          the message
@@ -165,6 +198,9 @@ class ViewFrame extends JFrame implements KeyListener, IViewFrame{
 	 */
 	public void keyPressed(final KeyEvent e) {
 		this.getController().orderPerform(View.keyCodeToControllerOrder(e.getKeyCode()));
+		setScore(score);
+		afficherScore();
+		
 	}
 
 	/*
@@ -174,6 +210,14 @@ class ViewFrame extends JFrame implements KeyListener, IViewFrame{
 	 */
 	public void keyReleased(final KeyEvent e) {
 
+	}
+	
+	public void setScore(int score){
+		this.score = this.score + score;
+	}
+
+	public int getScore(int score) {
+		return score;
 	}
 	
 

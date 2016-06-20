@@ -45,7 +45,7 @@ class ViewPanel extends JPanel implements Observer {
 	private ICrystal crystal;
 	public int CrystalRecup =0;
 	public int map1 = 1;
-
+	int score=0;
 	/**
 	 * Instantiates a new view panel.
 	 *
@@ -120,6 +120,8 @@ class ViewPanel extends JPanel implements Observer {
 			else if(detection == 2){
 				this.viewFrame.getModel().changeMap(x,y);
 				setMap();
+				score = 1000 ;
+				this.viewFrame.setScore(score);
 			}
 			else if(detection == 3){
 				this.mobile = null;
@@ -128,7 +130,7 @@ class ViewPanel extends JPanel implements Observer {
 				afficheMap(map, graphics);
 				graphics.drawString("dead", x, y);
 				try {
-					Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/monster_1.png"));
+					Image img = ImageIO.read(new File("E:/sprite/monster_1.png"));
 					graphics.drawImage(img, xm, ym, this);
 				} catch (final IOException e) {
 					e.printStackTrace();
@@ -163,7 +165,7 @@ class ViewPanel extends JPanel implements Observer {
 			}
 			if(detection != 3){
 				try {
-				Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/lorann_r.png"));
+				Image img = ImageIO.read(new File("E:/sprite/lorann_r.png"));
 				graphics.drawImage(img, x, y, this);
 			} catch (final IOException e) {
 				e.printStackTrace();
@@ -175,7 +177,7 @@ class ViewPanel extends JPanel implements Observer {
 			
 			
 			try {
-				Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/crystal_ball.png"));
+				Image img = ImageIO.read(new File("E:/sprite/crystal_ball.png"));
 				graphics.drawImage(img, xc, yc, this);
 			} catch (final IOException e) {
 				e.printStackTrace();
@@ -184,18 +186,21 @@ class ViewPanel extends JPanel implements Observer {
 			 recup = 1;
 			}
 			if(recup == 1){
+				score = 1000 ;
+				this.viewFrame.setScore(score);
+				
 				this.crystal = null;
 				CrystalRecup=1;
 				this.viewFrame.getModel().setCrystalRecup(CrystalRecup);
 				try {
-					Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/lorann_r.png"));
+					Image img = ImageIO.read(new File("E:/sprite/lorann_r.png"));
 					graphics.drawImage(img, xc, yc, this);
 				
 				} catch (final IOException e) {
 					e.printStackTrace();
 				}
 				try {
-					Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/gate_open.png"));
+					Image img = ImageIO.read(new File("E:/sprite/gate_open.png"));
 					graphics.drawImage(img, xd, yd, this);
 				
 				} catch (final IOException e) {
@@ -220,7 +225,7 @@ class ViewPanel extends JPanel implements Observer {
 				setYP();
 			}
 			try {
-				Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/fireball_1.png"));
+				Image img = ImageIO.read(new File("E:/sprite/fireball_1.png"));
 				graphics.drawImage(img, xp, yp, this);
 			} catch (final IOException e) {
 				e.printStackTrace();
@@ -233,7 +238,7 @@ class ViewPanel extends JPanel implements Observer {
 				graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
 				afficheMap(map, graphics);
 				try {
-					Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/lorann_r.png"));
+					Image img = ImageIO.read(new File("E:/sprite/lorann_r.png"));
 					graphics.drawImage(img, x, y, this);
 				} catch (final IOException e) {
 					e.printStackTrace();
@@ -296,7 +301,7 @@ class ViewPanel extends JPanel implements Observer {
 			//}
 			
 			try {
-				Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/monster_1.png"));
+				Image img = ImageIO.read(new File("E:/sprite/monster_1.png"));
 				graphics.drawImage(img, xm, ym, this);
 			} catch (final IOException e) {
 				e.printStackTrace();
@@ -310,7 +315,7 @@ class ViewPanel extends JPanel implements Observer {
 				afficheMap(map, graphics);
 				graphics.drawString("dead", x, y);
 				try {
-					Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/monster_1.png"));
+					Image img = ImageIO.read(new File("E:/sprite/monster_1.png"));
 					graphics.drawImage(img, xm, ym, this);
 				} catch (final IOException e) {
 					e.printStackTrace();
@@ -329,7 +334,7 @@ class ViewPanel extends JPanel implements Observer {
 				graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
 				afficheMap(map, graphics);
 				try {
-					Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/lorann_r.png"));
+					Image img = ImageIO.read(new File("E:/sprite/lorann_r.png"));
 					graphics.drawImage(img, x, y, this);
 				} catch (final IOException e) {
 					e.printStackTrace();
@@ -371,7 +376,7 @@ class ViewPanel extends JPanel implements Observer {
 	public void setMap(){
 		this.map = this.viewFrame.getModel().getMap();
 	}
-
+	
 	public void afficheMap(String map, final Graphics graphics){
 		int k = 0;
 		char[] map1 = map.toCharArray();
@@ -381,7 +386,7 @@ class ViewPanel extends JPanel implements Observer {
 				affiche = Character.toString(map1[k]);
 				if(affiche.equals(" ")){
 					try {
-						Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/case.jpg"));
+						Image img = ImageIO.read(new File("E:/sprite/case.jpg"));
 						graphics.drawImage(img, j*32, i*32, this);
 					} catch (final IOException e) {
 						e.printStackTrace();
@@ -389,7 +394,7 @@ class ViewPanel extends JPanel implements Observer {
 				}
 				else if(affiche.equals("M")){
 					try {
-						Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/case.jpg"));
+						Image img = ImageIO.read(new File("E:/sprite/case.jpg"));
 						graphics.drawImage(img, j*32, i*32, this);
 						xm = j*32;
 						ym = i*32;
@@ -399,7 +404,7 @@ class ViewPanel extends JPanel implements Observer {
 				}
 				else if(affiche.equals("H")){
 					try {
-						Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/case.jpg"));
+						Image img = ImageIO.read(new File("E:/sprite/case.jpg"));
 						graphics.drawImage(img, j*32, i*32, this);
 						x = j*32;
 						y = i*32;
@@ -409,7 +414,7 @@ class ViewPanel extends JPanel implements Observer {
 				}
 				else if(affiche.equals("o")){
 					try {
-						Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/bone.png"));
+						Image img = ImageIO.read(new File("E:/sprite/bone.png"));
 						graphics.drawImage(img, j*32, i*32, this);
 					} catch (final IOException e) {
 						e.printStackTrace();
@@ -417,7 +422,7 @@ class ViewPanel extends JPanel implements Observer {
 				}
 				else if(affiche.equals("-")){
 					try {
-						Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/horizontal_bone.png"));
+						Image img = ImageIO.read(new File("E:/sprite/horizontal_bone.png"));
 						graphics.drawImage(img, j*32, i*32, this);
 					} catch (final IOException e) {
 						e.printStackTrace();
@@ -425,7 +430,7 @@ class ViewPanel extends JPanel implements Observer {
 				}
 				else if(affiche.equals("|")){
 					try {
-						Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/vertical_bone.png"));
+						Image img = ImageIO.read(new File("E:/sprite/vertical_bone.png"));
 						graphics.drawImage(img, j*32, i*32, this);
 					} catch (final IOException e) {
 						e.printStackTrace();
@@ -434,7 +439,7 @@ class ViewPanel extends JPanel implements Observer {
 				else if(affiche.equals("S")){
 					if(CrystalRecup==1){
 						try {
-							Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/gate_open.png"));
+							Image img = ImageIO.read(new File("E:/sprite/gate_open.png"));
 							graphics.drawImage(img, j*32, i*32, this);
 							xd=j*32;
 							yd=i*32;
@@ -444,7 +449,7 @@ class ViewPanel extends JPanel implements Observer {
 					}
 						else{
 							try {
-									Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/gate_closed.png"));
+									Image img = ImageIO.read(new File("E:/sprite/gate_closed.png"));
 									graphics.drawImage(img, j*32, i*32, this);
 									xd=j*32;
 									yd=i*32;
@@ -456,7 +461,7 @@ class ViewPanel extends JPanel implements Observer {
 					}
 				else if(affiche.equals("G")){
 					try {
-						Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/purse.png"));
+						Image img = ImageIO.read(new File("E:/sprite/purse.png"));
 						graphics.drawImage(img, j*32, i*32, this);
 					} catch (final IOException e) {
 						e.printStackTrace();
@@ -464,7 +469,7 @@ class ViewPanel extends JPanel implements Observer {
 				}
 				else if(affiche.equals("B")){
 					try {
-						Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/case.jpg"));
+						Image img = ImageIO.read(new File("E:/sprite/case.jpg"));
 						graphics.drawImage(img, j*32, i*32, this);
 						xc=j*32;
 						yc=i*32;
