@@ -19,7 +19,6 @@ import contract.IViewFrame;
  * @author Jean-Aymeric Diet
  */
 class ViewFrame extends JFrame implements KeyListener, IViewFrame{
-
 	/** The model. */
 	private IModel						model;
 
@@ -165,7 +164,7 @@ class ViewFrame extends JFrame implements KeyListener, IViewFrame{
 	 * @see java.awt.event.KeyListener#keyPressed(java.awt.event.KeyEvent)
 	 */
 	public void keyPressed(final KeyEvent e) {
-
+		System.out.println(e.getKeyChar());
 		this.getController().orderPerform(View.keyCodeToControllerOrder(e.getKeyCode()));
 	}
 
@@ -178,9 +177,6 @@ class ViewFrame extends JFrame implements KeyListener, IViewFrame{
 
 	}
 	
-	public void jeu(){
-		
-	}
 
 	/*public void setY(int coordonney) {
 		// TODO Auto-generated method stub

@@ -3,7 +3,6 @@ package Mobile;
 import contract.IProjectile;
 
 public class projectile extends mobile implements IProjectile{
-
 	public projectile(int x, int y) {
 		super(x, y);
 		

@@ -6,7 +6,7 @@ import contract.IProjectile;
 
 
 public class hero extends mobile implements IMobile{
-	
+	int compt = 0;
 	private IProjectile tiree;
 
 	public hero(int x, int y) {
@@ -15,9 +15,15 @@ public class hero extends mobile implements IMobile{
 	}
 	
 	public void tire(){
-		final projectile tire = new projectile(coordonnex, this.coordonney);
+		if (compt == 0){
+		final projectile tire = new projectile(coordonnex, coordonney);
 		this.tiree = tire;
 		this.tiree.setDire(dir);
+		this.compt = 1;
+		}
+		else{
+			
+		}
 		
 	}
 	
@@ -27,5 +33,8 @@ public class hero extends mobile implements IMobile{
 	public IProjectile getProjectile(){
 		return tiree;
 	}
-
+	public void ResetCompt(){
+		this.compt = 0;
+	}
+	
 }

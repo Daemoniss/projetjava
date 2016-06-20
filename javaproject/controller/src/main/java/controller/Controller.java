@@ -77,55 +77,45 @@ public class Controller implements IController {
 		switch (direction) {
 			case Haut:
 				/*this.model.loadMessage("GB");*/
-				this.model.refresh();
 				this.dire = 1;
 				this.mobile.setDirection(dire);
 				break;
 			case Bas:
 				/*this.model.loadMessage("FR");*/
-				this.model.refresh();
 				this.dire = 2;
 				this.mobile.setDirection(dire);
 				break;
 			case Gauche:
 				/*this.model.loadMessage("DE");*/
-				this.model.refresh();
 				this.dire = 3;
 				this.mobile.setDirection(dire);
 				break;
 			case Droite:
 				/*this.model.loadMessage("ID");*/
-				this.model.refresh();
 				this.dire = 4;
 				this.mobile.setDirection(dire);
 				break;
 			case DroiteBas:
-				this.model.refresh();
 				this.dire = 5;
 				this.mobile.setDirection(dire);
 				break;
 			case DroiteHaut:
-				this.model.refresh();
 				this.dire = 6;
 				this.mobile.setDirection(dire);
 				break;
 			case GaucheBas:
-				this.model.refresh();
 				this.dire = 7;
 				this.mobile.setDirection(dire);
 				break;
 			case GaucheHaut:
-				this.model.refresh();
 				this.dire = 8;
 				this.mobile.setDirection(dire);
 				break;
 			case Espace:
-				this.model.refresh();
 				this.mobile.tire();
 				break;
 
 			default:
-				this.model.refresh();
 				this.dire = 0;
 				this.mobile.setDirection(dire);
 				break;

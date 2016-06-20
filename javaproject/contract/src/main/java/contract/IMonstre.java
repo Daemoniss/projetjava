@@ -10,7 +10,7 @@ public interface IMonstre {
 
 	void deplacement();
 
-	void Pattern(int x, int y);
+	void Pattern(int x, int y, int correction);
 
 	void ResetMove();
 

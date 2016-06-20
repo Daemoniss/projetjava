@@ -25,5 +25,7 @@ public interface IMobile {
 	void deplacement();
 
 	void ResetMove();
+
+	void ResetCompt();
 	
 }

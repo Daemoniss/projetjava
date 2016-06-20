@@ -33,7 +33,6 @@ class ViewPanel extends JPanel implements Observer {
 	private int xm;
 	private int ym;
 	private IMobile mobile;
-	public int compt = 0;
 	private IProjectile projectile;
 	private IMonstre monstre;
 	private String map;
@@ -92,6 +91,7 @@ class ViewPanel extends JPanel implements Observer {
 		this.y = this.viewFrame.getY();*/
 		int collision;
 		int detection;
+		int correction = 0;
 		graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
 		afficheMap(map, graphics);
 		if(mobile != null){
@@ -136,22 +136,28 @@ class ViewPanel extends JPanel implements Observer {
 		}
 		
 		if(this.projectile != null){
-			compt += 1;
 			this.projectile.deplacement();
 			setXP();
 			setYP();
+			detection = this.viewFrame.getModel().verifPos(xp,yp);
+			if(detection != 0){
+				this.mobile.ResetMove();
+				setXP();
+				setYP();
+				this.projectile.changeDirection();
+				this.projectile.deplacement();
+				setXP();
+				setYP();
+			}
 			try {
 				Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/fireball_1.png"));
 				graphics.drawImage(img, xp, yp, this);
 			} catch (final IOException e) {
 				e.printStackTrace();
 			}
-			if(compt == 10){
-				this.projectile.changeDirection();
-				compt = 0;
-			}
 			collision = this.mobile.Collision(xp,yp);
 			if(collision == 1){
+				this.mobile.ResetCompt();
 				collision =0;
 				this.mobile.mortProjectile();
 				graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
@@ -167,15 +173,87 @@ class ViewPanel extends JPanel implements Observer {
 		if(monstre != null){
 			setMonstre();
 			//this.monstre.patternLineaire(xm);
-			this.monstre.Pattern(x,y);
+			this.monstre.Pattern(x,y, correction);
 			setXM();
 			setYM();
 			detection = this.viewFrame.getModel().verifPos(xm,ym);
-			if(detection == 1){
-				this.monstre.ResetMove();
-				setXM();
-				setYM();
-			}
+			/*while(detection == 1 || detection == 2){*/
+			   if(detection == 1){
+					this.monstre.ResetMove();
+					setXM();
+					setYM();
+					correction = 1;
+					this.monstre.Pattern(x,y, correction);
+					setXM();
+					setYM();
+					detection = this.viewFrame.getModel().verifPos(xm,ym);
+					if(detection == 1){
+						this.monstre.ResetMove();
+						setXM();
+						setYM();
+						correction = 2;
+						this.monstre.Pattern(x,y, correction);
+						setXM();
+						setYM();
+						detection = this.viewFrame.getModel().verifPos(xm,ym);
+						if(detection == 1){
+							this.monstre.ResetMove();
+							setXM();
+							setYM();
+							correction = 3;
+							this.monstre.Pattern(x,y, correction);
+							setXM();
+							setYM();
+							detection = this.viewFrame.getModel().verifPos(xm,ym);
+							
+						}
+
+						
+					}
+				}
+			   else if(detection == 2){
+					this.monstre.ResetMove();
+					setXM();
+					setYM();
+					correction = 1;
+					this.monstre.Pattern(x,y, correction);
+					setXM();
+					setYM();
+					detection = this.viewFrame.getModel().verifPos(xm,ym);
+					if(detection == 2){
+						this.monstre.ResetMove();
+						setXM();
+						setYM();
+						correction = 2;
+						this.monstre.Pattern(x,y, correction);
+						setXM();
+						setYM();
+						detection = this.viewFrame.getModel().verifPos(xm,ym);
+						if(detection == 2){
+							this.monstre.ResetMove();
+							setXM();
+							setYM();
+							correction = 3;
+							this.monstre.Pattern(x,y, correction);
+							setXM();
+							setYM();
+							detection = this.viewFrame.getModel().verifPos(xm,ym);
+						}
+					}
+			   }
+			/*else if(detection == 2 && (x != xm || y != ym)){
+					this.monstre.ResetMove();
+					setXM();
+					setYM();
+					correction = 1;
+					this.monstre.Pattern(x,y, correction);
+					setXM();
+					setYM();
+					detection = this.viewFrame.getModel().verifPos(xm,ym);
+				}*/
+				correction = 0;
+			//}
+			
 			try {
 				Image img = ImageIO.read(new File("C:/Users/toto/git/projetjava/javaproject/sprite/monster_1.png"));
 				graphics.drawImage(img, xm, ym, this);
@@ -200,6 +278,7 @@ class ViewPanel extends JPanel implements Observer {
 			}
 			collision = this.monstre.Collision(xp,yp);
 			if(collision == 1){
+				this.mobile.ResetCompt();
 				collision =0;
 				this.mobile.mortProjectile();
 				this.viewFrame.getModel().deadMonstre();
