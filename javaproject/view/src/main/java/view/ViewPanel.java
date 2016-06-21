@@ -103,13 +103,21 @@ class ViewPanel extends JPanel implements Observer {
 
 	/** the paintComponent
 	 * 
-	 *
+	 *  Handles every collision in the game and the display of the mobile elements
+	 *  - the projectile and its interactions
+	 *  - the death of the Hero
+	 *  - the death of monsters
+	 *  - the update of the score
+	 *  - the end of the game (when there are no lives remaining)
+	 *  - the entry to another level or the rest of the level upon death
 	 * 
 	 * @param collision will be equal to 1 if there is a collision 
 	 * @param collision1 same than collision but for the 2nd monster
 	 * @param collision2 collision for the 3rd monster
 	 * @param collision3 collision for the 4th monster
-	 * @param detection 
+	 * @param detection the type of element you're colliding with 
+	 * @param correction to correct the monster's path
+	 * @param recup variable to know if the crystal has been picked up or not
 	 * 
 	 */
 	@Override
@@ -835,7 +843,11 @@ class ViewPanel extends JPanel implements Observer {
 	public void setYM3(){
 		this.ym3 = this.monster3.getY();
 	}
-
+/** Display of the Map.
+ * parses the text with the map with a double for() loop and displays the images of the motionless elements
+ * 
+ * @param k integer that will get incremented in the for() loop 
+ */
 	public void DisplayMap(String map, final Graphics graphics, int change){
 		int k = 0;
 		char[] map1 = map.toCharArray();
