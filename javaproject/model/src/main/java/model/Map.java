@@ -11,7 +11,7 @@ public class Map extends Entity{
 
 	 
 	 /**
-	  * Instantiates a new hello world.
+	  * Instantiates a new map.
 	  *
 	  * @param id
 	  *          the id
@@ -27,7 +27,7 @@ public class Map extends Entity{
 	 	
 	 }
 	 /**
-	  * Instantiates a new hello world.
+	  * Instantiates a new map.
 	  */
 	 public Map() {
 	 	this(0, "", "");

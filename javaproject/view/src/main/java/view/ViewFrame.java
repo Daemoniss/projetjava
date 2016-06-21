@@ -242,7 +242,7 @@ class ViewFrame extends JFrame implements KeyListener, IViewFrame{
 
 	}
 
-	public int getVie(int Life) {
+	public int getLife(int Life) {
 		return Life;
 	}
 	public void EndWindows(){

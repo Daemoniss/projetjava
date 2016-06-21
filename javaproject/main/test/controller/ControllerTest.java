@@ -49,14 +49,14 @@ public class ControllerTest {
 	}
 
 	@Test
-	public final void testMessageMort() {
+	public final void testMessageDeath() {
 		this.controller.messageDeath(4000);
 		//fail("Not yet implemented"); // TODO
 	}
 
-	@Test
+	/*@Test
 	public final void testOrderPerform() {
 		fail("Not yet implemented"); // TODO
-	}
+	}*/
 
 }

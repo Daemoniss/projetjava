@@ -23,7 +23,7 @@ public class ViewTest {
 	}
 
 	@Test
-	public final void test() {
+	public final void testView() {
 		if (view == null){
 			fail("Not yet implemented"); // TODO
 		}

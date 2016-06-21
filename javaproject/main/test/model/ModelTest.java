@@ -2,9 +2,13 @@ package model;
 
 import static org.junit.Assert.*;
 
+import java.util.Observable;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import contract.changeMap;
 
 public class ModelTest {
 	private Model model;
@@ -24,10 +28,10 @@ public class ModelTest {
 		}
 	}
 
-	@Test
+	/*@Test
 	public final void testRefresh() {
 		fail("Not yet implemented"); // TODO
-	}
+	}*/
 
 	@Test
 	public final void testSetMapAndGetMap() {
@@ -59,81 +63,75 @@ public class ModelTest {
 	}*/
 
 	@Test
-	public final void testGetCrystal() {
+	public final void testGetCrystalAndInitCrystal() {
 		this.model.initCrystal();
 		if(this.model.getCrystal() == null){
 			fail("Not yet implemented"); // TODO
 		}
 	}
 
-	@Test
-	public final void testInitCrystal() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
+	/*@Test
 	public final void testSetCrystalRecup() {
 		fail("Not yet implemented"); // TODO
 	}
-
+*/
 	@Test
 	public final void testLoadMessage() {
-		fail("Not yet implemented"); // TODO
+		this.model.loadMessage(changeMap.L1);
+		if(this.model.getMap() == null){
+			fail("Not yet implemented"); // TODO
+		}
+		
 	}
 
 	@Test
-	public final void testInitHero() {
-		fail("Not yet implemented"); // TODO
+	public final void testInitHeroAndGetHero() {
+		this.model.initHero(0, 32);
+		if(this.model.getHero() == null){
+			fail("Not yet implemented"); // TODO
+		}
 	}
 
 	@Test
-	public final void testGetHero() {
-		fail("Not yet implemented"); // TODO
+	public final void testInitMonstreAndGetMonster() {
+		this.model.initMonster(0, 32);
+		if(this.model.getMonster() == null){
+			fail("Not yet implemented"); // TODO
+		}
+	}
+
+
+	@Test
+	public final void testInitMonster1AndGetMonster1() {
+		this.model.initMonster1(0, 32);
+		if(this.model.getMonster1() == null){
+			fail("Not yet implemented"); // TODO
+		}
 	}
 
 	@Test
-	public final void testInitMonstre() {
-		fail("Not yet implemented"); // TODO
+	public final void testInitMonster1AndGetMonster2() {
+		this.model.initMonster2(0, 32);
+		if(this.model.getMonster2() == null){
+			fail("Not yet implemented"); // TODO
+		}
 	}
 
 	@Test
-	public final void testGetMonstre() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testInitMonstre1() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testGetMonstre1() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testInitMonstre2() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testGetMonstre2() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testInitMonstre3() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testGetMonstre3() {
-		fail("Not yet implemented"); // TODO
+	public final void testInitMonster1AndGetMonster3() {
+		this.model.initMonster3(0, 32);
+		if(this.model.getMonster3() == null){
+			fail("Not yet implemented"); // TODO
+		}
 	}
 
 	@Test
 	public final void testDeadHero() {
-		fail("Not yet implemented"); // TODO
+		this.model.initMonster1(0, 32);
+		this.model.deadHero();
+		if(this.model.getMonster1() != null){
+			fail("Not yet implemented"); // TODO
+		}
 	}
 
 	/*@Test
@@ -143,7 +141,10 @@ public class ModelTest {
 
 	@Test
 	public final void testGetObservable() {
-		fail("Not yet implemented"); // TODO
+		Observable ob = this.model.getObservable();
+		if(ob == null){
+			fail("Not yet implemented"); // TODO
+		}
 	}
 
 }

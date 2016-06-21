@@ -17,42 +17,31 @@ public class MapTest {
 	}
 
 	@Test
-	public final void testMapIntStringString() {
-		fail("Not yet implemented"); // TODO
+	public final void testMapIntStringStringAndSetIdAndGetIdAndSetKeyAndGetKeyAndSetMapTxtAndGetMapText() {
+		Map map = new Map(1, "L1", "  | - o");
+		if(map.getId() ==  0){
+			fail("Not yet implemented"); // TODO
+		}
+		if(map.getKey() ==  ""){
+			fail("Not yet implemented"); // TODO
+		}
+		if(map.getMaptxt() ==  ""){
+			fail("Not yet implemented"); // TODO
+		}
 	}
 
 	@Test
 	public final void testMap() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testGetId() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testSetId() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testGetKey() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testSetKey() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testGetMaptxt() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testSetMaptxt() {
+		Map map = new Map();
+		if(map.getId() ==  0){
+			fail("Not yet implemented"); // TODO
+		}
+		if(map.getKey() ==  ""){
+			fail("Not yet implemented"); // TODO
+		}
+		if(map.getMaptxt() ==  ""){
+			fail("Not yet implemented"); // TODO
+		}
 		fail("Not yet implemented"); // TODO
 	}
 

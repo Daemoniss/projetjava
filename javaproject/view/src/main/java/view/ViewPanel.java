@@ -68,10 +68,10 @@ class ViewPanel extends JPanel implements Observer {
 		viewFrame.getModel().getObservable().addObserver(this);
 		setMap();
 		this.viewFrame.getModel().initHero( x, y);
-		this.viewFrame.getModel().initMonstre( xm, ym);
-		this.viewFrame.getModel().initMonstre1( xm1, ym1);
-		this.viewFrame.getModel().initMonstre2( xm2, ym2);
-		this.viewFrame.getModel().initMonstre3( xm3, ym3);
+		this.viewFrame.getModel().initMonster( xm, ym);
+		this.viewFrame.getModel().initMonster1( xm1, ym1);
+		this.viewFrame.getModel().initMonster2( xm2, ym2);
+		this.viewFrame.getModel().initMonster3( xm3, ym3);
 		setMonster();
 		setMonster1();
 		setMonster2();
@@ -803,7 +803,7 @@ class ViewPanel extends JPanel implements Observer {
 		this.yp = this.projectile.getY();
 	}
 	public void setMonster(){
-		this.monster = this.viewFrame.getModel().getMonstre();
+		this.monster = this.viewFrame.getModel().getMonster();
 	}
 	public void setXM(){
 		this.xm = this.monster.getX();
@@ -815,7 +815,7 @@ class ViewPanel extends JPanel implements Observer {
 		this.map = this.viewFrame.getModel().getMap();
 	}
 	public void setMonster1(){
-		this.monster1 = this.viewFrame.getModel().getMonstre1();
+		this.monster1 = this.viewFrame.getModel().getMonster1();
 	}
 	public void setXM1(){
 		this.xm1 = this.monster1.getX();
@@ -824,7 +824,7 @@ class ViewPanel extends JPanel implements Observer {
 		this.ym1 = this.monster1.getY();
 	}
 	public void setMonster2(){
-		this.monster2 = this.viewFrame.getModel().getMonstre2();
+		this.monster2 = this.viewFrame.getModel().getMonster2();
 	}
 	public void setXM2(){
 		this.xm2 = this.monster2.getX();
@@ -833,7 +833,7 @@ class ViewPanel extends JPanel implements Observer {
 		this.ym2 = this.monster2.getY();
 	}
 	public void setMonster3(){
-		this.monster3 = this.viewFrame.getModel().getMonstre3();
+		this.monster3 = this.viewFrame.getModel().getMonster3();
 	}
 	public void setXM3(){
 		this.xm3 = this.monster3.getX();

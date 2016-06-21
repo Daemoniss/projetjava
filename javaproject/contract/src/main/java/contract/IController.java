@@ -7,8 +7,6 @@ package contract;
  */
 public interface IController {
 
-	int dire = 0;
-
 	/**
 	 * Control.
 	 */

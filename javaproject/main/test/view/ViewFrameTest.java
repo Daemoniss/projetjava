@@ -17,11 +17,14 @@ public class ViewFrameTest {
 
 	private IController controller;
 	private IView view;
+	private ViewFrame viewframe;
+	
 	@Before
 	public void setUp() throws Exception {
 		IModel model = new Model();
 		this.view = new View(model);
 		this.controller = new Controller(view , model);
+		this.viewframe = new ViewFrame(model);
 	}
 
 	@After
@@ -30,7 +33,7 @@ public class ViewFrameTest {
 
 	@Test
 	public final void testViewFrameIModel() {
-		if (this.view == null){
+		if (this.viewframe == null){
 			fail("Not yet implemented"); // TODO
 		}
 		
@@ -53,58 +56,59 @@ public class ViewFrameTest {
 
 	@Test
 	public final void testGetControllerAndSetController() {
-		
-		fail("Not yet implemented"); // TODO
+		this.viewframe.setController(controller);
+		if(this.viewframe.getController() ==  null){
+			fail("Not yet implemented"); // TODO
+		}
 	}
 
 	@Test
 	public final void testGetModel() {
-		fail("Not yet implemented"); // TODO
+		if(this.viewframe.getModel() == null){
+			fail("Not yet implemented"); // TODO
+		}
 	}
 
-	@Test
+	/*@Test
 	public final void testPrintMessage() {
+		
 		fail("Not yet implemented"); // TODO
-	}
+	}*/
 
-	@Test
+	/*@Test
 	public final void testKeyTyped() {
 		fail("Not yet implemented"); // TODO
-	}
+	}*/
 
-	@Test
+/*	@Test
 	public final void testKeyPressed() {
+		
 		fail("Not yet implemented"); // TODO
-	}
+	}*/
 
-	@Test
+/*	@Test
 	public final void testKeyReleased() {
 		fail("Not yet implemented"); // TODO
-	}
+	}*/
 
-	@Test
+	/*@Test
 	public final void testAfficherScore() {
 		fail("Not yet implemented"); // TODO
+	}*/
+
+	@Test
+	public final void testSetScoreGetScore() {
+		this.viewframe.setScore(400);
+		if(this.viewframe.getScore(220) ==  0){
+			fail("Not yet implemented"); // TODO
+		}
 	}
 
 	@Test
-	public final void testSetScore() {
-		fail("Not yet implemented"); // TODO
+	public final void testSetLife() {
+		this.viewframe.setLife(2);
+		if(this.viewframe.getLife(3) == 0){
+			fail("Not yet implemented"); // TODO
+		}
 	}
-
-	@Test
-	public final void testGetScore() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testSetVie() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testGetVie() {
-		fail("Not yet implemented"); // TODO
-	}
-
 }

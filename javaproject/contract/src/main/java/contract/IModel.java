@@ -37,11 +37,11 @@ public interface IModel {
 
 	void refresh();
 
-	IMonster getMonstre();
+	IMonster getMonster();
 
 	void deadHero();
 
-	void deadMonstre();
+	void deadMonster();
 
 	String getMap();
 
@@ -55,19 +55,19 @@ public interface IModel {
 
 	void initHero(int x, int y);
 
-	void initMonstre(int xm, int ym);
+	void initMonster(int xm, int ym);
 
 	void changeMap( int x, int y);
 
-	void initMonstre1(int xm1, int ym1);
+	void initMonster1(int xm1, int ym1);
 
-	void initMonstre2(int xm2, int ym2);
+	void initMonster2(int xm2, int ym2);
 
-	void initMonstre3(int xm3, int ym3);
+	void initMonster3(int xm3, int ym3);
 
-	IMonster getMonstre1();
+	IMonster getMonster1();
 
-	IMonster getMonstre2();
+	IMonster getMonster2();
 
-	IMonster getMonstre3();
+	IMonster getMonster3();
 }
