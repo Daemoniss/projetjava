@@ -21,6 +21,39 @@ import contract.IViewFrame;
  *
  * @author Jean-Aymeric Diet
  */
+
+/**
+ * @author toto
+ *
+ */
+/**
+ * @author toto
+ *
+ */
+/**
+ * @author toto
+ *
+ */
+/**
+ * @author toto
+ *
+ */
+/**
+ * @author toto
+ *
+ */
+/**
+ * @author toto
+ *
+ */
+/**
+ * @author toto
+ *
+ */
+/**
+ * @author toto
+ *
+ */
 class ViewFrame extends JFrame implements KeyListener, IViewFrame{
 	/** The model. */
 	private IModel						model;
@@ -181,6 +214,10 @@ class ViewFrame extends JFrame implements KeyListener, IViewFrame{
 	public void keyReleased(final KeyEvent e) {
 
 	}
+	/** affiche the Score
+	 * 
+	 */
+	 
 	void afficherScore(){
 		JPanel panel = new JPanel();
 		setScore(score);
@@ -208,7 +245,9 @@ class ViewFrame extends JFrame implements KeyListener, IViewFrame{
 	public int getVie(int Life) {
 		return Life;
 	}
-	
+	public void EndWindows(){
+		dispose();
+	}
 
 	/*public void setY(int coordonney) {
 		// TODO Auto-generated method stub

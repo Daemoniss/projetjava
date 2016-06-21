@@ -305,6 +305,7 @@ class ViewPanel extends JPanel implements Observer {
 				else if(map1 == 6)
 				{
 					this.viewFrame.getController().messageEnd(score* this.hero.getLife(), this.hero.getLife());
+					this.viewFrame.EndWindows();
 				}
 				
 				setCrystal();
@@ -659,6 +660,7 @@ class ViewPanel extends JPanel implements Observer {
 						DisplayMap(map, graphics, 0);
 						graphics.drawString("dead", x, y);
 						this.viewFrame.getController().messageDeath(score);
+						this.viewFrame.EndWindows();
 						}						
 					}
 					else if(collision1 == 1){
@@ -686,6 +688,7 @@ class ViewPanel extends JPanel implements Observer {
 						DisplayMap(map, graphics, 0);
 						graphics.drawString("dead", x, y);
 						this.viewFrame.getController().messageDeath(score);
+						this.viewFrame.EndWindows();
 						}
 					}
 					else if(collision2 == 1){
@@ -713,6 +716,7 @@ class ViewPanel extends JPanel implements Observer {
 						DisplayMap(map, graphics, 0);
 						graphics.drawString("dead", x, y);
 						this.viewFrame.getController().messageDeath(score);
+						this.viewFrame.EndWindows();
 						}
 					}
 					else if(collision3 == 1){
@@ -740,6 +744,7 @@ class ViewPanel extends JPanel implements Observer {
 						DisplayMap(map, graphics, 0);
 						graphics.drawString("dead", x, y);
 						this.viewFrame.getController().messageDeath(score);
+						this.viewFrame.EndWindows();
 						}
 					}
 				

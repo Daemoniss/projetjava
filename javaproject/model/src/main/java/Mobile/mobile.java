@@ -74,10 +74,6 @@ public class mobile{
 			/*this.View.setX(coordonnex);
 			this.View.setY(coordonney);*/
 			break;
-		case 0 : 
-			/*this.View.setY(coordonney);
-			this.View.setX(coordonnex);*/
-			break;
 		default:
 			break;
 		}
@@ -93,6 +89,7 @@ public class mobile{
 		public void setDire(int dir){
 			this.dir = dir;
 		}
+		
 		public void ResetMove(){
 			switch(dir){
 			case 1 :

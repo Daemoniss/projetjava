@@ -1,15 +1,27 @@
 package view;
 
 import static org.junit.Assert.*;
+import model.Model;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import view.View;
+import contract.IController;
+import contract.IModel;
+import contract.IView;
+import controller.Controller;
+
 public class ViewFrameTest {
 
+	private IController controller;
+	private IView view;
 	@Before
 	public void setUp() throws Exception {
+		IModel model = new Model();
+		this.view = new View(model);
+		this.controller = new Controller(view , model);
 	}
 
 	@After
@@ -18,10 +30,13 @@ public class ViewFrameTest {
 
 	@Test
 	public final void testViewFrameIModel() {
-		fail("Not yet implemented"); // TODO
+		if (this.view == null){
+			fail("Not yet implemented"); // TODO
+		}
+		
 	}
 
-	@Test
+	/*@Test
 	public final void testViewFrameIModelGraphicsConfiguration() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -34,15 +49,11 @@ public class ViewFrameTest {
 	@Test
 	public final void testViewFrameIModelStringGraphicsConfiguration() {
 		fail("Not yet implemented"); // TODO
-	}
+	}*/
 
 	@Test
-	public final void testGetController() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testSetController() {
+	public final void testGetControllerAndSetController() {
+		
 		fail("Not yet implemented"); // TODO
 	}
 

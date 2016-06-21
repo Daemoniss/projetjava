@@ -6,10 +6,13 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class motionLessElementTest {
+import contract.permeability;
 
+public class motionLessElementTest {
+	private motionLessElement motionlesselement;
 	@Before
 	public void setUp() throws Exception {
+		this.motionlesselement = new motionLessElement(32,32, permeability.Pass);
 	}
 
 	@After
@@ -18,22 +21,28 @@ public class motionLessElementTest {
 
 	@Test
 	public final void testMotionLessElement() {
-		fail("Not yet implemented"); // TODO
+		if(this.motionlesselement == null){
+			fail("Not yet implemented"); // TODO
+		}
 	}
 
 	@Test
 	public final void testGetX() {
-		fail("Not yet implemented"); // TODO
+		if(this.motionlesselement.getX() != 32){
+			fail("Not yet implemented"); // TODO
+		}
 	}
 
 	@Test
 	public final void testGetY() {
-		fail("Not yet implemented"); // TODO
+		if(this.motionlesselement.getY() != 32){
+			fail("Not yet implemented"); // TODO
+		}
 	}
 
-	@Test
+	/*@Test
 	public final void testSetPermeability() {
 		fail("Not yet implemented"); // TODO
-	}
+	}*/
 
 }

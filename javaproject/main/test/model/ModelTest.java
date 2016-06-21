@@ -7,9 +7,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class ModelTest {
-
+	private Model model;
 	@Before
 	public void setUp() throws Exception {
+		this.model = new Model();
 	}
 
 	@After
@@ -18,7 +19,9 @@ public class ModelTest {
 
 	@Test
 	public final void testModel() {
-		fail("Not yet implemented"); // TODO
+		if(model == null){
+			fail("Not yet implemented"); // TODO
+		}
 	}
 
 	@Test
@@ -27,33 +30,40 @@ public class ModelTest {
 	}
 
 	@Test
-	public final void testSetMap() {
-		fail("Not yet implemented"); // TODO
+	public final void testSetMapAndGetMap() {
+		String map = "|   |-o";
+		this.model.setMap(map);
+		if(this.model.getMap() != "|   |-o"){
+			fail("Not yet implemented"); // TODO
+		}
 	}
 
 	@Test
 	public final void testChangeMap() {
-		fail("Not yet implemented"); // TODO
+		String map = "|   |-o";
+		this.model.setMap(map);
+		this.model.changeMap(0,1);
+		if(this.model.getMap() != "|   |-o"){
+			fail("Not yet implemented"); // TODO
+		}
 	}
 
-	@Test
-	public final void testGetMap() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
+	/*@Test
 	public final void testInitElementMap() {
 		fail("Not yet implemented"); // TODO
-	}
+	}*/
 
-	@Test
+	/*@Test
 	public final void testVerifPos() {
 		fail("Not yet implemented"); // TODO
-	}
+	}*/
 
 	@Test
 	public final void testGetCrystal() {
-		fail("Not yet implemented"); // TODO
+		this.model.initCrystal();
+		if(this.model.getCrystal() == null){
+			fail("Not yet implemented"); // TODO
+		}
 	}
 
 	@Test
@@ -126,10 +136,10 @@ public class ModelTest {
 		fail("Not yet implemented"); // TODO
 	}
 
-	@Test
+	/*@Test
 	public final void testDeadMonstre() {
 		fail("Not yet implemented"); // TODO
-	}
+	}*/
 
 	@Test
 	public final void testGetObservable() {
